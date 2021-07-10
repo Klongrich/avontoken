@@ -1,6 +1,7 @@
 import React from "react";
 
 import TokenBackground from "../assests/AvonTokenBackground.png";
+import SecondToken from "../assests/avonSecond.png";
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
 export default function Homepage() {
@@ -11,6 +12,7 @@ export default function Homepage() {
                 <img src={TokenLogo} height="75" width="75" alt="" />
             </div>
 
+            <img src={SecondToken} alt="" />
             <img src={TokenBackground} alt="" />
 
 
