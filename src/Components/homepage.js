@@ -8,9 +8,9 @@ export default function Homepage() {
     return (
         <>
             <div Style="padding: 15px;">
-                <img src={TokenLogo} height="75" width="75" />
+                <img src={TokenLogo} height="75" width="75" alt="" />
             </div>
-            <img src={TokenBackground} />
+            <img src={TokenBackground} alt="" />
             
             <div Style="text-align:center">
                 <p>NEXT BIG THING</p>
