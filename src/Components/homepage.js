@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 
-import TokenBackground from "../assests/AvonTokenBackground.png";
-import SecondToken from "../assests/avonSecond.png";
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
 const Container = styled.div`
