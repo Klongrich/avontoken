@@ -52,6 +52,9 @@ const FooterContainer = styled.div`
     padding-top: 25px;
     padding-bottom: 25px;
 
+    padding-left: 15px;
+    padding-right: 15px;
+
     height: 350px;
 
     a {
@@ -88,7 +91,7 @@ export default function Homepage() {
                 <ul>
                     <li>AvonNFT Market Place</li>
                     <li>AvonDeFi Protocol</li>
-                    <li>AvonInTheKnow Page</li>
+                    <li>AvonInTheKnow Protocol</li>
                 </ul>
             </BodyContainer>
 
