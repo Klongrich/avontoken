@@ -52,6 +52,8 @@ const FooterContainer = styled.div`
     padding-top: 25px;
     padding-bottom: 25px;
 
+    height: 350px;
+
     a {
         color: #0000EE;
     }
