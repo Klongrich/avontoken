@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
@@ -48,6 +48,10 @@ const BodyContainer = styled.div`
         padding-bottom: 10px;
     }
 
+    a {
+        color: white;
+    }
+
 `
 
 const FooterContainer = styled.div`
@@ -80,6 +84,15 @@ const SocialIconsContainer = styled.div`
 
 export default function Homepage() {
 
+    useEffect(() => {
+        var Temp = window.location.href.split("=");
+        var id = Temp[1];
+
+        if (id) {
+
+        }
+    }, [])
+
     return (
         <>
 
@@ -96,7 +109,7 @@ export default function Homepage() {
                 <h2> Avon Token is a next generation crypto-currency </h2>
 
                 <p>
-                   The recent lanuch of our ERC20 token will be used in future projects under the <strong> <u> AvonDAO </u> </strong>
+                   The recent lanuch of our ERC20 token will be used in future projects under the <strong> <u> <a href="/avondao"> AvonDAO </a> </u> </strong>
                 </p>
 
                 <p>
@@ -118,7 +131,6 @@ export default function Homepage() {
                 <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
                 {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
             
-
                 <SocialIconsContainer>
                     <a href="https://twitter.com/avontoken">
                         <Twitter size="42" color="#1DA1F2" />
