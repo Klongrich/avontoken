@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
 import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
 import {Github} from "@styled-icons/bootstrap/Github";
+import {FacebookSquare} from "@styled-icons/boxicons-logos/FacebookSquare";
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
@@ -75,8 +76,8 @@ const SocialIconsContainer = styled.div`
     padding-top: 28px;
 
     a {
-        margin-left: 10px;
-        margin-right: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
 
@@ -133,6 +134,10 @@ export default function Homepage() {
 
                     <a href="https://github.com/avontoken">
                         <Github size="42" color="#333" />
+                    </a>
+
+                    <a href="/">
+                        <FacebookSquare size="42" color="#3b5998" />
                     </a>
                 </SocialIconsContainer>
             </FooterContainer>
