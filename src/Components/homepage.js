@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
+
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
+import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
@@ -63,6 +65,18 @@ const FooterContainer = styled.div`
     }
 `
 
+const SocialIconsContainer = styled.div`
+    text-align: center;
+    padding-top: 28px;
+
+    a {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+`
+
 export default function Homepage() {
 
     return (
@@ -95,6 +109,7 @@ export default function Homepage() {
                     <li>AvonDeFi Protocol</li>
                     <li>AvonInTheKnow Protocol</li>
                 </ul>
+                <br /> <br />
             </BodyContainer>
 
             <FooterContainer>
@@ -103,16 +118,16 @@ export default function Homepage() {
                 {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
             
 
-                <div Style="text-align: center;
-                            padding-top: 28px;">    
+                <SocialIconsContainer>
                     <a href="https://twitter.com/avontoken">
                         <Twitter size="42" color="#1DA1F2" />
                     </a>
-                </div>
+
+                    <a href="https://www.instagram.com/avontoken/">
+                        <Instagram size="42" color="white" />
+                    </a>
+                </SocialIconsContainer>
             </FooterContainer>
-
-
-
         </>
     )
 }
