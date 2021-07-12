@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
 import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
+import {Github} from "@styled-icons/bootstrap/Github";
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
@@ -125,6 +126,10 @@ export default function Homepage() {
 
                     <a href="https://www.instagram.com/avontoken/">
                         <Instagram size="42" color="white" />
+                    </a>
+
+                    <a href="https://github.com/avontoken">
+                        <Github size="42" color="#333" />
                     </a>
                 </SocialIconsContainer>
             </FooterContainer>
