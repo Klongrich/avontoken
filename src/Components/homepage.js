@@ -136,7 +136,7 @@ export default function Homepage() {
                         <Github size="42" color="#333" />
                     </a>
 
-                    <a href="/">
+                    <a href="https://www.facebook.com/Avon-Token-110118631342569">
                         <FacebookSquare size="42" color="#3b5998" />
                     </a>
                 </SocialIconsContainer>
