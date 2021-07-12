@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
@@ -83,15 +83,6 @@ const SocialIconsContainer = styled.div`
 `
 
 export default function Homepage() {
-
-    useEffect(() => {
-        var Temp = window.location.href.split("=");
-        var id = Temp[1];
-
-        if (id) {
-
-        }
-    }, [])
 
     return (
         <>
