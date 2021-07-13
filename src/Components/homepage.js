@@ -101,7 +101,7 @@ export default function Homepage() {
                 <h2> Avon Token is a next generation crypto-currency </h2>
 
                 <p>
-                   The recent lanuch of our ERC20 token will be used in future projects under the <strong> <u> <a href="/avondao"> AvonDAO </a> </u> </strong>
+                   The recent launch of our ERC20 token will be used in future projects under the <strong> <u> <a href="/avondao"> AvonDAO </a> </u> </strong>
                 </p>
 
                 <p>
