@@ -83,6 +83,25 @@ const SocialIconsContainer = styled.div`
 
 `
 
+const LanuchApp = styled.button`
+    height: 45px;
+    width: 200px;
+
+    color: white;
+    background-color: #FF7500;
+    border: 1px solid #F7BE00;
+
+    :hover {
+        background-color: #ffab61;
+        cursor: pointer;
+    }
+
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    box-shadow: 1px 2px #F7BE00;
+`
+
 export default function Homepage() {
 
     return (
@@ -115,6 +134,12 @@ export default function Homepage() {
                     <li>AvonDeFi Protocol</li>
                     <li>AvonInTheKnow Protocol</li>
                 </ul>
+
+                <a href="/app">
+                <LanuchApp>
+                    Lanuch App 
+                </LanuchApp>
+                </a>
                 <br /> <br />
             </BodyContainer>
 
