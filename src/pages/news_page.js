@@ -79,14 +79,13 @@ const LoggedInInfo = styled.div`
     background-color: black;
     color: white;
 
-    height: 1500px;
+    padding-bottom: 50px;
 `
 
 const TokenInfoContainer = styled.div`
     border 1px solid white;
 
     line-height: 2;
-    height: 300px;
 
     margin-left: 10%;
     margin-right: 10%;
@@ -106,7 +105,6 @@ const UpdatesContainer = styled.div`
     border 1px solid white;
 
     line-height: 2;
-    height: 714px;
 
     margin-left: 10%;
     margin-right: 10%;
@@ -120,6 +118,19 @@ const UpdatesContainer = styled.div`
     :hover {
         background-color: #d2c01e;
     }
+`
+
+const ClosingInfoContainer = styled.div`
+    line-height: 2;
+
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 50px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+
+    font-family: sans-serif;
 `
 
 export default function NewsPage () {
@@ -184,10 +195,11 @@ export default function NewsPage () {
     useEffect(() => {
 
         if (window.web3) {
-        if (window.web3.currentProvider.selectedAddress != null) {
-            window.web3 = new Web3(window.web3.currentProvider)
-            loadWalletData();
-       } } else {
+            if (window.web3.currentProvider.selectedAddress != null) {
+                window.web3 = new Web3(window.web3.currentProvider)
+                loadWalletData();
+            } 
+        } else {
            loadWeb3();
        }
     }, )
@@ -208,7 +220,7 @@ export default function NewsPage () {
 
                 <br /> <br />
 
-                <iframe height="250" width="550" src="https://www.youtube.com/embed/AfnvFnzs91s" 
+                <iframe height="250" width="350" src="https://www.youtube.com/embed/AfnvFnzs91s" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -223,7 +235,17 @@ export default function NewsPage () {
                             Thank your for your purchase of {ATamount} AT!
                         </p>
 
-                        <TokenInfoContainer>
+                        <ClosingInfoContainer>
+                            <h2>
+                               <strong> <u> Notes (July 14th, 2021) </u> </strong>
+                            </h2>
+                            <p>
+                                Most people with tech like this go to the richest people they can find and beg for money to find programmers to 
+                                code their next big idea, here at AvonToken we don't do that. We are the coders, the builders, the founders. 
+                            </p>
+                        </ClosingInfoContainer>
+
+                        <TokenInfoContainer Height={500}>
                             <p>
                                 If you are reading this you are a very early investor into the AvonToken (AvonDAO) project.
                                 We are currently working on putting together a road map, team page, etc ...
@@ -274,20 +296,13 @@ export default function NewsPage () {
                                     AvonToken you will have the power to create proposals and vote on proposals that change / alter the tech
                                     infrastructure being built under the AvonDAO. This will include all present and future projects ( NFTmarket, DEX, etc ... )
                                 </p>
+                                <br />
+                                <p>
+                                    Please check back to this page for more updates (:
+                                </p>
                             
                             <br /> 
                             <br />
-                            <br />
-
-                            <h2>
-                               <strong> <u> Closing Notes (July 14th, 2021) </u> </strong>
-                            </h2>
-                            <p>
-                                Most people with tech like this go to the richest people they can find and beg for money to find programmers to 
-                                code their next big idea, here at AvonToken we don't do that. We are the coders, the builders, the founders. 
-                            </p>
-
-                            <p>See you at the moon (:</p>
                         </UpdatesContainer>
                     </LoggedInInfo>
                 }
