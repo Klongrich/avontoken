@@ -140,6 +140,7 @@ export default function NewsPage () {
     const [loggedIn, setLoggedIn] = useState(false);
     const [lessThan100, setLessThan100] = useState(true);
     const [amountTo100, setAmountTo100] = useState(0);
+    
 
 
     const web3Modal = new Web3Modal({
@@ -185,6 +186,10 @@ export default function NewsPage () {
         return (balance);
     }
 
+    async function LogOut() {
+
+    }
+
     async function loadWalletData() {
         window.web3 = new Web3(window.web3.currentProvider)
         var web3 = window.web3;
@@ -227,7 +232,7 @@ export default function NewsPage () {
 
             <div Style="background-color:black; height: 500px; text-align:center;">
                 <LogIn onClick={() => loadWeb3()}>
-                   {loggedIn &&  !lessThan100 && <p> Log Out </p> }
+                   {loggedIn &&  !lessThan100 && <p onClick={() => LogOut()}> Log Out </p> }
                    {loggedIn && lessThan100 && <p> Log In </p>}
                    {!loggedIn && <p>Log In </p>}
                 </LogIn>
@@ -264,15 +269,6 @@ export default function NewsPage () {
                             Thank your for your purchase of {ATamount} AT!
                         </p>
 
-
-                        <UpdatesContainer>
-                                <h2> Updates </h2>
-
-                                <p Style="text-align: left"> loading .....</p>
-
-                                <p Style="height: 500px; text-align: left" >Please contact me at <strong> <u> kyle@avontoken.com </u> </strong></p>
-                        </UpdatesContainer>
-
                         {/* <ClosingInfoContainer>
                             <h2>
                                <strong> <u> Notes (July 14th, 2021) </u> </strong>
@@ -304,7 +300,7 @@ export default function NewsPage () {
 
                         </TokenInfoContainer> */}
 
-                        {/* <UpdatesContainer>
+                        <UpdatesContainer>
                             <h2> Updates </h2>
 
                             <h3 Style="text-align: left">
@@ -341,7 +337,7 @@ export default function NewsPage () {
                             
                             <br /> 
                             <br />
-                        </UpdatesContainer> */}
+                        </UpdatesContainer> 
                     </LoggedInInfo>
                 }
             </div>
