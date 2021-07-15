@@ -137,7 +137,7 @@ export default function Homepage() {
 
                 <a href="/app">
                 <LanuchApp>
-                    Lanuch App 
+                    Launch App 
                 </LanuchApp>
                 </a>
                 <br /> <br />
