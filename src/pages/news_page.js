@@ -76,24 +76,24 @@ const Container = styled.div`
     background-size: 100% 100%;
 `
 
-const LogIn = styled.button`
-    height: 45px;
-    width: 200px;
+// const LogIn = styled.button`
+//     height: 45px;
+//     width: 200px;
 
-    color: white;
-    background-color: #FF7500;
-    border: 1px solid #F7BE00;
+//     color: white;
+//     background-color: #FF7500;
+//     border: 1px solid #F7BE00;
 
-    :hover {
-        background-color: #ffab61;
-        cursor: pointer;
-    }
+//     :hover {
+//         background-color: #ffab61;
+//         cursor: pointer;
+//     }
 
-    margin-top: 15px;
-    margin-bottom: 55px;
+//     margin-top: 15px;
+//     margin-bottom: 55px;
 
-    box-shadow: 1px 2px #F7BE00;
-`
+//     box-shadow: 1px 2px #F7BE00;
+// `
 
 const LoggedInInfo = styled.div`
     padding-top: 42px;
@@ -252,25 +252,25 @@ export default function NewsPage () {
 
     return (
         <>
-
-    <div stlye={{}}>
-    <ThemeProvider theme={theme}>
-      <Dialog open={open} onClose={handleToClose}>
-        <DialogTitle>{"Log Out?"}</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            Please disconnect your meta-mask or connected wallet and reload the page
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleToClose} 
-                  color="primary" autoFocus>
-            Close
-          </Button>
-        </DialogActions>
-      </Dialog>
- </ThemeProvider>
-    </div>
+        <div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle>{"Log Out?"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            Please disconnect your meta-mask or connected wallet and reload the page
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleToClose} 
+                            color="primary" autoFocus>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
+            
             <Container>
                     <h2 Style="margin-bottom: 50px;"> Must Have At Least 100 AvonTokens To Log In</h2>
                     <h3 Style="margin-bottom: 50px;"> We'll see you all at the moon</h3>
@@ -281,24 +281,23 @@ export default function NewsPage () {
             <div Style="background-color:black; height: 500px; text-align:center;">
 
             <ThemeProvider theme={theme}>
+                {loggedIn &&  !lessThan100 &&
+                    <Button variant="outlined" color="primary"  onClick={handleClickToOpen}>
+                        <p>Log Out</p>
+                    </Button>
+                }
 
-            {loggedIn &&  !lessThan100 &&
-                <Button variant="outlined" color="primary"  onClick={handleClickToOpen}>
-                    <p>Log Out</p>
-                </Button>
-            }
+                {loggedIn && lessThan100 && 
+                    <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
+                        <p>Log In</p>
+                    </Button>
+                }
 
-            {loggedIn && lessThan100 && 
-                <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
-                    <p>Log In</p>
-                </Button>
-            }
-
-            {!loggedIn &&
-                <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
-                    <p>Log In</p>
-                </Button>
-            }
+                {!loggedIn &&
+                    <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
+                        <p>Log In</p>
+                    </Button>
+                }
             </ThemeProvider>
 
                 <br /> <br />
