@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
-import Popup from "reactjs-popup";
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 import RocketVideo from "../assests/rocket.gif";
