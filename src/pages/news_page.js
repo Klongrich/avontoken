@@ -138,6 +138,7 @@ export default function NewsPage () {
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
+    const [lessThan100, setLessThan100] = useState(true);
 
 
     const web3Modal = new Web3Modal({
@@ -191,9 +192,14 @@ export default function NewsPage () {
         const address = { account: accounts[0] }.account;
         const amount_of_at = await get_token_balance(address, AvonTokenAddress)
         
+        setLoggedIn(true);
         setWalletAddress(address);
         setATamount(amount_of_at);
-        setLoggedIn(true);
+
+        if (amount_of_at >= 100.00) {
+            setLessThan100(false);
+        } 
+        
     }
 
     useEffect(() => {
@@ -230,7 +236,15 @@ export default function NewsPage () {
                     allowfullscreen>
                  </iframe>
 
-                {loggedIn &&                 
+                 {loggedIn && lessThan100 &&
+                    <div>
+                            <p> 
+                                Less Than 100 Tokens 
+                            </p>
+                    </div>
+                 }
+
+                {loggedIn &&  !lessThan100 &&               
                     <LoggedInInfo>
                         <p Style="color: white; font-size: 12px;">Wallet Addresss: {walletAddress} </p>
                         <p Style="color: white">Amount Of AT: {ATamount} </p>
@@ -238,6 +252,13 @@ export default function NewsPage () {
                         <p Style="color: white;">
                             Thank your for your purchase of {ATamount} AT!
                         </p>
+
+
+                        <UpdatesContainer>
+                                <h2> Updates </h2>
+
+                                <p Style="height: 500px; text-align: left"> loading .....</p>
+                        </UpdatesContainer>
 
                         {/* <ClosingInfoContainer>
                             <h2>
@@ -269,11 +290,7 @@ export default function NewsPage () {
 
 
                         </TokenInfoContainer> */}
-                            <UpdatesContainer>
-                                <h2> Updates </h2>
 
-                                <p Style="height: 500px; text-align: left"> loading .....</p>
-                            </UpdatesContainer>
                         {/* <UpdatesContainer>
                             <h2> Updates </h2>
 
