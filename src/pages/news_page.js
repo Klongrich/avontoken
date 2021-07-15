@@ -182,10 +182,12 @@ export default function NewsPage () {
     }
 
     useEffect(() => {
+
+        if (window.web3) {
         if (window.web3.currentProvider.selectedAddress != null) {
             window.web3 = new Web3(window.web3.currentProvider)
             loadWalletData();
-       } else {
+       } } else {
            loadWeb3();
        }
     }, )
