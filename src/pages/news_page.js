@@ -82,24 +82,24 @@ const LoggedInInfo = styled.div`
     padding-bottom: 50px;
 `
 
-const TokenInfoContainer = styled.div`
-    border 1px solid white;
+// const TokenInfoContainer = styled.div`
+//     border 1px solid white;
 
-    line-height: 2;
+//     line-height: 2;
 
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 50px;
+//     margin-left: 10%;
+//     margin-right: 10%;
+//     margin-top: 50px;
 
-    padding-left: 5%;
-    padding-right: 5%;
+//     padding-left: 5%;
+//     padding-right: 5%;
 
-    font-family: sans-serif;
+//     font-family: sans-serif;
 
-    :hover {
-        background-color: purple;
-    }
-`
+//     :hover {
+//         background-color: purple;
+//     }
+// `
 
 const UpdatesContainer = styled.div`
     border 1px solid white;
@@ -120,18 +120,18 @@ const UpdatesContainer = styled.div`
     }
 `
 
-const ClosingInfoContainer = styled.div`
-    line-height: 2;
+// const ClosingInfoContainer = styled.div`
+//     line-height: 2;
 
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 50px;
+//     margin-left: 10%;
+//     margin-right: 10%;
+//     margin-top: 50px;
 
-    padding-left: 5%;
-    padding-right: 5%;
+//     padding-left: 5%;
+//     padding-right: 5%;
 
-    font-family: sans-serif;
-`
+//     font-family: sans-serif;
+// `
 
 export default function NewsPage () {
 
