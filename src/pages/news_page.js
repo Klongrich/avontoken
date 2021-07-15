@@ -227,7 +227,8 @@ export default function NewsPage () {
 
             <div Style="background-color:black; height: 500px; text-align:center;">
                 <LogIn onClick={() => loadWeb3()}>
-                   {loggedIn &&  <p> Log Out </p> }
+                   {loggedIn &&  !lessThan100 && <p> Log Out </p> }
+                   {loggedIn && lessThan100 && <p> Log In </p>}
                    {!loggedIn && <p>Log In </p>}
                 </LogIn>
 
