@@ -161,8 +161,12 @@ export default function NewsPage () {
             return(true);
         }
         else {
-            window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-            return(false);
+            const provider = await web3Modal.connect();
+            window.web3 = await new Web3(provider);
+
+            await provider.enable()
+            await loadWalletData();
+            return(true);
         }
     }
 
