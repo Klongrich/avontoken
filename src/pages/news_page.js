@@ -268,7 +268,9 @@ export default function NewsPage () {
                         <UpdatesContainer>
                                 <h2> Updates </h2>
 
-                                <p Style="height: 500px; text-align: left"> loading .....</p>
+                                <p Style="text-align: left"> loading .....</p>
+
+                                <p Style="height: 500px; text-align: left" >Please contact me at <strong> <u> kyle@avontoken.com </u> </strong></p>
                         </UpdatesContainer>
 
                         {/* <ClosingInfoContainer>
