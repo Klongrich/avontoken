@@ -8,6 +8,16 @@ import Web3 from "web3";
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import Button from "@material-ui/core/Button";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles';
+
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
 // The minimum ABI to get ERC20 Token balance
@@ -29,6 +39,17 @@ var ERC_20_ABI = [
       "type":"function"
     }
 ];
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#FF7500"
+      },
+      secondary: {
+        main: "#ffab61",
+      },
+    },
+  });
 
 const providerOptions = {
     walletconnect: {
@@ -140,9 +161,10 @@ export default function NewsPage () {
     const [loggedIn, setLoggedIn] = useState(false);
     const [lessThan100, setLessThan100] = useState(true);
     const [amountTo100, setAmountTo100] = useState(0);
+
+    const [open, setOpen] = useState(false);
+
     
-
-
     const web3Modal = new Web3Modal({
         cacheProvider: true, // optional
         providerOptions //required
@@ -186,10 +208,6 @@ export default function NewsPage () {
         return (balance);
     }
 
-    async function LogOut() {
-
-    }
-
     async function loadWalletData() {
         window.web3 = new Web3(window.web3.currentProvider)
         var web3 = window.web3;
@@ -210,13 +228,23 @@ export default function NewsPage () {
         
     }
 
+    const handleClickToOpen = () => {
+        setOpen(true);
+      };
+      
+      const handleToClose = () => {
+        setOpen(false);
+      };
+
     useEffect(() => {
 
         if (window.web3) {
             if (window.web3.currentProvider.selectedAddress != null) {
                 window.web3 = new Web3(window.web3.currentProvider)
                 loadWalletData();
-            } 
+            } else {
+                web3Modal.clearCachedProvider();
+            }
         } else {
            loadWeb3();
        }
@@ -224,18 +252,54 @@ export default function NewsPage () {
 
     return (
         <>
+
+    <div stlye={{}}>
+    <ThemeProvider theme={theme}>
+      <Dialog open={open} onClose={handleToClose}>
+        <DialogTitle>{"Log Out?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Please disconnect your meta-mask or connected wallet and reload the page
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleToClose} 
+                  color="primary" autoFocus>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+ </ThemeProvider>
+    </div>
             <Container>
                     <h2 Style="margin-bottom: 50px;"> Must Have At Least 100 AvonTokens To Log In</h2>
                     <h3 Style="margin-bottom: 50px;"> We'll see you all at the moon</h3>
                     <img src={TokenLogo} height="342" alt="" />
             </Container>
+            
 
             <div Style="background-color:black; height: 500px; text-align:center;">
-                <LogIn onClick={() => loadWeb3()}>
-                   {loggedIn &&  !lessThan100 && <p onClick={() => LogOut()}> Log Out </p> }
-                   {loggedIn && lessThan100 && <p> Log In </p>}
-                   {!loggedIn && <p>Log In </p>}
-                </LogIn>
+
+            <ThemeProvider theme={theme}>
+
+            {loggedIn &&  !lessThan100 &&
+                <Button variant="outlined" color="primary"  onClick={handleClickToOpen}>
+                    <p>Log Out</p>
+                </Button>
+            }
+
+            {loggedIn && lessThan100 && 
+                <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
+                    <p>Log In</p>
+                </Button>
+            }
+
+            {!loggedIn &&
+                <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
+                    <p>Log In</p>
+                </Button>
+            }
+            </ThemeProvider>
 
                 <br /> <br />
 
@@ -341,6 +405,7 @@ export default function NewsPage () {
                     </LoggedInInfo>
                 }
             </div>
+
         </>
     )
 }
