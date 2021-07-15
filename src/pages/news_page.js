@@ -239,7 +239,7 @@ export default function NewsPage () {
                             Thank your for your purchase of {ATamount} AT!
                         </p>
 
-                        <ClosingInfoContainer>
+                        {/* <ClosingInfoContainer>
                             <h2>
                                <strong> <u> Notes (July 14th, 2021) </u> </strong>
                             </h2>
@@ -268,9 +268,13 @@ export default function NewsPage () {
                             </p>
 
 
-                        </TokenInfoContainer>
+                        </TokenInfoContainer> */}
+                            <UpdatesContainer>
+                                <h2> Updates </h2>
 
-                        <UpdatesContainer>
+                                <p Style="height: 500px; text-align: left"> loading .....</p>
+                            </UpdatesContainer>
+                        {/* <UpdatesContainer>
                             <h2> Updates </h2>
 
                             <h3 Style="text-align: left">
@@ -307,7 +311,7 @@ export default function NewsPage () {
                             
                             <br /> 
                             <br />
-                        </UpdatesContainer>
+                        </UpdatesContainer> */}
                     </LoggedInInfo>
                 }
             </div>
