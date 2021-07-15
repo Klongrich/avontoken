@@ -34,7 +34,7 @@ const LogIn = styled.button`
     }
 
     margin-top: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 55px;
 
     box-shadow: 1px 2px #F7BE00;
 `
@@ -49,10 +49,18 @@ export default function NewsPage () {
                     <img src={TokenLogo} height="342" alt="" />
             </Container>
 
-            <div Style="background-color:black; height: 200px; text-align:center;">
+            <div Style="background-color:black; height: 500px; text-align:center;">
                 <LogIn>
                     Log In
                 </LogIn>
+
+                <br /> <br />
+
+                <iframe height="250" width="350" src="https://www.youtube.com/embed/AfnvFnzs91s" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                 </iframe>
             </div>
         </>
     )
