@@ -139,6 +139,7 @@ export default function NewsPage () {
     const [ATamount, setATamount] = useState(null);
     const [loggedIn, setLoggedIn] = useState(false);
     const [lessThan100, setLessThan100] = useState(true);
+    const [amountTo100, setAmountTo100] = useState(0);
 
 
     const web3Modal = new Web3Modal({
@@ -198,7 +199,9 @@ export default function NewsPage () {
 
         if (amount_of_at >= 100.00) {
             setLessThan100(false);
-        } 
+        } else {
+            setAmountTo100(100.00 - amount_of_at)
+        }
         
     }
 
@@ -237,11 +240,18 @@ export default function NewsPage () {
                  </iframe>
 
                  {loggedIn && lessThan100 &&
-                    <div>
-                            <p> 
-                                Less Than 100 Tokens 
-                            </p>
-                    </div>
+                    <LoggedInInfo>
+                        <p Style="color: white; font-size: 12px;">Wallet Addresss: {walletAddress} </p>
+                        <p Style="color: white">Amount Of AT: {ATamount} </p>
+
+                        <p Style="color: white;">
+                            Thank your for your purchase of {ATamount} AT!
+                        </p>
+
+                        <p>
+                            Plz buy {amountTo100} more AT to log in.
+                        </p>
+                    </LoggedInInfo>
                  }
 
                 {loggedIn &&  !lessThan100 &&               
