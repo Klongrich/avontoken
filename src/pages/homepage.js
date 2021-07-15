@@ -10,6 +10,7 @@ import TokenLogo from "../assests/AvonTokenLogo.png";
 
 const Container = styled.div`
     background-color: black;
+    height: 100%;
 
     font-size: 64px;
     font-family: 'Playball', cursive;
@@ -58,13 +59,14 @@ const BodyContainer = styled.div`
 const FooterContainer = styled.div`
     background-color: black;
     color: white;
-    padding-top: 25px;
-    padding-bottom: 25px;
+    padding-top: 35px;
+    padding-bottom: 55px;
 
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 25px;
+    padding-right: 25px;
 
-    height: 350px;
+    height: 320px;
+    word-wrap: break-word;
 
     a {
         color: #0000EE;
@@ -73,7 +75,7 @@ const FooterContainer = styled.div`
 
 const SocialIconsContainer = styled.div`
     text-align: center;
-    padding-top: 28px;
+    padding-top: 58px;
 
     a {
         margin-left: 15px;
@@ -106,6 +108,7 @@ export default function Homepage() {
 
     return (
         <>
+            <div Style="background-color: black; height: 100%">
 
             <Container>
             <div Style="padding: 15px;">
@@ -144,7 +147,7 @@ export default function Homepage() {
             </BodyContainer>
 
             <FooterContainer>
-                <p Style="text-align:center;">Token Lanuched Here on Mainnet -> <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
+                <p Style="text-align:center;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
                 <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
                 
                 {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
@@ -167,6 +170,7 @@ export default function Homepage() {
                     </a>
                 </SocialIconsContainer>
             </FooterContainer>
+            </div>
         </>
     )
 }
