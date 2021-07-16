@@ -56,16 +56,15 @@ const BodyContainer = styled.div`
 
 `
 
-const FooterContainer = styled.div`
+const LinksContainer = styled.div`
     background-color: black;
     color: white;
     padding-top: 35px;
-    padding-bottom: 55px;
+    padding-bottom: 25px;
 
     padding-left: 25px;
     padding-right: 25px;
 
-    height: 320px;
     word-wrap: break-word;
 
     a {
@@ -76,6 +75,7 @@ const FooterContainer = styled.div`
 const SocialIconsContainer = styled.div`
     text-align: center;
     padding-top: 58px;
+    padding-bottom: 50px;
 
     a {
         margin-left: 15px;
@@ -103,6 +103,37 @@ const LanuchApp = styled.button`
 
     box-shadow: 1px 2px #F7BE00;
 `
+
+const TeamContainer = styled.div`
+    color: white;
+    border-top: 1px solid white;
+    padding-left: 25px;
+    padding-right: 25px;
+
+    height: 350px;
+`
+
+const Box1 = styled.div`
+    border: 1px solid white;
+    :hover {
+        color: red;
+    }
+`
+
+const Box2 = styled.div`
+    border: 1px solid white;
+    :hover {
+        color: orange;
+    }
+`
+
+const Box3 = styled.div`
+    border: 1px solid white;
+    :hover {
+        color: blue;
+    }
+`
+
 
 export default function Homepage() {
 
@@ -146,13 +177,36 @@ export default function Homepage() {
                 <br /> <br />
             </BodyContainer>
 
-            <FooterContainer>
+            <LinksContainer>
                 <p Style="text-align:center;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
                 <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
-                
-                {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
+                 {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
+            </LinksContainer>
+
+            <TeamContainer>
+                <h2> Avon Token Team </h2>
+
+                <div Style="border: 1px solid white; text-align: center;">
+                    
+                    <Box1>
+                        <h3>Design Lead / Head of Instagram</h3>
+                        <p> - Blake Rose</p>
+                    </Box1>
+
+                    <Box2>
+                        <h3>Head of Facebook</h3>
+                        <p> - Austin Seitz</p>
+                    </Box2>
+
+                    <Box3>
+                        <h3>Head of Twitter</h3>
+                        <p> - Adam Kirresh</p>
+                    </Box3>
+                </div>
+
+            </TeamContainer>
             
-                <SocialIconsContainer>
+            <SocialIconsContainer>
                     <a href="https://twitter.com/avontoken">
                         <Twitter size="42" color="#1DA1F2" />
                     </a>
@@ -169,7 +223,7 @@ export default function Homepage() {
                         <FacebookSquare size="42" color="#3b5998" />
                     </a>
                 </SocialIconsContainer>
-            </FooterContainer>
+            
             </div>
         </>
     )
