@@ -110,7 +110,7 @@ const TeamContainer = styled.div`
     padding-left: 25px;
     padding-right: 25px;
 
-    height: 350px;
+    height: 500px;
 `
 
 const Box1 = styled.div`
@@ -190,19 +190,23 @@ export default function Homepage() {
                     
                     <Box1>
                         <h3>Design Lead / Head of Instagram</h3>
+                        <h4> ( $102k / year ) </h4>
                         <p> - Blake Rose</p>
                     </Box1>
 
                     <Box2>
                         <h3>Head of Facebook</h3>
+                        <h4> ( $95k / year ) </h4>
                         <p> - Austin Seitz</p>
                     </Box2>
 
                     <Box3>
                         <h3>Head of Twitter</h3>
+                        <h4> ( $55k / year )</h4>
                         <p> - Adam Kirresh</p>
                     </Box3>
                 </div>
+                <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p>
 
             </TeamContainer>
             
