@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
@@ -6,7 +6,30 @@ import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
 import {Github} from "@styled-icons/bootstrap/Github";
 import {FacebookSquare} from "@styled-icons/boxicons-logos/FacebookSquare";
 
+import Button from "@material-ui/core/Button";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles';
+
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent"
+
 import TokenLogo from "../assests/AvonTokenLogo.png";
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#F3BD02"
+      },
+      secondary: {
+        main: "#ffab61",
+      },
+    },
+  });
 
 const Container = styled.div`
     background-color: black;
@@ -110,7 +133,12 @@ const TeamContainer = styled.div`
     padding-left: 25px;
     padding-right: 25px;
 
-    height: 500px;
+    height: 575px;
+
+    h3 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 `
 
 const Box1 = styled.div`
@@ -137,8 +165,37 @@ const Box3 = styled.div`
 
 export default function Homepage() {
 
+    const [open, setOpen] = useState(false);
+
+    const handleClickToOpen = () => {
+        setOpen(true);
+      };
+      
+      const handleToClose = () => {
+        setOpen(false);
+      };
+
     return (
         <>
+
+<div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle>{"Join Team"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            All posistion currently full, please check back again at a different time.
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleToClose} 
+                            color="primary" autoFocus>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
             <div Style="background-color: black; height: 100%">
 
             <Container>
@@ -184,7 +241,7 @@ export default function Homepage() {
             </LinksContainer>
 
             <TeamContainer>
-                <h2> Avon Token Team </h2>
+                <h2 Style="margin-bottom: 25px;"> Avon Token Team </h2>
 
                 <div Style="border: 1px solid white; text-align: center;">
                     
@@ -206,7 +263,17 @@ export default function Homepage() {
                         <p> - Adam Kirresh</p>
                     </Box3>
                 </div>
-                <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p>
+                <br /> <br />
+
+                <div Style="text-align:center">
+                <ThemeProvider theme={theme}>
+                    <Button variant="outlined" color="primary"  onClick={() => handleClickToOpen()}>
+                        <p>Join Team</p>
+                    </Button>
+                </ThemeProvider>
+                </div>
+
+                {/* <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p> */}
 
             </TeamContainer>
             
