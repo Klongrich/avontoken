@@ -64,6 +64,9 @@ const Container = styled.div`
     padding-top: 20px;
     padding-bottom: 20px;
 
+    padding-left: 20px;
+    padding-right: 20px;
+
     background-color: black;
     color: white;
 
@@ -101,6 +104,11 @@ const LoggedInInfo = styled.div`
     color: white;
 
     padding-bottom: 50px;
+
+    p {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
 `
 
 // const TokenInfoContainer = styled.div`
@@ -314,7 +322,7 @@ export default function NewsPage () {
                         <p Style="color: white">Amount Of AT: {ATamount} </p>
 
                         <p Style="color: white;">
-                            Thank your for your purchase of {ATamount} AT!
+                            Thank you for your purchase of {ATamount} AT!
                         </p>
 
                         <p>
@@ -329,7 +337,7 @@ export default function NewsPage () {
                         <p Style="color: white">Amount Of AT: {ATamount} </p>
 
                         <p Style="color: white;">
-                            Thank your for your purchase of {ATamount} AT!
+                            Thank you for your purchase of {ATamount} AT!
                         </p>
 
                         {/* <ClosingInfoContainer>
