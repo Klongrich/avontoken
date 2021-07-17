@@ -112,7 +112,7 @@ box-sizing: border-box;
 filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 border-radius: 25px;
 
-margin-left: 80%;
+margin-left: 85%;
 margin-top: -55px;
 `
 
