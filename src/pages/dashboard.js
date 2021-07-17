@@ -5,6 +5,8 @@ import AccountPage from "./account_page";
 import SettingsPage from "./settings";
 import MessagePage from "./messageCenter";
 
+import GetLoanPage from "./getLoan";
+
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
 import { User } from "@styled-icons/boxicons-regular/User";
@@ -121,11 +123,12 @@ margin-left: 85%;
 margin-top: -55px;
 `
 
-export default function Dashboard({balance, walletAddress}) {
+export default function Dashboard({balance, walletAddress, EthAmount}) {
 
     const [showAccount, setShowAccount] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
+    const [showGetLoan, setShowGetLoan] = useState(false);
 
     function handleShowAccount () {
         setShowAccount(true);
@@ -150,8 +153,16 @@ export default function Dashboard({balance, walletAddress}) {
     function handleShowenMessages() {
         setShowMessages(false);
     }
+
+    // function handleGetLoan() {
+    //     setShowGetLoan(true);
+    // }
+
+    function handleGotLoan() {
+        setShowGetLoan(false);
+    }
     
-    if (!showAccount && !showSettings && !showMessages) {
+    if (!showAccount && !showSettings && !showMessages && !showGetLoan) {
     return (
         <>
             <Container>
@@ -168,6 +179,7 @@ export default function Dashboard({balance, walletAddress}) {
 
                 <CircleLogo />
 
+                {/* <Button onClick={() => handleGetLoan()}> */}
                 <Button>
                     <p> Get Loan </p>
                 </Button>
@@ -242,6 +254,20 @@ export default function Dashboard({balance, walletAddress}) {
 
             <MessagePage />
             
+            </>
+        )
+    } else if (showGetLoan) {
+
+        return (
+            <>
+            
+            <div Style="text-align: left; 
+                            padding-top: 10px;
+                            background-color: #C4C4C4;">
+            <ArrowBack size="50" onClick={() => handleGotLoan()} /> 
+            </div>
+
+                <GetLoanPage ethAmount={EthAmount} />
             </>
         )
     }

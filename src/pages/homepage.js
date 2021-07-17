@@ -130,10 +130,11 @@ const LanuchApp = styled.button`
 const TeamContainer = styled.div`
     color: white;
     border-top: 1px solid white;
+    border-bottom: 1px solid white;
     padding-left: 25px;
     padding-right: 25px;
 
-    height: 575px;
+    height: 620px;
 
     h3 {
         padding-left: 10px;

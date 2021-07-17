@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
 import TokenLogo from "../assests/AvonTokenLogo.png";
@@ -134,6 +134,7 @@ export default function LogIn () {
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
+    const [ethAmount, setEthAmount] = useState("");
 
 
     const web3Modal = new Web3Modal({
@@ -185,12 +186,30 @@ export default function LogIn () {
 
         const accounts = await web3.eth.getAccounts();
         const address = { account: accounts[0] }.account;
-        const amount_of_at = await get_token_balance(address, AvonTokenAddress)
+        const amount_of_at = await get_token_balance(address, AvonTokenAddress);
+        const EthAmount = await web3.eth.getBalance(address);
+
+        // console.log("Eth Amount: " + EthAmount / 1000000000000000000)
         
         setLoggedIn(true);
         setWalletAddress(address);
-        setATamount(amount_of_at);      
+        setATamount(amount_of_at); 
+        setEthAmount(EthAmount / 1000000000000000000)     
     }
+
+    useEffect( () => {
+        if (window.web3) {
+            if (window.web3.currentProvider.selectedAddress != null) {
+                window.web3 = new Web3(window.web3.currentProvider)
+                loadWalletData();
+            } else {
+                web3Modal.clearCachedProvider();
+            }
+        } else {
+           loadWeb3();
+       }
+
+    });
 
     if (!loggedIn) {
     return (
@@ -214,7 +233,10 @@ export default function LogIn () {
     } else if (loggedIn) {
         return (
             <>
-                <Dashboard balance={ATamount} walletAddress={walletAddress} />
+                <Dashboard balance={ATamount} 
+                            walletAddress={walletAddress}
+                            EthAmount={ethAmount}
+                            />
             </>
         )
     }

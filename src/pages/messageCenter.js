@@ -130,6 +130,7 @@ export default function MessageCenter () {
                 </TopCircle>
 
                 <h2 Style="padding-bottom: 15px;"> Message Center </h2>
+                {/* <h4 Style="text-align: center; margin-top: -15px;"> Coming Soon ....</h4> */}
 
                 <MessageBox>
                     <BlackCircle>
