@@ -7,8 +7,6 @@ import TokenLogo from "../assests/AvonTokenLogo.png";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
-
-
 const Container = styled.div`
     background-color: #F0EAEA;
 

@@ -48,7 +48,7 @@ const providerOptions = {
 const theme = createTheme({
     palette: {
       primary: {
-        main: "#FF7500"
+        main: "rgba(38, 33, 23, 0.62)"
       },
       secondary: {
         main: "#ffab61",
@@ -60,8 +60,8 @@ const Container = styled.div`
     width: 100%;
     height: 850px;
 
-    background: rgba(38, 33, 23, 0.62);
-    padding-top: 200px;
+    background: #EE5F0F;
+    padding-top: 164px;
 
     text-align: center;
 `
@@ -79,9 +79,7 @@ border-radius: 15px;
 
 background-size: 100% 100%;
 
-margin-left: 36%;
-
-
+margin-left: 38%;
 
 `
 
@@ -98,8 +96,8 @@ color: #000000;
 
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-margin-top: 18px;
-margin-bottom: 20px;
+margin-top: 58px;
+margin-bottom: 58px;
 
 `
 
