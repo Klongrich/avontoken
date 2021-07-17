@@ -6,6 +6,8 @@ import TokenLogo from "../assests/AvonTokenLogo.png";
 
 import { User } from "@styled-icons/boxicons-regular/User";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
+import { Message } from "@styled-icons/boxicons-regular/Message";
+import {Settings2Outline} from "@styled-icons/evaicons-outline/Settings2Outline"
 
 const Container = styled.div`
     background-color: #F0EAEA;
@@ -158,17 +160,21 @@ export default function Dashboard({balance, walletAddress}) {
                 </Button>
 
                 <BottomButton onClick={() => handleShowAccount()}>
-                    <div Style="padding-top: 8px;">
+                    <div Style="padding-top: 10px;">
                         <User size="35" />
                     </div>
                 </BottomButton>
 
                 <BottomButton>
-                    <p>Logo</p>
+                    <div Style="padding-top: 10px;">
+                        <Message size="35" />
+                    </div>
                 </BottomButton>
 
                 <BottomButton>
-                    <p>Logo</p>
+                    <div Style="padding-top: 10px;">
+                        <Settings2Outline size="35" />
+                    </div>
                 </BottomButton>
             </Container>
         </>
