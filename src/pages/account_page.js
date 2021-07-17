@@ -3,8 +3,6 @@ import styled from "styled-components";
 
 import UserSignIn from "../assests/UserSignIn.jpeg";
 
-
-
 const Container = styled.div`
 
     margin-top: -20px;
@@ -19,9 +17,13 @@ const Container = styled.div`
     text-align: center;
 
     h4 {
-        font-size: 10px;
-        padding-top: 10px;
-        padding-bottom: 50px;
+        font-size: 12px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+        background-color: white;
+        border-radius: 15px;
+
+
     }
 `
 
@@ -37,6 +39,7 @@ border-radius: 24px;
 background-size: 100% 100%;
 
 margin-left: 31%;
+margin-bottom: 30px;
 
 `
 
@@ -67,13 +70,18 @@ margin-top: 42px;
 
 export default function AccountPage ({balance, walletAddress}) {
 
+    var LinkAddress = "https://etherscan.io/address/" + walletAddress;
+
     return (
         <>
             <Container>
                 <div Style="">
                     <h3 Style="font-size: 22px;"> {balance} AT</h3>
                     <IconContainer />
-                    <h4> {walletAddress} </h4>
+
+                    <a href={LinkAddress}>
+                        <h4> {walletAddress} </h4>
+                    </a>
                 </div>
 
                 <Button>

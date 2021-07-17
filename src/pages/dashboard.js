@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import AccountPage from "./account_page";
 import SettingsPage from "./settings";
+import MessagePage from "./messageCenter";
+
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
 import { User } from "@styled-icons/boxicons-regular/User";
@@ -60,7 +62,7 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 15px;
 
 float: left;
-margin-left: 40px;
+margin-left: 44px;
 margin-top: 35px;
 
 
@@ -123,6 +125,7 @@ export default function Dashboard({balance, walletAddress}) {
 
     const [showAccount, setShowAccount] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
+    const [showMessages, setShowMessages] = useState(false);
 
     function handleShowAccount () {
         setShowAccount(true);
@@ -139,8 +142,16 @@ export default function Dashboard({balance, walletAddress}) {
     function handleShowenSettings () {
         setShowSettings(false);
     }
+
+    function handleShowMessages () {
+        setShowMessages(true);
+    }
+
+    function handleShowenMessages() {
+        setShowMessages(false);
+    }
     
-    if (!showAccount && !showSettings) {
+    if (!showAccount && !showSettings && !showMessages) {
     return (
         <>
             <Container>
@@ -165,9 +176,11 @@ export default function Dashboard({balance, walletAddress}) {
                     <p> Stake AT </p>
                 </Button>
 
+                <a Style="text-decoration: none;" href="https://app.uniswap.org/#/add/ETH/0x7e992D8F57223661106c29e519E22A2a9a7BceFb/3000">
                 <Button>
                     <p>Add Liquidity</p>
                 </Button>
+                </a>
 
                 <BottomButton onClick={() => handleShowAccount()}>
                     <div Style="padding-top: 10px;">
@@ -175,7 +188,7 @@ export default function Dashboard({balance, walletAddress}) {
                     </div>
                 </BottomButton>
 
-                <BottomButton onClick={() => handleShowSettings()}>
+                <BottomButton onClick={() => handleShowMessages()}>
                     <div Style="padding-top: 10px;">
                         <Message size="35" />
                     </div>
@@ -215,6 +228,20 @@ export default function Dashboard({balance, walletAddress}) {
                 </div>
 
                 <SettingsPage />
+            </>
+        )
+    } else if (showMessages) {
+
+        return (
+            <>
+                <div Style="text-align: left; 
+                            padding-top: 10px;
+                            background-color: #74716B;">
+                <ArrowBack size="50" onClick={() => handleShowenMessages()} /> 
+                </div>
+
+            <MessagePage />
+            
             </>
         )
     }
