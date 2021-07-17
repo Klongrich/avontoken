@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import AccountPage from "./account_page";
+import SettingsPage from "./settings";
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
 import { User } from "@styled-icons/boxicons-regular/User";
@@ -121,6 +122,7 @@ margin-top: -55px;
 export default function Dashboard({balance, walletAddress}) {
 
     const [showAccount, setShowAccount] = useState(false);
+    const [showSettings, setShowSettings] = useState(false);
 
     function handleShowAccount () {
         setShowAccount(true);
@@ -129,8 +131,16 @@ export default function Dashboard({balance, walletAddress}) {
     function handleShowenAccount() {
         setShowAccount(false);
     }
+
+    function handleShowSettings () {
+        setShowSettings(true);
+    }
+
+    function handleShowenSettings () {
+        setShowSettings(false);
+    }
     
-    if (!showAccount) {
+    if (!showAccount && !showSettings) {
     return (
         <>
             <Container>
@@ -165,13 +175,13 @@ export default function Dashboard({balance, walletAddress}) {
                     </div>
                 </BottomButton>
 
-                <BottomButton>
+                <BottomButton onClick={() => handleShowSettings()}>
                     <div Style="padding-top: 10px;">
                         <Message size="35" />
                     </div>
                 </BottomButton>
 
-                <BottomButton>
+                <BottomButton onClick={() => handleShowSettings()}>
                     <div Style="padding-top: 10px;">
                         <Settings2Outline size="35" />
                     </div>
@@ -191,6 +201,20 @@ export default function Dashboard({balance, walletAddress}) {
                 </div>
                 
                 <AccountPage balance={balance} walletAddress={walletAddress}x/>
+            </>
+        )
+    } else if (showSettings) {
+        
+        return(
+            <>
+                <div Style="text-align: left; 
+                            padding-top: 10px;
+                            background-color: #EE5F0F;
+                            border-radius: 15px;">
+                <ArrowBack size="50" onClick={() => handleShowenSettings()} /> 
+                </div>
+
+                <SettingsPage />
             </>
         )
     }
