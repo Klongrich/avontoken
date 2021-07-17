@@ -24,7 +24,7 @@ text-align: center;
 color: #514C43;
 
 text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-padding-right: 8px;
+padding-right: 14px;
 `
 
 const Button = styled.div`
@@ -47,7 +47,7 @@ line-height: 16px;
 text-align: center;
 }
 
-margin-left: 19%;
+margin-left: 18%;
 margin-top: 68px;
 
 `
