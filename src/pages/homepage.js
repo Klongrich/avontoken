@@ -231,7 +231,11 @@ export default function Homepage() {
                     Launch App 
                 </LanuchApp>
                 </a>
-                <br /> <br />
+                <br /> 
+
+                <a href="/news">
+                    <p>News Page</p>
+                </a>
             </BodyContainer>
 
             <LinksContainer>
