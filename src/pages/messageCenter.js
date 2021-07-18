@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styled from "styled-components";
 
 import {User} from "@styled-icons/boxicons-solid/User";
@@ -119,50 +119,50 @@ transform: rotate(90.02deg);
 const TestData = [
     {
         id: 1,
-        from: "0x4fx",
-        message: "This is a new Message"
+        Username: "0x4fx",
+        Message: "This is a new Message"
     },
     {
         id: 2,
-        from: "0xftax",
-        message: "Another New Message here"
+        Username: "0xftax",
+        Message: "Another New Message here"
     },
     {
         id: 3,
-        from: "0xftax",
-        message: "What is UP"
+        Username: "0xftax",
+        Message: "What is UP"
     },
     {
         id: 4,
-        from: "0xftax",
-        message: "Have TO fix a few things"
+        Username: "0xftax",
+        Message: "Have TO fix a few things"
     },
     {
         id: 5,
-        from: "0xftax",
-        message: "Too The fucking Moon"
+        Username: "0xftax",
+        Message: "Too The fucking Moon"
     },
     {
         id: 7,
-        from: "0xfta",
-        message: "Intergrate ENS"
+        Username: "0xfta",
+        Message: "Intergrate ENS"
     }
 ]
 
 
 export default function MessageCenter () {
 
-    const [Data, setData] = useState(TestData);
+    // const [Data, setData] = useState(TestData);
 
-    function GetMessages() {
-        fetch('https://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
-        .then(response => response.json())
-        .then(data => setData(data));
-    }
+    // function GetMessages() {
+    //     fetch('https://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
+    //     .then(response => response.json())
+    //     .then(data => setData(data));
+    // }
 
-    useEffect(() => {
-        GetMessages();
-    })
+    // useEffect(() => {
+    //     GetMessages();
+    // })
 
     return (
         <>
@@ -177,7 +177,7 @@ export default function MessageCenter () {
                 <h2 Style="padding-bottom: 15px;"> Message Center </h2>
                 {/* <h4 Style="text-align: center; margin-top: -15px;"> Coming Soon ....</h4> */}
 
-            {Data.map( data => (
+            {TestData.map( data => (
                 <>
                 <MessageBox>
                     <BlackCircle>
