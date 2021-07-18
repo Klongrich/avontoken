@@ -155,7 +155,7 @@ export default function MessageCenter () {
     const [Data, setData] = useState(TestData);
 
     function GetMessages() {
-        fetch('http://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
+        fetch('https://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
         .then(response => response.json())
         .then(data => setData(data));
     }
