@@ -252,7 +252,7 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
                 <ArrowBack size="50" onClick={() => handleShowenMessages()} /> 
                 </div>
 
-            <MessagePage />
+            <MessagePage walletAddress={walletAddress} />
             
             </>
         )

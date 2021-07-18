@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {User} from "@styled-icons/boxicons-solid/User";
 import {Message} from "@styled-icons/boxicons-regular/Message";
 import {Groups} from "@styled-icons/material/Groups";
+import {Send} from "@styled-icons/boxicons-regular/Send";
 
 const Container = styled.div`
     background: #74716B;
@@ -52,6 +53,7 @@ transform: rotate(0.02deg);
 padding-left: 4px;
 padding-top: 4px;
 
+
 float: left;
 `
 
@@ -70,7 +72,7 @@ padding-left: 15px;
 margin-bottom: 1px;
 
 p {
-    margin-top: 19px;
+    margin-top: 10px;
     margin-left: 55px;
     color: white;
 }
@@ -150,20 +152,52 @@ const TestData = [
 ]
 
 
-export default function MessageCenter () {
+export default function MessageCenter ( {walletAddress}) {
 
     const [Data, setData] = useState(TestData);
 
-    function GetMessagesFrom(Username) {
-        fetch('https://longrichk.com:3030/GetMessage?name=' + Username + '&to=test')
+    const [messageTo, setMessageTo] = useState("");
+    const [message, setMessage] = useState("");
+
+    const [sendMessage, setSendMessage] = useState(false);
+
+    // function GetMessagesFrom(Username) {
+    //     fetch('https://longrichk.com:3030/GetMessage?name=' + Username + '&to=test')
+    //     .then(response => response.json())
+    //     .then(data => setData(data));
+    // }
+
+    function SendMessageTo() {
+        fetch('https://longrichk.com:3030/SendMessage?name=' + walletAddress + '&to=' + messageTo +'&message=' + message)
         .then(response => response.json())
         .then(data => setData(data));
     }
 
-    useEffect(() => {
-        GetMessagesFrom('kyle');
-    }, [])
+    function handleSendMessageOn() {
+        setSendMessage(true);
+    }
 
+    function handleSendMessageOff() {
+        SendMessageTo();
+        setSendMessage(false);
+    }
+
+    useEffect(() => {
+        const GetAllMessages = () => {
+            fetch('https://longrichk.com:3030/GetAllMessages?name=' + walletAddress)
+            .then(response => response.json())
+            .then(data => {
+                if (data) {
+                    setData(data)
+                } else {
+                    setData(TestData);
+                }
+            })
+        }
+        GetAllMessages();
+    }, [walletAddress])
+
+    if (!sendMessage) {
     return (
         <>
             <Container>
@@ -190,7 +224,7 @@ export default function MessageCenter () {
             ))}
 
 
-                <BottomButton>
+                <BottomButton onClick={() => handleSendMessageOn()}>
                     <div Style="padding-top: 22px; padding-left: 13px;">
                         <LineOne />
                         <LineTwo />
@@ -207,5 +241,54 @@ export default function MessageCenter () {
 
             </Container>
         </>
-    )
+    ) } else if (sendMessage) {
+
+        return (
+            <>
+        <Container>
+
+        <TopCircle>
+            <div Style="padding-left: 11px; padding-top: 10px;">
+                <Message size="35" />
+            </div>
+        </TopCircle>
+
+        <h2 Style="padding-bottom: 15px;"> Message Center </h2>
+        {/* <h4 Style="text-align: center; margin-top: -15px;"> Coming Soon ....</h4> */}
+        
+        <div Style="background-color: white; 
+                    text-align: center;
+                    padding-top: 1px;
+                    padding-bottom: 20px;">
+
+            <h3> To: </h3>
+            <input type="text"
+                value={messageTo}
+                onChange={e => setMessageTo(e.target.value)} />
+            
+            <h3>Message: </h3>
+            <textarea type="text"
+                    value={message}
+                    onChange={e => setMessage(e.target.value)} />
+        </div>
+
+
+        <BottomButton onClick={() => handleSendMessageOff()}>
+                    <div Style="padding-top: 8px; padding-left: 11px;">
+                       <Send size="32" />
+                    </div>
+                    <h3 Style="padding-top: 5px; padding-left: 10px;">Send</h3>
+                </BottomButton>
+
+                <BottomButton>
+                    <div>
+                        <Groups size="48" />
+                    </div>
+                    <h3 Style="margin-top: 10px; margin-left: 0px;">Groups</h3>
+                </BottomButton>
+        </Container>
+        </>
+        )
+
+    }
 }
