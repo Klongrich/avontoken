@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import styled from "styled-components";
 
 import {User} from "@styled-icons/boxicons-solid/User";
@@ -116,8 +116,53 @@ border: 1px solid #000000;
 transform: rotate(90.02deg);
 
 `
+const TestData = [
+    {
+        id: 1,
+        from: "0x4fx",
+        message: "This is a new Message"
+    },
+    {
+        id: 2,
+        from: "0xftax",
+        message: "Another New Message here"
+    },
+    {
+        id: 3,
+        from: "0xftax",
+        message: "What is UP"
+    },
+    {
+        id: 4,
+        from: "0xftax",
+        message: "Have TO fix a few things"
+    },
+    {
+        id: 5,
+        from: "0xftax",
+        message: "Too The fucking Moon"
+    },
+    {
+        id: 7,
+        from: "0xfta",
+        message: "Intergrate ENS"
+    }
+]
+
 
 export default function MessageCenter () {
+
+    const [Data, setData] = useState(TestData);
+
+    function GetMessages() {
+        fetch('http://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
+        .then(response => response.json())
+        .then(data => setData(data));
+    }
+
+    useEffect(() => {
+        GetMessages();
+    })
 
     return (
         <>
@@ -132,57 +177,18 @@ export default function MessageCenter () {
                 <h2 Style="padding-bottom: 15px;"> Message Center </h2>
                 {/* <h4 Style="text-align: center; margin-top: -15px;"> Coming Soon ....</h4> */}
 
+            {Data.map( data => (
+                <>
                 <MessageBox>
                     <BlackCircle>
                         <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 1</p1>
+                        <p1>{data.Username}</p1>
                     </BlackCircle>
-                    <p> These are all just examples, </p>
+                    <p> {data.Message} </p>
                 </MessageBox>
+                </>
+            ))}
 
-                <MessageBox>
-                    <BlackCircle>
-                        <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 2</p1>
-                    </BlackCircle>
-                    <p> Of your messages that are in ... </p>
-                </MessageBox>
-
-
-                <MessageBox>
-                    <BlackCircle>
-                        <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 3</p1>
-                    </BlackCircle>
-                    <p> Your inbox at any givin time. </p>
-                </MessageBox>
-
-
-                <MessageBox>
-                    <BlackCircle>
-                        <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 4</p1>
-                    </BlackCircle>
-                    <p> to the moon!!!</p>
-                </MessageBox>
-
-
-                <MessageBox>
-                    <BlackCircle>
-                        <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 5</p1>
-                    </BlackCircle>
-                    <p> These are all just examples </p>
-                </MessageBox>
-
-
-                <MessageBox>
-                    <BlackCircle>
-                        <User size="25" color="#FB6C1C"/>
-                        <p1>EX. 6</p1>
-                    </BlackCircle>
-                    <p> These are all just examples </p>
-                </MessageBox>
 
                 <BottomButton>
                     <div Style="padding-top: 22px; padding-left: 13px;">
