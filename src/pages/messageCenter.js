@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import {User} from "@styled-icons/boxicons-solid/User";
@@ -152,17 +152,17 @@ const TestData = [
 
 export default function MessageCenter () {
 
-    // const [Data, setData] = useState(TestData);
+    const [Data, setData] = useState(TestData);
 
-    // function GetMessages() {
-    //     fetch('https://184.56.204.204:3012/GetMessage?UserName=Kyle&To=Testing')
-    //     .then(response => response.json())
-    //     .then(data => setData(data));
-    // }
+    function GetMessagesFrom(Username) {
+        fetch('https://longrichk.com:3030/GetMessage?name=' + Username + '&to=test')
+        .then(response => response.json())
+        .then(data => setData(data));
+    }
 
-    // useEffect(() => {
-    //     GetMessages();
-    // })
+    useEffect(() => {
+        GetMessagesFrom('kyle');
+    }, [])
 
     return (
         <>
@@ -177,7 +177,7 @@ export default function MessageCenter () {
                 <h2 Style="padding-bottom: 15px;"> Message Center </h2>
                 {/* <h4 Style="text-align: center; margin-top: -15px;"> Coming Soon ....</h4> */}
 
-            {TestData.map( data => (
+            {Data.map( data => (
                 <>
                 <MessageBox>
                     <BlackCircle>
