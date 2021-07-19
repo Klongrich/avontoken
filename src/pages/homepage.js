@@ -237,6 +237,10 @@ export default function Homepage() {
                 <a href="/news">
                     <p>News Page</p>
                 </a>
+
+                <a href="/vote">
+                    <p>Vote </p>
+                </a>
             </BodyContainer>
 
             <LinksContainer>
