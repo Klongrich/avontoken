@@ -240,6 +240,15 @@ export default function Homepage() {
 
                 <a href="/vote">
                     <p>Vote </p>
+                    <h4 Style="font-size: 12px;
+                              margin-top: -10px;
+                              text-decoration: none;">
+                        Test $AT Contract:
+                    </h4>
+                    <p Style="font-size: 12px;
+                             margin-top: -30px;">
+                             0xF37778Ff2BE5819efee99A0eB7862515b43ED03F
+                    </p>
                 </a>
             </BodyContainer>
 
