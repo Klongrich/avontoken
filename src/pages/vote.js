@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
-// import Web3 from "web3";
-// import Web3Modal from 'web3modal';
-// import WalletConnectProvider from '@walletconnect/web3-provider';
+import Web3 from "web3";
+import Web3Modal from 'web3modal';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+import AvonDAOabi from "../assests/AvonDAO.json";
 
 import Button from "@material-ui/core/Button";
 
@@ -15,37 +16,39 @@ import { createTheme } from '@material-ui/core/styles';
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { Cancel } from "@styled-icons/material/Cancel";
 
-// const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
-// const AvonTokenMockAddress = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
+//const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
-// // The minimum ABI to get ERC20 Token balance
-// var ERC_20_ABI = [
-//     // balanceOf
-//     {
-//       "constant":true,
-//       "inputs":[{"name":"_owner","type":"address"}],
-//       "name":"balanceOf",
-//       "outputs":[{"name":"balance","type":"uint256"}],
-//       "type":"function"
-//     },
-//     // decimals
-//     {
-//       "constant":true,
-//       "inputs":[],
-//       "name":"decimals",
-//       "outputs":[{"name":"","type":"uint8"}],
-//       "type":"function"
-//     }
-// ];
+const AvonTokenMockAddress = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
+const AvonDAORinkbeyAddress = "0x5c628B76C3F90986D204DF0D2E5a8bDA2E2B92Bf";
 
-// const providerOptions = {
-//     walletconnect: {
-//       package: WalletConnectProvider, // required
-//       options: {
-//         infuraId: '43b86485d3164682b5d703fd1d39fe1c' // required
-//       }
-//     }
-// }
+// The minimum ABI to get ERC20 Token balance
+var ERC_20_ABI = [
+    // balanceOf
+    {
+      "constant":true,
+      "inputs":[{"name":"_owner","type":"address"}],
+      "name":"balanceOf",
+      "outputs":[{"name":"balance","type":"uint256"}],
+      "type":"function"
+    },
+    // decimals
+    {
+      "constant":true,
+      "inputs":[],
+      "name":"decimals",
+      "outputs":[{"name":"","type":"uint8"}],
+      "type":"function"
+    }
+];
+
+const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider, // required
+      options: {
+        infuraId: '43b86485d3164682b5d703fd1d39fe1c' // required
+      }
+    }
+}
 
 const theme = createTheme({
     palette: {
@@ -69,7 +72,7 @@ const Container = styled.div`
     font-weight: normal;
 
     padding: 25px;
-    height: 1605px;
+    height: 1665px;
 
 
     a {
@@ -134,40 +137,158 @@ const WhiteLine = styled.div`
     border-radius: 55px;
 `
 
-const TestData = [
-    {
-        id: 0,
-        preposal: "Should We Fire Austin Seitz?",
-        yes: 356,
-        no: 120,
-        yesPrecentage: 74.78,
-        noPrecentage: 25.21,
-        timeLeft: "12 hours 42 minutes",
-        voted: false
-    },
-    {
-        id: 1,
-        preposal: "Should We Create The NFT Market Before The DeFi Platform?",
-        yes: 398,
-        no: 75,
-        yesPrecentage: 84.14,
-        noPrecentage: 15.85,
-        timeLeft: "7 hours 24 mintues",
-        voted: false
-    },
-]
+// const DataFiller = [
+//     {
+//         id: 0,
+//         preposal: "Should We Fire Austin Seitz?",
+//         yes: 356,
+//         no: 120,
+//         yesPrecentage: 74.78,
+//         noPrecentage: 25.21,
+//         timeLeft: "12 hours 42 minutes",
+//         voted: false
+//     },
+//     {
+//         id: 1,
+//         preposal: "Should We Create The NFT Market Before The DeFi Platform?",
+//         yes: 398,
+//         no: 75,
+//         yesPrecentage: 84.14,
+//         noPrecentage: 15.85,
+//         timeLeft: "7 hours 24 mintues",
+//         voted: false
+//     },
+// ]
+
+const TestData = [];
 
 export default function VotePage () {
+
+    const [data, setData] = useState(TestData);
+    //const [loggedIn, setLoggedIn] = useState(false);
+
+    const [walletAddress, setWalletAddress] = useState("Connect Web3");
+    const [ATamount, setATamount] = useState(null);
+
+    const web3Modal = new Web3Modal({
+        cacheProvider: true, // optional
+        providerOptions //required
+    });
+
+    async function get_token_balance(publicKey, tokenAddy) {
+        var web3 = window.web3;
+        var balance;
+        
+        const contract = await new web3.eth.Contract(ERC_20_ABI, tokenAddy);
+
+        await contract.methods.balanceOf(publicKey).call(function(error, result){
+            var amount = " " + result.toString();
+            balance = web3.utils.fromWei(amount, 'ether');
+        });       
+        return (balance);
+    }
+
+    async function voteOnProposal(id, vote) {
+        var web3 = window.web3;
+        
+        const contract = await new web3.eth.Contract(AvonDAOabi.abi, AvonDAORinkbeyAddress );
+
+        await contract.methods
+            .voteOnProposal(id, vote)
+            .send({from: walletAddress})
+            .once("receipt", (res) => {
+                console.log(res);
+            })
+    }
+
+    async function getPropsalInfo(id) {
+        var web3 = window.web3;
+        
+        const contract = await new web3.eth.Contract(AvonDAOabi.abi, AvonDAORinkbeyAddress);
+
+        await contract.methods.Preposals(id).call(function (error, result) {
+           
+            console.log("ID: + " + id);
+            console.log(result);
+
+            var yesCount = (result.yes / 1000000000000000000).toFixed(0);
+            var noCount = (result.no / 1000000000000000000).toFixed(0);
+
+            var yesPrecent = (parseFloat(yesCount) /  (parseFloat(yesCount) + parseFloat(noCount)) * 100).toFixed(2);
+            var noPrecent = (100 - parseFloat(yesPrecent)).toFixed(2);
+
+            var newData = {
+                id: id,
+                preposal: result.preposal,
+                yes: yesCount,
+                no: noCount,
+                yesPrecentage: yesPrecent,
+                noPrecentage: noPrecent
+            }
+
+            setData(data => [...data, newData])
+        });
+
+    }
+
+    async function loadWalletData() {
+        window.web3 = new Web3(window.web3.currentProvider)
+        var web3 = window.web3;
+
+        const accounts = await web3.eth.getAccounts();
+        const address = { account: accounts[0] }.account;
+        const amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
+        //const EthAmount = await web3.eth.getBalance(address);
+
+        //setLoggedIn(true);
+        setWalletAddress(address);
+        setATamount(amount_of_at); 
+        //setEthAmount(EthAmount / 1000000000000000000)     
+    }  
+
+
+    useEffect(() => {
+            
+        async function loadWeb3() {
+            if (window.ethereum) {
+                const provider = await web3Modal.connect();
+                window.web3 = await new Web3(provider);
+    
+                await provider.enable()
+                await loadWalletData();
+                await getPropsalInfo(0);
+                await getPropsalInfo(1);
+                return(true);
+            }
+            else if (window.web3) {
+                window.web3 = new Web3(window.web3.currentProvider)
+                
+                await loadWalletData();
+                await getPropsalInfo(0);
+                await getPropsalInfo(1);
+                return(true);
+            }
+            else {
+                window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            }
+        }
+
+        const data = loadWeb3();
+        console.log("Data: " + data);
+        console.log("Address: " + walletAddress);
+        console.log("AT amounnt: " + ATamount);
+        //setLoggedIn(data);
+    } , [])
 
     return (
         <>
             <Container>
 
                 <h2 Style="text-decoration: underline;">Proposals</h2>
-
                 <CircleLogo />
+                <p Style="margin-top: 10px;">{ATamount} AT</p>
 
-                {TestData.map( data => (
+                {data.map( data => (
                     <>
                     <div Style="text-align:center; 
                                 border-top: 1px solid white; 
@@ -190,7 +311,7 @@ export default function VotePage () {
                             <div Style="margin-right: 100px;
                                     margin-top: 20px;
                                     text-align:center;">
-                            <Button variant="outlined" color="primary" >
+                            <Button variant="outlined" color="primary" onClick={() => voteOnProposal(data.id, true)} >
                                 Yes
                             </Button>
                             </div>
@@ -198,7 +319,7 @@ export default function VotePage () {
                             <div Style="margin-left: 100px;
                                         margin-top: -37px;
                                         text-align: center;">
-                            <Button variant="outlined" color="secondary" >
+                            <Button variant="outlined" color="secondary" onClick={() => voteOnProposal(data.id, false)} >
                                 NO
                             </Button>
                             </div>
@@ -249,7 +370,7 @@ export default function VotePage () {
                 <a href="https://github.com/avontoken/AvonDAO/blob/master/contracts/AvonDAO.sol">
                     Contract Here
                 </a>
-
+                
                 <br /> <br />
                 <p> <strong> *How It Works </strong> </p>
 
