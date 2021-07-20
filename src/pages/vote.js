@@ -50,6 +50,11 @@ const providerOptions = {
     }
 }
 
+const web3Modal = new Web3Modal({
+    cacheProvider: true, // optional
+    providerOptions //required
+});
+
 const theme = createTheme({
     palette: {
       primary: {
@@ -170,11 +175,6 @@ export default function VotePage () {
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
 
-    const web3Modal = new Web3Modal({
-        cacheProvider: true, // optional
-        providerOptions //required
-    });
-
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
         var balance;
@@ -231,24 +231,22 @@ export default function VotePage () {
 
     }
 
-    async function loadWalletData() {
-        window.web3 = new Web3(window.web3.currentProvider)
-        var web3 = window.web3;
-
-        const accounts = await web3.eth.getAccounts();
-        const address = { account: accounts[0] }.account;
-        const amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
-        //const EthAmount = await web3.eth.getBalance(address);
-
-        //setLoggedIn(true);
-        setWalletAddress(address);
-        setATamount(amount_of_at); 
-        //setEthAmount(EthAmount / 1000000000000000000)     
-    }  
-
-
     useEffect(() => {
-            
+        async function loadWalletData() {
+            window.web3 = new Web3(window.web3.currentProvider)
+            var web3 = window.web3;
+    
+            const accounts = await web3.eth.getAccounts();
+            const address = { account: accounts[0] }.account;
+            const amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
+            //const EthAmount = await web3.eth.getBalance(address);
+    
+            //setLoggedIn(true);
+            setWalletAddress(address);
+            setATamount(amount_of_at); 
+            //setEthAmount(EthAmount / 1000000000000000000)     
+        }  
+
         async function loadWeb3() {
             if (window.ethereum) {
                 const provider = await web3Modal.connect();
@@ -273,11 +271,12 @@ export default function VotePage () {
             }
         }
 
-        const data = loadWeb3();
-        console.log("Data: " + data);
-        console.log("Address: " + walletAddress);
-        console.log("AT amounnt: " + ATamount);
-        //setLoggedIn(data);
+        loadWeb3();
+        //const data = loadWeb3();
+        // console.log("Data: " + data);
+        // console.log("Address: " + walletAddress);
+        // console.log("AT amounnt: " + ATamount);
+        // //setLoggedIn(data);
     } , [])
 
     return (
