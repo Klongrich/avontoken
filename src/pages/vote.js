@@ -16,6 +16,7 @@ import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { Cancel } from "@styled-icons/material/Cancel";
 
 // const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
+// const AvonTokenMockAddress = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
 
 // // The minimum ABI to get ERC20 Token balance
 // var ERC_20_ABI = [
@@ -170,7 +171,7 @@ export default function VotePage () {
                     <>
                     <div Style="text-align:center; 
                                 border-top: 1px solid white; 
-                                background: #FB6C1C;
+                                background-color: #ed9866;
                                 padding: 10px;
                                 margin-top: 30px;
                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
