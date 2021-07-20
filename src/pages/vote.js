@@ -136,7 +136,7 @@ const WhiteLine = styled.div`
 const Data = [
     {
         id: 0,
-        preposal: "Should we fire Austin Seitz?",
+        preposal: "Should We Fire Austin Seitz?",
         yes: 356,
         no: 120,
         yesPrecentage: 74.78,
@@ -145,7 +145,7 @@ const Data = [
     },
     {
         id: 1,
-        preposal: "Should we create the NFT market before DeFi platform?",
+        preposal: "Should We Create The NFT Market Before The DeFi Platform?",
         yes: 398,
         no: 75,
         yesPrecentage: 84.14,
