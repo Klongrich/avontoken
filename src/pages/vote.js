@@ -12,6 +12,9 @@ import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
+import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
+import { Cancel } from "@styled-icons/material/Cancel";
+
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
 // The minimum ABI to get ERC20 Token balance
@@ -43,8 +46,6 @@ const providerOptions = {
     }
 }
 
-
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -53,6 +54,9 @@ const theme = createTheme({
       secondary: {
         main: "#751200",
       },
+      primary1:{
+          main: "rgba(38, 33, 23, 0.62)"
+      }
     },
   });
 
@@ -64,7 +68,7 @@ const Container = styled.div`
     font-weight: normal;
 
     padding: 25px;
-    height: 1295px;
+    height: 1605px;
 
 
     a {
@@ -84,6 +88,28 @@ const Container = styled.div`
     }
 `
 
+const InactiveContainer = styled.div`
+    background-color: #fcf7f7;
+    border-radius: 15px;
+    margin-top: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 1px;
+    padding-bottom: 10px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+
+    li {
+        font-size: 14px;
+        
+        padding-top: 10px;
+        padding-bottom: 10px;
+        padding-right: 42px;
+
+        margin-left: -20px;
+    }
+
+`
+
 const CircleLogo = styled.div`
     width: 52px;
     height: 51px;
@@ -98,7 +124,14 @@ const CircleLogo = styled.div`
     margin-left: 85%;
     margin-top: -70px;
 `
-
+const WhiteLine = styled.div`
+    height: 3px; 
+    margin-top: 30px;
+    margin-bottom: 30px;
+    width: 100%;
+    background-color: #fcf7f7;
+    border-radius: 55px;
+`
 
 const Data = [
     {
@@ -140,6 +173,7 @@ export default function VotePage () {
                                 margin-top: 30px;
                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
                                 border-radius: 18px;
+                                border: 1px solid #fcf7f7;
                                 "
                                 >
                         <h4> {data.preposal} </h4>
@@ -168,22 +202,36 @@ export default function VotePage () {
                     </>
                 ))}
 
-                <h3 Style="text-decoratin: underline; margin-top: 40px;">Inactive</h3>
+                    
+                <WhiteLine />
 
-                <ul Style="list-style-type: circle;">
-                    <li>This is an old proposal - <a Style="color: green" href="/"> passed </a> </li>
-                    <li>Hire for front-end development - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li>This is a test - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li>Community Give Away - <a Style="color: green" href="/"> passed </a> </li>
-                    <li>This is another - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li>This is a thrid Test - <a Style="color: green" href="/"> passed </a> </li>
+                <InactiveContainer>
+                <h3 Style="text-decoratin: underline;">Inactive</h3>
+                <ul Style="list-style-type: none;">
+                    <li> <CheckCircle size="25" color="green" /> This is an old proposal - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="25" color="red" /> Hire front-end dev - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <Cancel size="25" color="red" /> This is a test - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="25" color="green" /> Community Give Away - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="25" color="red" /> This is another - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="25" color="green" /> This is a thrid Test - <a Style="color: green" href="/"> passed </a> </li>
                 </ul>
                 
+                </InactiveContainer>
+                
                 <br />
-                <button>
+                <div Style="text-align:center;
+                            margin-top: 10px;
+                            margin-bottom: 30px;">
+                <ThemeProvider theme={theme}>  
+                    <Button variant="outlined" color="primary1">
                     Create Proposal
-                </button>
-                <p> Must Hold 100 AT to Create A Proposal </p>
+                    </Button>
+                </ThemeProvider>
+                <p> Must Hold 10,000 AT to Create A Proposal </p>
+                </div>
+
+                <WhiteLine />
+
 
                 <a href="https://github.com/avontoken/AvonDAO/blob/master/contracts/AvonDAO.sol">
                     Contract Here
