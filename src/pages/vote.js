@@ -3,6 +3,59 @@ import styled from 'styled-components';
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
+import Web3 from "web3";
+import Web3Modal from 'web3modal';
+import WalletConnectProvider from '@walletconnect/web3-provider';
+
+import Button from "@material-ui/core/Button";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles';
+
+const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
+
+// The minimum ABI to get ERC20 Token balance
+var ERC_20_ABI = [
+    // balanceOf
+    {
+      "constant":true,
+      "inputs":[{"name":"_owner","type":"address"}],
+      "name":"balanceOf",
+      "outputs":[{"name":"balance","type":"uint256"}],
+      "type":"function"
+    },
+    // decimals
+    {
+      "constant":true,
+      "inputs":[],
+      "name":"decimals",
+      "outputs":[{"name":"","type":"uint8"}],
+      "type":"function"
+    }
+];
+
+const providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider, // required
+      options: {
+        infuraId: '43b86485d3164682b5d703fd1d39fe1c' // required
+      }
+    }
+}
+
+
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#5a8f04"
+      },
+      secondary: {
+        main: "#751200",
+      },
+    },
+  });
+
 const Container = styled.div`
     background-color: #F0EAEA;
     color:  black;
@@ -79,6 +132,7 @@ export default function VotePage () {
                 <CircleLogo />
 
                 {Data.map( data => (
+                    <>
                     <div Style="text-align:center; 
                                 border-top: 1px solid white; 
                                 background: #FB6C1C;
@@ -93,6 +147,25 @@ export default function VotePage () {
                         <p> No: {data.no} - ( {data.noPrecentage} %) </p>
                         <p>Time left: {data.timeLeft}</p>
                     </div>
+                    
+                    <ThemeProvider theme={theme}>  
+                        <div Style="margin-right: 100px;
+                                    margin-top: 20px;
+                                    text-align:center;">
+                        <Button variant="outlined" color="primary" >
+                            Yes
+                        </Button>
+                        </div>
+
+                        <div Style="margin-left: 100px;
+                                    margin-top: -37px;
+                                    text-align: center;">
+                        <Button variant="outlined" color="secondary" >
+                            NO
+                        </Button>
+                        </div>
+                    </ThemeProvider>
+                    </>
                 ))}
 
                 <h3 Style="text-decoratin: underline; margin-top: 40px;">Inactive</h3>
@@ -125,10 +198,10 @@ export default function VotePage () {
                     </li>
                     <li> 
                         Anyone can opt-in to the avontoken commuinty by purchasing 
-                        out governece token AT
+                        our governece token $AT
                     </li>
                     <li>
-                        Anyone holding AT has the ability to vote on all proposals
+                        Anyone holding $AT has the ability to vote on all proposals
                         within the correct time frame
                     </li>
                     <li>
