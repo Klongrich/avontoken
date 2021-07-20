@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
-import Web3 from "web3";
-import Web3Modal from 'web3modal';
-import WalletConnectProvider from '@walletconnect/web3-provider';
+// import Web3 from "web3";
+// import Web3Modal from 'web3modal';
+// import WalletConnectProvider from '@walletconnect/web3-provider';
 
 import Button from "@material-ui/core/Button";
 
@@ -15,36 +15,36 @@ import { createTheme } from '@material-ui/core/styles';
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { Cancel } from "@styled-icons/material/Cancel";
 
-const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
+// const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
-// The minimum ABI to get ERC20 Token balance
-var ERC_20_ABI = [
-    // balanceOf
-    {
-      "constant":true,
-      "inputs":[{"name":"_owner","type":"address"}],
-      "name":"balanceOf",
-      "outputs":[{"name":"balance","type":"uint256"}],
-      "type":"function"
-    },
-    // decimals
-    {
-      "constant":true,
-      "inputs":[],
-      "name":"decimals",
-      "outputs":[{"name":"","type":"uint8"}],
-      "type":"function"
-    }
-];
+// // The minimum ABI to get ERC20 Token balance
+// var ERC_20_ABI = [
+//     // balanceOf
+//     {
+//       "constant":true,
+//       "inputs":[{"name":"_owner","type":"address"}],
+//       "name":"balanceOf",
+//       "outputs":[{"name":"balance","type":"uint256"}],
+//       "type":"function"
+//     },
+//     // decimals
+//     {
+//       "constant":true,
+//       "inputs":[],
+//       "name":"decimals",
+//       "outputs":[{"name":"","type":"uint8"}],
+//       "type":"function"
+//     }
+// ];
 
-const providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider, // required
-      options: {
-        infuraId: '43b86485d3164682b5d703fd1d39fe1c' // required
-      }
-    }
-}
+// const providerOptions = {
+//     walletconnect: {
+//       package: WalletConnectProvider, // required
+//       options: {
+//         infuraId: '43b86485d3164682b5d703fd1d39fe1c' // required
+//       }
+//     }
+// }
 
 const theme = createTheme({
     palette: {
@@ -133,7 +133,7 @@ const WhiteLine = styled.div`
     border-radius: 55px;
 `
 
-const Data = [
+const TestData = [
     {
         id: 0,
         preposal: "Should We Fire Austin Seitz?",
@@ -141,7 +141,8 @@ const Data = [
         no: 120,
         yesPrecentage: 74.78,
         noPrecentage: 25.21,
-        timeLeft: "12 hours 42 minutes"
+        timeLeft: "12 hours 42 minutes",
+        voted: false
     },
     {
         id: 1,
@@ -150,7 +151,8 @@ const Data = [
         no: 75,
         yesPrecentage: 84.14,
         noPrecentage: 15.85,
-        timeLeft: "7 hours 24 mintues"
+        timeLeft: "7 hours 24 mintues",
+        voted: false
     },
 ]
 
@@ -164,7 +166,7 @@ export default function VotePage () {
 
                 <CircleLogo />
 
-                {Data.map( data => (
+                {TestData.map( data => (
                     <>
                     <div Style="text-align:center; 
                                 border-top: 1px solid white; 
@@ -182,23 +184,33 @@ export default function VotePage () {
                         <p>Time left: {data.timeLeft}</p>
                     </div>
                     
-                    <ThemeProvider theme={theme}>  
-                        <div Style="margin-right: 100px;
+                    {!data.voted && 
+                        <ThemeProvider theme={theme}>  
+                            <div Style="margin-right: 100px;
                                     margin-top: 20px;
                                     text-align:center;">
-                        <Button variant="outlined" color="primary" >
-                            Yes
-                        </Button>
-                        </div>
+                            <Button variant="outlined" color="primary" >
+                                Yes
+                            </Button>
+                            </div>
 
-                        <div Style="margin-left: 100px;
-                                    margin-top: -37px;
-                                    text-align: center;">
-                        <Button variant="outlined" color="secondary" >
-                            NO
-                        </Button>
-                        </div>
-                    </ThemeProvider>
+                            <div Style="margin-left: 100px;
+                                        margin-top: -37px;
+                                        text-align: center;">
+                            <Button variant="outlined" color="secondary" >
+                                NO
+                            </Button>
+                            </div>
+                        </ThemeProvider>
+                    }
+
+                    {data.voted &&
+                        <>
+                            <div Style="text-align: center;">
+                                <p>Thank you for voting</p>
+                            </div>
+                        </>
+                    }
                     </>
                 ))}
 
