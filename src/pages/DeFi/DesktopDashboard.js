@@ -79,7 +79,16 @@ const HeaderContainer = styled.div`
     ul {
         list-style-type: none;
         margin-left: 30.5%;
-        margin-top: -70px;
+    }
+
+    p {
+        font-family: Nova Square;
+font-size: 20px;
+font-style: normal;
+font-weight: 400;
+
+letter-spacing: 0em;
+
     }
 `
 
@@ -104,8 +113,8 @@ background: #C4C4C4;
 border-radius: 21px;
 transform: matrix(1, 0, 0, 1, 0, 0);
 
-margin-top: -108px;
-margin-left: 85%;
+margin-left: 83%;
+margin-top: -37px;
 `
 
 const Line = styled.div`
@@ -145,7 +154,8 @@ border-radius: 24px;
 background-size: 100% 100%;
 
 margin-left: 93%;
-margin-top: -55px;
+margin-top: -47px;
+
 
 `
 
@@ -157,6 +167,8 @@ export default function DessktopDashbaord () {
                 <HeaderContainer>
                     <h3 Style="padding-left: 25px;"> AvonToken </h3>
 
+                    <p Style="margin-left: 85%;
+                             margin-top: -120px;"> 100 AT </p>
                     <ul>
                         <li>Messaging</li>
                         <li>Settings</li>
