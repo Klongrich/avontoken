@@ -36,8 +36,8 @@ border-radius: 1200px;
 
 background-size: 100%;
 
-margin-left: 40%;
-margin-top: -7%;
+margin-left: 42.5%;
+margin-top: -4%;
 
 `
 
@@ -78,7 +78,7 @@ const HeaderContainer = styled.div`
 
     ul {
         list-style-type: none;
-        margin-left: 30.5%;
+        margin-left: 35%;
     }
 
     p {
@@ -93,15 +93,15 @@ letter-spacing: 0em;
 `
 
 const MiddleContainer = styled.div`
+    padding-top: 70px;
 
     h2 {
         font-family: Nova Square;
-font-style: normal;
-font-weight: normal;
-font-size: 42px;
-line-height: 174px;
-text-align: center;
-
+        font-style: normal;
+        font-weight: normal;
+        font-size: 42px;
+        line-height: 174px;
+        text-align: center;
     }
 
 `
@@ -185,28 +185,30 @@ export default function DessktopDashbaord () {
                 </HeaderContainer>
 
                 <MiddleContainer>
-                    <h2>WELCOME</h2>
-                    <MiddleLogo />
+                    <h2> WELCOME</h2>
+                    <MiddleLogo>
+                        
+                    </MiddleLogo>
                 </MiddleContainer>
 
-                <div Style="padding-top: 120px; margin-left: 40px;">
+                <div Style="padding-top: 200px; margin-left: 40px;">
                 <ThemeProvider theme={theme}>
 
-                    <div Style="margin-left: 10%;">
+                    <div Style="margin-left: 11%;">
                     <Button style={{minWidth: '250px', minHeight: '38px'}} variant="outlined" color="primary">
                         <p> GET LOAN </p>
                     </Button>
                     </div>
 
                     <div Style="margin-top: -64px;
-                                margin-left: 38%">
+                                margin-left: 41%">
                     <Button style={{minWidth: '250px', minHeight: '50px'}} variant="outlined" color="primary">
                         <p> STAKE AT </p>
                     </Button>
                     </div>
 
                     <div Style="margin-top: -64px;
-                                margin-left: 68%"> 
+                                margin-left: 71%"> 
                     <Button style={{minWidth: '250px', minHeight: '50px'}} variant="outlined" color="primary">
                         <p> ADD LIQUIDITY </p>
                     </Button>

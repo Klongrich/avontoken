@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
 import DesktopDashboard from "./DesktopDashboard";
@@ -43,7 +43,10 @@ const providerOptions = {
     }
 }
 
-
+const web3Modal = new Web3Modal({
+    cacheProvider: true, // optional
+    providerOptions //required
+});
 
 const theme = createTheme({
     palette: {
@@ -137,12 +140,38 @@ export default function LogIn () {
     const [ethAmount, setEthAmount] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
-    const web3Modal = new Web3Modal({
-        cacheProvider: true, // optional
-        providerOptions //required
-    });
+    async function get_token_balance(publicKey, tokenAddy) {
+        var web3 = window.web3;
+        var balance;
+        
+        const contract = await new web3.eth.Contract(ERC_20_ABI, tokenAddy);
 
-    async function loadWeb3() {
+        await contract.methods.balanceOf(publicKey).call(function(error, result){
+            var amount = " " + result.toString();
+            balance = web3.utils.fromWei(amount, 'ether');
+        });       
+        return (balance);
+    }
+
+    const loadWalletData = useCallback(async () => {
+    
+        window.web3 = new Web3(window.web3.currentProvider)
+        var web3 = window.web3;
+
+        const accounts = await web3.eth.getAccounts();
+        const address = { account: accounts[0] }.account;
+        const amount_of_at = await get_token_balance(address, AvonTokenAddress);
+        const EthAmount = await web3.eth.getBalance(address);
+
+        // console.log("Eth Amount: " + EthAmount / 1000000000000000000)
+        
+        setLoggedIn(true);
+        setWalletAddress(address);
+        setATamount(amount_of_at); 
+        setEthAmount(EthAmount / 1000000000000000000)     
+    }, [])
+
+    const loadWeb3 = useCallback( async () => {
         if (window.ethereum) {
             const provider = await web3Modal.connect();
             window.web3 = await new Web3(provider);
@@ -165,37 +194,7 @@ export default function LogIn () {
             await loadWalletData();
             return(true);
         }
-    }
-
-    async function get_token_balance(publicKey, tokenAddy) {
-        var web3 = window.web3;
-        var balance;
-        
-        const contract = await new web3.eth.Contract(ERC_20_ABI, tokenAddy);
-
-        await contract.methods.balanceOf(publicKey).call(function(error, result){
-            var amount = " " + result.toString();
-            balance = web3.utils.fromWei(amount, 'ether');
-        });       
-        return (balance);
-    }
-
-    async function loadWalletData() {
-        window.web3 = new Web3(window.web3.currentProvider)
-        var web3 = window.web3;
-
-        const accounts = await web3.eth.getAccounts();
-        const address = { account: accounts[0] }.account;
-        const amount_of_at = await get_token_balance(address, AvonTokenAddress);
-        const EthAmount = await web3.eth.getBalance(address);
-
-        // console.log("Eth Amount: " + EthAmount / 1000000000000000000)
-        
-        setLoggedIn(true);
-        setWalletAddress(address);
-        setATamount(amount_of_at); 
-        setEthAmount(EthAmount / 1000000000000000000)     
-    }
+    }, [loadWalletData]) 
 
     useEffect( () => {
         if (window.web3) {
@@ -215,7 +214,7 @@ export default function LogIn () {
            setIsMobile(true);
        }
 
-    });
+    }, [loadWalletData, loadWeb3]);
 
     if (!loggedIn) {
     return (
