@@ -91,13 +91,12 @@ export default function GetLoan ({ethAmount}) {
                             margin-bottom: 40px;">
                     
                     <p Style="font-size: 16px;
-                                padding-bottom: 10px;"> Collateralization</p>
-                    
-                    <p Style="font-size: 12px;">{leverage}x</p>
+                                margin-bottom: 10px;"> Collaterization </p>
                     <Slider min={1.1} max={4}
                             step={0.1}
                             onChange={(e, val) => updateLiqudation(val)}
                     />
+                    <p Style="font-size: 12px;">{leverage}x</p>
                 
                 </div>
 
