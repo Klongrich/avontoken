@@ -1,5 +1,5 @@
 import HomePage from "./pages/homepage";
-import AvonDao from "./pages/avondao";
+//import AvonDao from "./pages/avondao";
 import NewsPage from "./pages/news_page";
 import LogIn from "./pages/DeFi/login";
 import VotePage from './pages/Goverence/vote'; 
