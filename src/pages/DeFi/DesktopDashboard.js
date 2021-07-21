@@ -2,6 +2,8 @@ import React from 'react'
 import styled from "styled-components";
 
 import TokenLogo from "../../assests/ATlogo.png";
+import UserSignIn from "../../assests/UserSignIn.jpeg";
+
 
 import Button from "@material-ui/core/Button";
 
@@ -64,7 +66,7 @@ const HeaderContainer = styled.div`
         font-family: Nova Square;
         font-style: normal;
         font-weight: normal;
-        font-size: 28px;
+        font-size: 24px;
         line-height: 77px;
         color: #000000;
 
@@ -76,11 +78,9 @@ const HeaderContainer = styled.div`
 
     ul {
         list-style-type: none;
-        margin-left: 30%;
+        margin-left: 30.5%;
         margin-top: -70px;
     }
-
-
 `
 
 const MiddleContainer = styled.div`
@@ -96,7 +96,58 @@ text-align: center;
     }
 
 `
+const Circle = styled.div`
+width: 15px;
+height: 13.99px;
 
+background: #C4C4C4;
+border-radius: 21px;
+transform: matrix(1, 0, 0, 1, 0, 0);
+
+margin-top: -108px;
+margin-left: 85%;
+`
+
+const Line = styled.div`
+position: absolute;
+width: 9px;
+height: 0px;
+
+border: 1px solid #000000;
+transform: matrix(1, -0.01, 0.01, 1, 0, 0);
+
+margin-top: 6px;
+margin-left: 2px;
+`
+
+const VerticalLine = styled.div`
+position: absolute;
+width: 8.6px;
+height: 0px;
+
+border: 1px solid #000000;
+transform: matrix(0, 1, -1, 0, 0, 0);
+
+margin-top: 6px;
+margin-left: 2px;
+`
+
+
+const IconContainer = styled.div`
+
+width: 50px;
+height: 51px;
+
+background: url(${UserSignIn});
+filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+border-radius: 24px;
+
+background-size: 100% 100%;
+
+margin-left: 93%;
+margin-top: -55px;
+
+`
 
 export default function DessktopDashbaord () {
 
@@ -111,6 +162,14 @@ export default function DessktopDashbaord () {
                         <li>Settings</li>
                         <li>View My Loans</li>
                     </ul>
+
+                    <Circle>
+                        <Line />
+                        <VerticalLine />
+                    </Circle>
+
+                    <IconContainer />
+
                 </HeaderContainer>
 
                 <MiddleContainer>
