@@ -7,7 +7,7 @@ import MessagePage from "./messageCenter";
 
 import GetLoanPage from "./getLoan";
 
-import TokenLogo from "../assests/AvonTokenLogo.png";
+import TokenLogo from "../../assests/AvonTokenLogo.png";
 
 import { User } from "@styled-icons/boxicons-regular/User";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";

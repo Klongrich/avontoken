@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
-import TokenLogo from "../assests/AvonTokenLogo.png";
+import DesktopDashboard from "./DesktopDashboard";
+import TokenLogo from "../../assests/AvonTokenLogo.png";
 
 import Web3 from "web3";
 import Web3Modal from 'web3modal';
@@ -134,7 +135,7 @@ export default function LogIn () {
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
     const [ethAmount, setEthAmount] = useState("");
-
+    const [isMobile, setIsMobile] = useState(false);
 
     const web3Modal = new Web3Modal({
         cacheProvider: true, // optional
@@ -208,6 +209,12 @@ export default function LogIn () {
            loadWeb3();
        }
 
+       if (window.innerWidth > 999) {
+           setIsMobile(false)
+       } else {
+           setIsMobile(true);
+       }
+
     });
 
     if (!loggedIn) {
@@ -229,13 +236,20 @@ export default function LogIn () {
             </Container>
         </>
     )
-    } else if (loggedIn) {
+    } else if (loggedIn && isMobile) {
         return (
             <>
                 <Dashboard balance={ATamount} 
                             walletAddress={walletAddress}
                             EthAmount={ethAmount}
                             />
+            </>
+        )
+    } else if (loggedIn && !isMobile) {
+        return (
+            <>
+                <DesktopDashboard />
+
             </>
         )
     }
