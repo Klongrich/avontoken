@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route path="/" exact component={HomePage} />
-          <Route path="/avondao" exact component={AvonDao} />
+          {/* <Route path="/avondao" exact component={AvonDao} /> */}
           <Route path="/app" exact component={LogIn} />
           <Route path="/news" excat component={NewsPage} />
           <Route path="/vote" exact component={VotePage} />
