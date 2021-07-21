@@ -154,9 +154,9 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
         setShowMessages(false);
     }
 
-    // function handleGetLoan() {
-    //     setShowGetLoan(true);
-    // }
+    function handleGetLoan() {
+        setShowGetLoan(true);
+    }
 
     function handleGotLoan() {
         setShowGetLoan(false);
@@ -179,8 +179,7 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
 
                 <CircleLogo />
 
-                {/* <Button onClick={() => handleGetLoan()}> */}
-                <Button>
+                <Button onClick={() => handleGetLoan()}> 
                     <p> Get Loan </p>
                 </Button>
 
@@ -263,7 +262,7 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
             
             <div Style="text-align: left; 
                             padding-top: 10px;
-                            background-color: #C4C4C4;">
+                            background-color: #F0EAEA;">
             <ArrowBack size="50" onClick={() => handleGotLoan()} /> 
             </div>
 

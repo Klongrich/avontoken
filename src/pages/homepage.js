@@ -185,7 +185,7 @@ export default function Homepage() {
                     <DialogTitle>{"Join Team"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
-                            All posistion currently full, please check back again at a different time.
+                            We are currently looking for Fellow Social Media Managers. Email kyle@avontoken.com
                         </DialogContentText>
                     </DialogContent>
                     <DialogActions>
