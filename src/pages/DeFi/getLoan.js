@@ -9,6 +9,9 @@ import Slider from '@material-ui/core/Slider';
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
+import AvonDAOabi from "../../assests/AvonDAO.json";
+const MockAvonDAORinkbeyAddress = "0x197CF7bf4986838a6DaC6854337b4B6674003b08";
+
 
 const theme = createTheme({
     palette: {
@@ -49,7 +52,7 @@ const Container = styled.div`
     }
 `
 
-export default function GetLoan ({ethAmount}) {
+export default function GetLoan ({walletAddress}) {
 
     const [leverage, updateLeverage] = useState(1.1 || '');
     const [liqudationPrice, setLiquidationPrice] = useState(714.42);
@@ -70,6 +73,19 @@ export default function GetLoan ({ethAmount}) {
         result = partOne / partTwo;
         setLiquidationPrice(result.toFixed(2) * -1);
         return (result)
+    }
+
+    async function RinkbeyMockFunction () {
+        var web3 = window.web3;
+        
+        const contract = await new web3.eth.Contract(AvonDAOabi.abi, MockAvonDAORinkbeyAddress);
+
+        await contract.methods
+            .voteOnProposal(0, false)
+            .send({from: walletAddress})
+            .once("receipt", (res) => {
+                console.log(res);
+            })
     }
 
     return (
@@ -103,7 +119,10 @@ export default function GetLoan ({ethAmount}) {
             <h4> Liqudation Price:  ${liqudationPrice} </h4>
 
             <br />  <br />     
-            <Button style={{minWidth: '210px', minHeight: '42px'}} variant="outlined" color="primary">
+            <Button style={{minWidth: '210px', minHeight: '42px'}} 
+                    variant="outlined" 
+                    color="primary"
+                    onClick={() => RinkbeyMockFunction()}>
                 Get Loan
             </Button>
         </Container>

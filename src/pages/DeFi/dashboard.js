@@ -266,7 +266,7 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
             <ArrowBack size="50" onClick={() => handleGotLoan()} /> 
             </div>
 
-                <GetLoanPage ethAmount={EthAmount} />
+                <GetLoanPage walletAddress={walletAddress} />
             </>
         )
     }
