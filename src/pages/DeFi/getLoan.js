@@ -94,8 +94,8 @@ export default function GetLoan ({walletAddress}) {
         <Container>
         
             <div Style="margin-bottom: 90px;">
-            <h3>Loan Amount</h3>
-
+            <h3 Style="padding-bottom: 42px;">Loan Amount</h3>
+            
                 <Input style={{minWidth: '275px'}} 
                         color="primary"
                         variant="outlined"
