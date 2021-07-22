@@ -4,6 +4,8 @@ import styled from "styled-components";
 import AccountPage from "./account_page";
 import SettingsPage from "./settings";
 import MessagePage from "./messageCenter";
+import StakePage from "./stake";
+import ClaimRewards from './claimrewards';
 
 import GetLoanPage from "./getLoan";
 
@@ -129,6 +131,8 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
     const [showSettings, setShowSettings] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
     const [showGetLoan, setShowGetLoan] = useState(false);
+    const [showStakePage, setShowStakePage] = useState(false);
+    const [showClaimRewards, setShowClaimRewards] = useState(false)
 
     function handleShowAccount () {
         setShowAccount(true);
@@ -161,8 +165,24 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
     function handleGotLoan() {
         setShowGetLoan(false);
     }
+
+    function handleShowStakePage () {
+        setShowStakePage(true);
+    }
+
+    function handleShowenStakePage () {
+        setShowStakePage(false);
+    }
+
+    function handleShowClaimRewards () {
+        setShowClaimRewards(true);
+    }
+
+    function handleShowenClaimRewards () {
+        setShowClaimRewards(false);
+    }
     
-    if (!showAccount && !showSettings && !showMessages && !showGetLoan) {
+    if (!showAccount && !showSettings && !showMessages && !showGetLoan  && !showStakePage && !showClaimRewards) {
     return (
         <>
             <Container>
@@ -183,15 +203,13 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
                     <p> Get Loan </p>
                 </Button>
 
-                <Button>
+                <Button onClick={() => handleShowStakePage()}>
                     <p> Stake AT </p>
                 </Button>
 
-                <a Style="text-decoration: none;" href="https://app.uniswap.org/#/add/ETH/0x7e992D8F57223661106c29e519E22A2a9a7BceFb/3000">
-                <Button>
-                    <p>Add Liquidity</p>
+                <Button onClick={() => handleShowClaimRewards()}>
+                    <p>Claim Rewards</p>
                 </Button>
-                </a>
 
                 <BottomButton onClick={() => handleShowAccount()}>
                     <div Style="padding-top: 10px;">
@@ -267,6 +285,34 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
             </div>
 
                 <GetLoanPage walletAddress={walletAddress} />
+            </>
+        )
+    } else if (showStakePage) {
+
+        return (
+            <>
+            <div Style="text-align: left; 
+                            padding-top: 10px;
+                            background-color: #F0EAEA;">
+            <ArrowBack size="50" onClick={() => handleShowenStakePage()} /> 
+            </div>
+
+                <StakePage />
+
+            </>
+        )
+    } else if (showClaimRewards) {
+
+        return (
+            <>
+            <div Style="text-align: left; 
+                        padding-top: 10px;
+                        background-color: #F0EAEA;"
+                        >
+
+            <ArrowBack size="50" onClick={() => handleShowenClaimRewards()} />
+            </div>
+                <ClaimRewards />
             </>
         )
     }
