@@ -154,7 +154,6 @@ export default function LogIn () {
     }
 
     const loadWalletData = useCallback(async () => {
-    
         window.web3 = new Web3(window.web3.currentProvider)
         var web3 = window.web3;
 
@@ -171,7 +170,7 @@ export default function LogIn () {
         setEthAmount(EthAmount / 1000000000000000000)     
     }, [])
 
-    const loadWeb3 = useCallback( async () => {
+    const loadWeb3 = useCallback(async () => {
         if (window.ethereum) {
             const provider = await web3Modal.connect();
             window.web3 = await new Web3(provider);
@@ -196,7 +195,7 @@ export default function LogIn () {
         }
     }, [loadWalletData]) 
 
-    useEffect( () => {
+    useEffect(() => {
         if (window.web3) {
             if (window.web3.currentProvider.selectedAddress != null) {
                 window.web3 = new Web3(window.web3.currentProvider)

@@ -12,7 +12,6 @@ import { createTheme } from '@material-ui/core/styles';
 import AvonDAOabi from "../../assests/AvonDAO.json";
 const MockAvonDAORinkbeyAddress = "0x197CF7bf4986838a6DaC6854337b4B6674003b08";
 
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -23,8 +22,6 @@ const theme = createTheme({
       },
     },
   });
-
-
  
 const Container = styled.div`
     background-color: #F0EAEA;
