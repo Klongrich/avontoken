@@ -1,9 +1,6 @@
 import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
-import TokenLogo from "../assests/AvonTokenLogo.png";
-import RocketVideo from "../assests/rocket.gif";
-
 import Web3 from "web3";
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
@@ -72,31 +69,9 @@ const Container = styled.div`
 
     text-align: center;
 
-    height: 750px;
+    height: 520px;
 
-    background-image: url(${RocketVideo});
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
 `
-
-// const LogIn = styled.button`
-//     height: 45px;
-//     width: 200px;
-
-//     color: white;
-//     background-color: #FF7500;
-//     border: 1px solid #F7BE00;
-
-//     :hover {
-//         background-color: #ffab61;
-//         cursor: pointer;
-//     }
-
-//     margin-top: 15px;
-//     margin-bottom: 55px;
-
-//     box-shadow: 1px 2px #F7BE00;
-// `
 
 const LoggedInInfo = styled.div`
     padding-top: 42px;
@@ -111,24 +86,6 @@ const LoggedInInfo = styled.div`
     }
 `
 
-// const TokenInfoContainer = styled.div`
-//     border 1px solid white;
-
-//     line-height: 2;
-
-//     margin-left: 10%;
-//     margin-right: 10%;
-//     margin-top: 50px;
-
-//     padding-left: 5%;
-//     padding-right: 5%;
-
-//     font-family: sans-serif;
-
-//     :hover {
-//         background-color: purple;
-//     }
-// `
 
 const UpdatesContainer = styled.div`
     border 1px solid white;
@@ -147,20 +104,10 @@ const UpdatesContainer = styled.div`
     :hover {
         background-color: #d2c01e;
     }
+
+
 `
 
-// const ClosingInfoContainer = styled.div`
-//     line-height: 2;
-
-//     margin-left: 10%;
-//     margin-right: 10%;
-//     margin-top: 50px;
-
-//     padding-left: 5%;
-//     padding-right: 5%;
-
-//     font-family: sans-serif;
-// `
 
 export default function NewsPage () {
 
@@ -281,10 +228,16 @@ export default function NewsPage () {
             
             <Container>
                     <h2 Style="margin-bottom: 50px;"> Must Have At Least 100 AvonTokens To Log In</h2>
-                    <h3 Style="margin-bottom: 50px;"> We'll see you all at the moon</h3>
-                    <img src={TokenLogo} height="342" alt="" />
+                    <h3 Style="margin-bottom: 30px;"> We'll see you all at the moon</h3>
+                    
+                    <iframe src="https://giphy.com/embed/YtT00PQvwNKuveEudl" 
+                            width="100%" 
+                            height="305" 
+                            frameBorder="0" 
+                            class="giphy-embed" allowFullScreen 
+                            title="moving logo"/>
+
             </Container>
-            
 
             <div Style="background-color:black; height: 500px; text-align:center;">
 
@@ -308,9 +261,9 @@ export default function NewsPage () {
                 }
             </ThemeProvider>
 
-                <br /> <br />
+                <br /> <br /> <br /> <br />
 
-                <iframe height="250" width="350" src="https://www.youtube.com/embed/AfnvFnzs91s" 
+                <iframe height="250" width="100%" src="https://www.youtube.com/embed/AfnvFnzs91s" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
@@ -339,37 +292,6 @@ export default function NewsPage () {
                         <p Style="color: white;">
                             Thank you for your purchase of {ATamount} AT!
                         </p>
-
-                        {/* <ClosingInfoContainer>
-                            <h2>
-                               <strong> <u> Notes (July 14th, 2021) </u> </strong>
-                            </h2>
-                            <p>
-                                Most people with tech like this go to the richest people they can find and beg for money to find programmers to 
-                                code their next big idea, here at AvonToken we don't do that. We are the coders, the builders, the founders. 
-                            </p>
-                        </ClosingInfoContainer>
-
-                        <TokenInfoContainer Height={500}>
-                            <p>
-                                If you are reading this you are a very early investor into the AvonToken (AvonDAO) project.
-                                We are currently working on putting together a road map, team page, etc ...
-                            </p>
-
-                            <p>
-                                We are also hiring! We are looking for people that are good at marketing, design, programming, and much more.
-                                Reach out to kyle@avontoken.com or adam@avontoken.com for more details on how to go about potentially joining
-                                the $AT Team. 
-                            </p>
-                            <p>
-                                We pay in USD or in AvonToken ($AT).
-                            </p>
-                            <p>
-                                Please mention you saw this page when inquiring. Thank You (:
-                            </p>
-
-
-                        </TokenInfoContainer> */}
 
                         <UpdatesContainer>
                             <h2> Updates </h2>

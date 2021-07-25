@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import styled from "styled-components";
 
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
-import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
 import {Github} from "@styled-icons/bootstrap/Github";
 
 import {Reddit} from "@styled-icons/boxicons-logos/Reddit";
@@ -212,7 +211,7 @@ export default function Homepage() {
             </Container>
 
             <BodyContainer>
-                <h2> Avon Token is a next generation crypto-currency </h2>
+                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized platform </h2>
 
                 <p>
                    The recent launch of our ERC20 token will be used in future projects under the <strong> <u> AvonDAO </u> </strong>
