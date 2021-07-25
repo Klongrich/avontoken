@@ -227,7 +227,7 @@ export default function NewsPage () {
         </div>
             
             <Container>
-                    <h2 Style="margin-bottom: 50px;"> Must Have At Least 100 AvonTokens To Log In</h2>
+                    <h2 Style="margin-bottom: 30px;"> Must Have At Least 100 AvonTokens To Log In</h2>
                     <h3 Style="margin-bottom: 30px;"> We'll see you all at the moon</h3>
                     
                     <iframe src="https://giphy.com/embed/YtT00PQvwNKuveEudl" 
