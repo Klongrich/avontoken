@@ -4,7 +4,10 @@ import styled from "styled-components";
 import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
 import {Instagram} from "@styled-icons/boxicons-logos/Instagram";
 import {Github} from "@styled-icons/bootstrap/Github";
-import {FacebookSquare} from "@styled-icons/boxicons-logos/FacebookSquare";
+
+import {Reddit} from "@styled-icons/boxicons-logos/Reddit";
+import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
+import {Discord} from "@styled-icons/boxicons-logos/Discord";
 
 import Button from "@material-ui/core/Button";
 
@@ -300,16 +303,20 @@ export default function Homepage() {
                         <Twitter size="42" color="#1DA1F2" />
                     </a>
 
-                    <a href="https://www.instagram.com/avontoken/">
-                        <Instagram size="42" color="white" />
-                    </a>
-
                     <a href="https://github.com/avontoken">
                         <Github size="42" color="#333" />
                     </a>
 
-                    <a href="https://www.facebook.com/Avon-Token-110118631342569">
-                        <FacebookSquare size="42" color="#3b5998" />
+                    <a href="https://www.reddit.com/r/avontoken/">
+                        <Reddit size="42" color="#FF4500" />
+                    </a>
+
+                    <a href="/">
+                        <Telegram size="42" color="#0088cc" />
+                    </a>
+
+                    <a href="https://discord.gg/MpnC8aUWPA">
+                        <Discord size="42" color="#5865F2" />
                     </a>
                 </SocialIconsContainer>
             
