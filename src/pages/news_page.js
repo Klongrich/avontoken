@@ -101,10 +101,25 @@ const UpdatesContainer = styled.div`
 
     font-family: sans-serif;
 
-    :hover {
-        background-color: #d2c01e;
+
+
+
+`
+
+const CoinsContainer = styled.div`
+
+    ul {
+        list-style-type: circle;
     }
 
+    a {
+        padding-left: 40px;
+    }
+
+    li {
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
 
 `
 
@@ -263,11 +278,11 @@ export default function NewsPage () {
 
                 <br /> <br /> <br /> <br />
 
-                <iframe height="250" width="100%" src="https://www.youtube.com/embed/AfnvFnzs91s" 
+                {/* <iframe height="250" width="100%" src="https://www.youtube.com/embed/AfnvFnzs91s" 
                     title="YouTube video player" frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
-                 </iframe>
+                 </iframe> */}
 
                  {loggedIn && lessThan100 &&
                     <LoggedInInfo>
@@ -296,6 +311,41 @@ export default function NewsPage () {
                         <UpdatesContainer>
                             <h2> Updates </h2>
 
+                            <h3 Style="text-align: left">
+                                July 2021 DeFi Coins (stable)
+                            </h3>
+
+                            <CoinsContainer>
+
+                            <ul Style="text-align: left;">
+                                <li>
+                                    AAVE 
+                                    <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9">Buy</a>      
+                                    <a href="https://aave.com/">Website</a>
+                                </li>
+                                <li>
+                                    CRV 
+                                    <a href="https://app.uniswap.org/#/swap?outputCurrency=0xD533a949740bb3306d119CC777fa900bA034cd52">Buy</a> 
+                                    <a href="https://curve.fi/">Website</a>
+                                </li>
+                                <li>
+                                    COMP 
+                                    <a href="https://app.uniswap.org/#/swap?outputCurrency=0xc00e94cb662c3520282e6f5717214004a7f26888">Buy</a> 
+                                    <a href="https://compound.finance/">Website</a>
+                                </li>
+                                <li>
+                                    MKR 
+                                    <a href="https://app.uniswap.org/#/swap?outputCurrency=0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2">Buy</a> 
+                                    <a href="https://makerdao.com/ ">Website</a>
+                                </li>
+                            </ul>
+
+                            </CoinsContainer>
+
+                            <p Style="text-align: left;">*** NOT FINICAL ADVICE!</p>
+                  
+                          
+{/* 
                             <h3 Style="text-align: left">
                                <strong> <u> AvonDeFi </u> </strong>
                             </h3>
@@ -326,7 +376,7 @@ export default function NewsPage () {
                                 <br />
                                 <p>
                                     Please check back to this page for more updates (:
-                                </p>
+                                </p> */}
                             
                             <br /> 
                             <br />
