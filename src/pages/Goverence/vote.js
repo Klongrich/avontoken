@@ -13,6 +13,14 @@ import Button from "@material-ui/core/Button";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent"
+
+import TextField from '@material-ui/core/TextField';
+
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { Cancel } from "@styled-icons/material/Cancel";
 
@@ -55,6 +63,7 @@ const web3Modal = new Web3Modal({
     providerOptions //required
 });
 
+
 const theme = createTheme({
     palette: {
       primary: {
@@ -68,6 +77,21 @@ const theme = createTheme({
       }
     },
   });
+
+
+// const theme = createTheme({
+//     palette: {
+//       primary: {
+//         main: "#d44d00"
+//       },
+//       secondary: {
+//         main: "#ffab61",
+//       },
+//       primary1:{
+//           main: "rgba(38, 33, 23, 0.62)"
+//       }
+//     },
+//   });
 
 const Container = styled.div`
     background-color: #F0EAEA;
@@ -165,6 +189,11 @@ const DataFiller = [
     },
 ]
 
+const inputProps = {
+    step: 300,
+  };
+  
+
 const TestData = [];
 
 export default function VotePage () {
@@ -174,6 +203,18 @@ export default function VotePage () {
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
+    const [open, setOpen] = useState(false);
+
+    // const [newProposal, setNewProposal] = useState("");
+    const [amountOfChars, setAmountOfChars] = useState(0);
+
+    const handleClickToOpen = () => {
+        setOpen(true);
+      };
+      
+      const handleToClose = () => {
+        setOpen(false);
+      };
 
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
@@ -238,6 +279,20 @@ export default function VotePage () {
 
     }
 
+    function testingInput(value) {
+        console.log(value);
+        console.log("Length", value.length);
+
+        // setNewProposal(value);
+        setAmountOfChars(value.length);
+
+        //Can set the value to read and show that they are going over.
+        //Will have to lock out the submit button and maybe change it's color too.
+        if (value.length >= 150) {
+
+        }
+    }
+
     useEffect(() => {
         async function loadWalletData() {
             window.web3 = new Web3(window.web3.currentProvider)
@@ -300,6 +355,43 @@ export default function VotePage () {
 
     return (
         <>
+
+        <div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle>{"Create Proposal"}</DialogTitle>
+                    <DialogContent>
+                    <DialogContentText>
+                            Keep proposal under 150 characters. Thank you
+                    </DialogContentText>
+                        <TextField id="text" 
+                                    type="text" 
+                                    inputProps={inputProps} 
+                                    multiline rows={4}
+                                    style={{minWidth: '100%', minHeight: '82px'}}
+                                    onChange={e => testingInput(e.target.value)}
+                                    ></TextField>
+                    <br /> <br /> 
+                    <DialogContentText>
+                        {amountOfChars} / 150
+                    </DialogContentText>
+
+                    </DialogContent>
+
+                    <DialogActions>
+                        <Button onClick={handleToClose}
+                            color="secondary">
+                            Close
+                        </Button>
+                        <Button onClick={handleToClose} 
+                            color="secondary" autoFocus>
+                            Submit
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
+        
             <Container>
 
                 <h2 Style="text-decoration: underline;">Proposals</h2>
@@ -375,7 +467,7 @@ export default function VotePage () {
                             margin-top: 10px;
                             margin-bottom: 30px;">
                 <ThemeProvider theme={theme}>  
-                    <Button variant="outlined" color="primary1">
+                    <Button variant="outlined" color="primary1" onClick={() => handleClickToOpen()}>
                     Create Proposal
                     </Button>
                 </ThemeProvider>
