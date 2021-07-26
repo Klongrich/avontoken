@@ -343,7 +343,9 @@ export default function NewsPage () {
                             </CoinsContainer>
                             
                             <p Style="text-align: left;
-                                      padding-top: 20px;">*** NOT FINICAL ADVICE!</p>
+                                      padding-top: 20px;">*** NOT FINANCIAL ADVICE!</p>
+
+                            <p Style="text-align:left;"> Also note you can interact with each of these dapps through your wallet browser </p>
                   
                           
 {/* 
