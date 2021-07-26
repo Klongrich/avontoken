@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from "styled-components";
 
 import TokenLogo from "../../assests/ATlogo.png";
@@ -9,6 +9,12 @@ import Button from "@material-ui/core/Button";
 
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent"
 
 
 const theme = createTheme({
@@ -159,10 +165,44 @@ margin-top: -47px;
 
 `
 
-export default function DessktopDashbaord () {
+export default function DesktopDashbaord ( {isLoggedIn}) {
+
+    const [open, setOpen] = useState(isLoggedIn);
+
+    function handleToClose() {
+        setOpen(false);
+    }
 
     return (
         <>
+
+        <div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle>{"Wallet Not Found!"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            We have detected that your browser does not have a web3 wallet!
+                            We reccomened trying meta-mask or another wallet-connect app.
+                            <br /> <br />
+                            <a href="https://metamask.io/download">
+                                Download Metamask
+                            </a>
+                            <br /> <br />
+                            <a href="https://registry.walletconnect.org/wallets">
+                                See List of Wallet-Connect Options
+                            </a>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <Button onClick={handleToClose} 
+                            color="primary" autoFocus>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
             <Container>
                 <HeaderContainer>
                     <h3 Style="padding-left: 25px;"> AvonToken </h3>

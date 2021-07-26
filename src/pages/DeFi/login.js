@@ -67,23 +67,13 @@ const Container = styled.div`
     padding-top: 164px;
 
     text-align: center;
-`
 
-const LogoContainer = styled.div`
-
-width: 96px;
-height: 98px;
-
-background: url(${TokenLogo});
-border: 1px solid #000000;
-box-sizing: border-box;
-filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-border-radius: 15px;
-
-background-size: 100% 100%;
-
-margin-left: 38%;
-
+    img {
+        border: 1px solid #000000;
+        box-sizing: border-box;
+        filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+        border-radius: 15px;
+    }
 `
 
 const AvonTokenText = styled.h3`
@@ -134,6 +124,7 @@ margin-bottom: 58px;
 export default function LogIn () {
 
     const [loggedIn, setLoggedIn] = useState(false);
+    const [showDialog, setShowDialog] = useState(false);
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
@@ -172,6 +163,9 @@ export default function LogIn () {
 
     const loadWeb3 = useCallback(async () => {
         if (window.ethereum) {
+            
+            console.log("0");
+
             const provider = await web3Modal.connect();
             window.web3 = await new Web3(provider);
 
@@ -180,22 +174,39 @@ export default function LogIn () {
             return(true);
         }
         else if (window.web3) {
+            
+            console.log("1");
+            
             window.web3 = new Web3(window.web3.currentProvider)
             
             await loadWalletData();
             return(true);
         }
         else {
-            const provider = await web3Modal.connect();
-            window.web3 = await new Web3(provider);
+            if (!isMobile) {
+                setShowDialog(true);
+                setLoggedIn(true);
+            } else {
+                setLoggedIn(false);
 
-            await provider.enable()
-            await loadWalletData();
+                const provider = await web3Modal.connect();
+                window.web3 = await new Web3(provider);
+    
+                await provider.enable()
+                await loadWalletData();
+            }
+
             return(true);
         }
-    }, [loadWalletData]) 
+    }, [loadWalletData, isMobile]) 
 
     useEffect(() => {
+        if (window.innerWidth > 999) {
+            setIsMobile(false)
+        } else {
+            setIsMobile(true);
+        }
+        
         if (window.web3) {
             if (window.web3.currentProvider.selectedAddress != null) {
                 window.web3 = new Web3(window.web3.currentProvider)
@@ -207,19 +218,18 @@ export default function LogIn () {
            loadWeb3();
        }
 
-       if (window.innerWidth > 999) {
-           setIsMobile(false)
-       } else {
-           setIsMobile(true);
-       }
-
     }, [loadWalletData, loadWeb3]);
 
     if (!loggedIn) {
     return (
         <>
             <Container>
-                <LogoContainer />
+    
+                <img src={TokenLogo}
+                    height="125px"
+                    width="125px" 
+                    alt="" 
+                />
 
                 <AvonTokenText>
                     AvonToken
@@ -246,7 +256,7 @@ export default function LogIn () {
     } else if (loggedIn && !isMobile) {
         return (
             <>
-                <DesktopDashboard />
+                <DesktopDashboard isLoggedIn={showDialog} />
 
             </>
         )
