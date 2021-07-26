@@ -16,7 +16,7 @@ import { createTheme } from '@material-ui/core/styles';
 import { CheckCircle } from "@styled-icons/boxicons-regular/CheckCircle";
 import { Cancel } from "@styled-icons/material/Cancel";
 
-//const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
+const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
 const AvonTokenMockAddress = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
 const AvonDAORinkbeyAddress = "0x5c628B76C3F90986D204DF0D2E5a8bDA2E2B92Bf";
@@ -142,28 +142,28 @@ const WhiteLine = styled.div`
     border-radius: 55px;
 `
 
-// const DataFiller = [
-//     {
-//         id: 0,
-//         preposal: "Should We Fire Austin Seitz?",
-//         yes: 356,
-//         no: 120,
-//         yesPrecentage: 74.78,
-//         noPrecentage: 25.21,
-//         timeLeft: "12 hours 42 minutes",
-//         voted: false
-//     },
-//     {
-//         id: 1,
-//         preposal: "Should We Create The NFT Market Before The DeFi Platform?",
-//         yes: 398,
-//         no: 75,
-//         yesPrecentage: 84.14,
-//         noPrecentage: 15.85,
-//         timeLeft: "7 hours 24 mintues",
-//         voted: false
-//     },
-// ]
+const DataFiller = [
+    {
+        id: 0,
+        preposal: "Should We Lanuch in the US or Switzerland?",
+        yes: 356,
+        no: 120,
+        yesPrecentage: 74.78,
+        noPrecentage: 25.21,
+        timeLeft: "12 hours 42 minutes",
+        voted: false
+    },
+    {
+        id: 1,
+        preposal: "Should We Create The NFT Market Before The DeFi Platform?",
+        yes: 398,
+        no: 75,
+        yesPrecentage: 84.14,
+        noPrecentage: 15.85,
+        timeLeft: "7 hours 24 mintues",
+        voted: false
+    },
+]
 
 const TestData = [];
 
@@ -182,8 +182,10 @@ export default function VotePage () {
         const contract = await new web3.eth.Contract(ERC_20_ABI, tokenAddy);
 
         await contract.methods.balanceOf(publicKey).call(function(error, result){
-            var amount = " " + result.toString();
-            balance = web3.utils.fromWei(amount, 'ether');
+            if (result) {
+                var amount = " " + result.toString();
+                balance = web3.utils.fromWei(amount, 'ether');
+            }
         });       
         return (balance);
     }
@@ -211,6 +213,7 @@ export default function VotePage () {
             console.log("ID: + " + id);
             console.log(result);
 
+            if (result) {
             var yesCount = (result.yes / 1000000000000000000).toFixed(0);
             var noCount = (result.no / 1000000000000000000).toFixed(0);
 
@@ -226,8 +229,12 @@ export default function VotePage () {
                 noPrecentage: noPrecent
             }
 
-            setData(data => [...data, newData])
+                setData(data => [...data, newData])
+            } else {
+                setData(DataFiller);
+            }
         });
+        console.log(web3.currentProvider);
 
     }
 
@@ -235,10 +242,19 @@ export default function VotePage () {
         async function loadWalletData() {
             window.web3 = new Web3(window.web3.currentProvider)
             var web3 = window.web3;
-    
+
+            var amount_of_at = 0;
             const accounts = await web3.eth.getAccounts();
             const address = { account: accounts[0] }.account;
-            const amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
+
+            //Main Net
+            if (web3.currentProvider.networkVersion === "1") {
+                amount_of_at = await get_token_balance(address, AvonTokenAddress);
+            } 
+            else if (web3.currentProvider.networkVersion === "4"){
+                amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
+            }
+            
             //const EthAmount = await web3.eth.getBalance(address);
     
             //setLoggedIn(true);
@@ -251,11 +267,13 @@ export default function VotePage () {
             if (window.ethereum) {
                 const provider = await web3Modal.connect();
                 window.web3 = await new Web3(provider);
-    
                 await provider.enable()
+
                 await loadWalletData();
                 await getPropsalInfo(0);
                 await getPropsalInfo(1);
+
+                console.log("0");
                 return(true);
             }
             else if (window.web3) {
@@ -264,13 +282,14 @@ export default function VotePage () {
                 await loadWalletData();
                 await getPropsalInfo(0);
                 await getPropsalInfo(1);
+                
                 return(true);
             }
             else {
                 window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                setData(DataFiller);
             }
         }
-
         loadWeb3();
         //const data = loadWeb3();
         // console.log("Data: " + data);
