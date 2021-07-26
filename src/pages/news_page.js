@@ -319,30 +319,31 @@ export default function NewsPage () {
 
                             <ul Style="text-align: left;">
                                 <li>
-                                    AAVE 
+                                    $AAVE 
                                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9">Buy</a>      
                                     <a href="https://aave.com/">Website</a>
                                 </li>
                                 <li>
-                                    CRV 
+                                    $CRV 
                                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0xD533a949740bb3306d119CC777fa900bA034cd52">Buy</a> 
                                     <a href="https://curve.fi/">Website</a>
                                 </li>
                                 <li>
-                                    COMP 
+                                    $COMP 
                                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0xc00e94cb662c3520282e6f5717214004a7f26888">Buy</a> 
                                     <a href="https://compound.finance/">Website</a>
                                 </li>
                                 <li>
-                                    MKR 
+                                    $MKR 
                                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2">Buy</a> 
                                     <a href="https://makerdao.com/ ">Website</a>
                                 </li>
                             </ul>
 
                             </CoinsContainer>
-
-                            <p Style="text-align: left;">*** NOT FINICAL ADVICE!</p>
+                            
+                            <p Style="text-align: left;
+                                      padding-top: 20px;">*** NOT FINICAL ADVICE!</p>
                   
                           
 {/* 
