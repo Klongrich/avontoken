@@ -49,7 +49,7 @@ margin-top: -4%;
 
 const Container = styled.div`
     background-color: #F9F9F9;
-    height: 1750px;
+    height: 1250px;
 
     margin-top: -40px;
 `
@@ -99,7 +99,7 @@ letter-spacing: 0em;
 `
 
 const MiddleContainer = styled.div`
-    padding-top: 70px;
+    padding-top: 0px;
 
     h2 {
         font-family: Nova Square;
@@ -234,7 +234,7 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                 <div Style="padding-top: 200px; margin-left: 40px;">
                 <ThemeProvider theme={theme}>
 
-                    <div Style="margin-left: 11%;">
+                    <div Style="margin-left: 11%; margin-top: -42px;">
                     <Button style={{minWidth: '250px', minHeight: '38px'}} variant="outlined" color="primary">
                         <p> GET LOAN </p>
                     </Button>
