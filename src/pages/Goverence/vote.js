@@ -383,7 +383,7 @@ export default function VotePage () {
                             color="secondary">
                             Close
                         </Button>
-                        <Button onClick={handleToClose} 
+                        <Button onClick={() => voteOnProposal(0, false)} 
                             color="secondary" autoFocus>
                             Submit
                         </Button>
