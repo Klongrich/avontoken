@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 import styled from "styled-components";
 
-import TokenLogo from "../../assests/ATlogo.png";
-import UserSignIn from "../../assests/UserSignIn.jpeg";
+import TokenLogo from "../../../assests/ATlogo.png";
+import UserSignIn from "../../../assests/UserSignIn.jpeg";
 
 
 import Button from "@material-ui/core/Button";
@@ -14,7 +14,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent"
+import DialogContent from "@material-ui/core/DialogContent";
+
+import GetLoan from "./getLoan";
 
 
 const theme = createTheme({
@@ -169,9 +171,13 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
 
     const [open, setOpen] = useState(isLoggedIn);
 
+    const [getLoan, setGetLoan] = useState(false);
+    const [stake, setStake] = useState(false);
+
     function handleToClose() {
         setOpen(false);
     }
+
 
     return (
         <>
@@ -203,6 +209,8 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                 </Dialog>
             </ThemeProvider>
         </div>
+
+
             <Container>
                 <HeaderContainer>
                     <h3 Style="padding-left: 25px;"> AvonToken </h3>
@@ -221,21 +229,25 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                     </Circle>
 
                     <IconContainer />
-
                 </HeaderContainer>
 
+
+                {!getLoan && !stake &&
+                <>
                 <MiddleContainer>
                     <h2> WELCOME</h2>
                     <MiddleLogo>
                         
                     </MiddleLogo>
                 </MiddleContainer>
-
                 <div Style="padding-top: 200px; margin-left: 40px;">
                 <ThemeProvider theme={theme}>
 
                     <div Style="margin-left: 11%; margin-top: -42px;">
-                    <Button style={{minWidth: '250px', minHeight: '38px'}} variant="outlined" color="primary">
+                    <Button style={{minWidth: '250px', minHeight: '38px'}}
+                            variant="outlined" 
+                            color="primary"
+                            onClick={() => setGetLoan(true)}>
                         <p> GET LOAN </p>
                     </Button>
                     </div>
@@ -250,11 +262,22 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                     <div Style="margin-top: -64px;
                                 margin-left: 71%"> 
                     <Button style={{minWidth: '250px', minHeight: '50px'}} variant="outlined" color="primary">
-                        <p> ADD LIQUIDITY </p>
+                        <p> CLAIM REWARDS </p>
                     </Button>
                     </div>
                 </ThemeProvider>
                 </div>
+                </>
+                }
+
+                {getLoan && !stake &&
+                    <>
+                        <GetLoan />
+
+                        <button onClick={() => setGetLoan(false)}/>
+                    </>
+                }
+
             </Container>
 
         </>

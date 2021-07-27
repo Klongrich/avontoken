@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useCallback} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
-import DesktopDashboard from "./DesktopDashboard";
+import DesktopDashboard from "./Desktop/DesktopDashboard";
 import TokenLogo from "../../assests/AvonTokenLogo.png";
 
 import Web3 from "web3";

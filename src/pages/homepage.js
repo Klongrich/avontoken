@@ -21,7 +21,6 @@ import DialogContent from "@material-ui/core/DialogContent"
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
-
 const theme = createTheme({
     palette: {
       primary: {
@@ -237,7 +236,7 @@ export default function Homepage() {
                 <br /> 
 
                 <a href="/news">
-                    <p>News Page</p>
+                    <p> News Pages </p>
                 </a>
 
                 <a href="/vote">
