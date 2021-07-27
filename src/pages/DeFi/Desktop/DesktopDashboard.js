@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import TokenLogo from "../../../assests/ATlogo.png";
 import UserSignIn from "../../../assests/UserSignIn.jpeg";
+import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 
 
 import Button from "@material-ui/core/Button";
@@ -17,6 +18,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 
 import GetLoan from "./getLoan";
+import Stake from "./stake";
+import ClaimRewards from "./claimRewards";
 
 
 const theme = createTheme({
@@ -173,6 +176,7 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
 
     const [getLoan, setGetLoan] = useState(false);
     const [stake, setStake] = useState(false);
+    const [claimRewards, setClaimRewards] = useState(false);
 
     function handleToClose() {
         setOpen(false);
@@ -232,7 +236,7 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                 </HeaderContainer>
 
 
-                {!getLoan && !stake &&
+                {!getLoan && !stake && !claimRewards &&
                 <>
                 <MiddleContainer>
                     <h2> WELCOME</h2>
@@ -254,14 +258,20 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
 
                     <div Style="margin-top: -64px;
                                 margin-left: 41%">
-                    <Button style={{minWidth: '250px', minHeight: '50px'}} variant="outlined" color="primary">
+                    <Button style={{minWidth: '250px', minHeight: '50px'}} 
+                            variant="outlined" 
+                            color="primary"
+                            onClick={() => setStake(true)}>
                         <p> STAKE AT </p>
                     </Button>
                     </div>
 
                     <div Style="margin-top: -64px;
                                 margin-left: 71%"> 
-                    <Button style={{minWidth: '250px', minHeight: '50px'}} variant="outlined" color="primary">
+                    <Button style={{minWidth: '250px', minHeight: '50px'}} 
+                            variant="outlined" 
+                            color="primary"
+                            onClick={() => setClaimRewards(true)}>
                         <p> CLAIM REWARDS </p>
                     </Button>
                     </div>
@@ -270,11 +280,41 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
                 </>
                 }
 
-                {getLoan && !stake &&
+                {getLoan && !stake && !claimRewards &&
                     <>
+                        <div Style="text-align: left; 
+                            padding-top: 20px;
+                            padding-left: 40px;
+                            background-color: #F0EAEA;">
+                            <ArrowBack size="50" onClick={() => setGetLoan(false)} /> 
+                        </div>
                         <GetLoan />
 
-                        <button onClick={() => setGetLoan(false)}/>
+                    </>
+                }
+
+                {!getLoan && stake && !claimRewards &&
+                <>
+                    <div Style="text-align: left; 
+                                padding-top: 20px;
+                                padding-left: 40px;
+                                background-color: #F0EAEA;">
+                                <ArrowBack size="50" onClick={() => setStake(false)} /> 
+                    </div>
+                    <Stake />
+                
+                </>
+                }
+
+                {!getLoan && !stake && claimRewards &&
+                    <>
+                    <div Style="text-align: left; 
+                                padding-top: 20px;
+                                padding-left: 40px;
+                                background-color: #F0EAEA;">
+                                <ArrowBack size="50" onClick={() => setClaimRewards(false)} /> 
+                    </div>
+                    <ClaimRewards />
                     </>
                 }
 
