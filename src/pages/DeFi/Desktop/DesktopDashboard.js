@@ -85,6 +85,11 @@ const HeaderContainer = styled.div`
         padding-left: 30px;
         margin-top: -70px;
 
+        :hover {
+            cursor: pointer;
+            color: #FF7301;
+        }
+
     }
 
     ul {
@@ -152,6 +157,18 @@ margin-top: 6px;
 margin-left: 2px;
 `
 
+const VerticalLineHeader = styled.div`
+position: absolute;
+width: 8.6px;
+height: 0px;
+
+border: 1px solid #000000;
+transform: matrix(0, 2, -1, 0, 0, 0);
+
+margin-top: 39px;
+margin-left: -21px;
+`
+
 
 const IconContainer = styled.div`
 
@@ -217,14 +234,14 @@ export default function DesktopDashbaord ( {isLoggedIn}) {
 
             <Container>
                 <HeaderContainer>
-                    <h3 Style="padding-left: 25px;"> AvonToken </h3>
+                    <h3 Style="padding-left: 25px;"> AvonDeFi </h3>
 
                     <p Style="margin-left: 85%;
                              margin-top: -120px;"> 100 AT </p>
                     <ul>
                         <li>Messaging</li>
-                        <li>Settings</li>
-                        <li>View My Loans</li>
+                        <li> <VerticalLineHeader /> Settings</li>
+                        <li> <VerticalLineHeader /> View My Loans</li>
                     </ul>
 
                     <Circle>
