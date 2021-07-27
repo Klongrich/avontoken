@@ -486,11 +486,11 @@ export default function VotePage () {
 
                 <ul>
                     <li> 
-                        All votes and descions are kept on chain for anyone to view. 
+                        All votes and decisions are kept on chain for anyone to view. 
                     </li>
                     <li> 
-                        Anyone can opt-in to the avontoken commuinty by purchasing 
-                        our governece token $AT
+                        Anyone can opt-in to the avontoken community by purchasing 
+                        our governance token $AT
                     </li>
                     <li>
                         Anyone holding $AT has the ability to vote on all proposals
