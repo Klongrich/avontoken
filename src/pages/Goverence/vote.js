@@ -376,6 +376,8 @@ export default function VotePage () {
                         {amountOfChars} / 150
                     </DialogContentText>
 
+                    <br /> <br />
+
                     </DialogContent>
 
                     <DialogActions>
