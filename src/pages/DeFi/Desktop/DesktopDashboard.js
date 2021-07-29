@@ -53,7 +53,7 @@ margin-top: -4%;
 `
 
 const Container = styled.div`
-    background-color: #F9F9F9;
+background-color: #F0EAEA;
     height: 1250px;
 
     margin-top: -40px;
