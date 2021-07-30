@@ -180,7 +180,7 @@ export default function Homepage() {
     return (
         <>
 
-<div stlye={{}}>
+    <div stlye={{}}>
             <ThemeProvider theme={theme}>
                 <Dialog open={open} onClose={handleToClose}>
                     <DialogTitle>{"Join Team"}</DialogTitle>
@@ -224,7 +224,7 @@ export default function Homepage() {
 
                 <ul>
                     <li>AvonNFT Market Place</li>
-                    <li>AvonDeFi Protocol</li>
+                    <li>AvonDeFi Protocol ( <a href="/defi"> Landing Page </a> )</li>
                     <li>AvonInTheKnow Protocol</li>
                 </ul>
 

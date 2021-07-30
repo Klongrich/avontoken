@@ -6,9 +6,6 @@ import "./burgerMenu.css";
 
 import Logo from "../../../assests/ATlogo.png";
 import DesktopNewColor from "../../../assests/DesktopNewColor.png";
-import MovingBackground from "../../../assests/ATbackground.gif";
-
-import DesktopDeFi from "../../../assests/DeFiDesktop.png";
 import MobileDeFi from "../../../assests/DeFiMobile.png";
 
 const Container = styled.div`
@@ -22,13 +19,14 @@ const Container = styled.div`
 
 const DesktopDeFiContainer = styled.div`
     background-color: #fcf7f7;
-    border-radius: 15px;
-    margin-top: 120px;
-    
+
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    
-    width: 80%;
-    height: 200px;
+ 
+    height: 120px;
+    width: 75%;
+
+    padding: 10px;
+   
 
     border-radius: 15px;
     border: 1px solid white;
@@ -43,19 +41,19 @@ const DesktopDeFiContainer = styled.div`
 const  MobileDeFiContainer = styled.div`
     background-color: #fcf7f7;
     border-radius: 15px;
-    margin-top: 120px;
 
-    padding: 20px;
+
+    padding: 15px;
     padding-right: 18px;
     
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    width: 150px;
+    width: 155px;
     height: 300px;
 
     border-radius: 15px;
     border: 1px solid white;
 
-    margin-left: 20%;
+    margin-left: 17%;
 
     img {
         border-radius: 15px;
@@ -79,7 +77,7 @@ const MiddleTextContainer = styled.div`
     padding-right: 20px;
 
     margin-top: 100px;
-    margin-left: 20px;
+    margin-left: 13px;
 
     background-image: linear-gradient( to left, #FE5D00, #FE8101);
     filter: drop-shadow(0px 8px 8px #FE5D00);
@@ -139,13 +137,19 @@ export default function HomePage() {
                 <h2>Most User Friendly Collateralized Lending Platform</h2>
             </MiddleTextContainer>
 
-            <DesktopDeFiContainer>                
-                <img src={DesktopNewColor} height="200" width="390px" alt="" />
+            <div Style="margin-top: 100px;
+                        margin-bottom: 165px;">
+            <h2 Style="padding-left: 10px; text-decoration: underline; padding-bottom: 10px;">Desktop</h2>
+            <DesktopDeFiContainer>       
+                <img src={DesktopNewColor} height="170" width="342px" alt="" />
             </DesktopDeFiContainer>
+            </div>
 
+            <h2 Style="padding-left: 10px; text-decoration: underline; padding-bottom:10px;">Mobile</h2>
             <MobileDeFiContainer>
                 <img src={MobileDeFi} height="400px" widht="180px;" alt="" />
             </MobileDeFiContainer>
+
 
         </Container>
 

@@ -3,9 +3,6 @@ import styled from "styled-components";
 
 import Logo from "../../../assests/ATlogo.png";
 import DesktopNewColor from "../../../assests/DesktopNewColor.png";
-import MovingBackground from "../../../assests/ATbackground.gif";
-
-import DesktopDeFi from "../../../assests/DeFiDesktop.png";
 import MobileDeFi from "../../../assests/DeFiMobile.png";
 
 const Container = styled.div`

@@ -13,7 +13,7 @@ export default function Homepage() {
         } else {
             setIsMobile(true);
         }
-    })
+    }, [isMobile])
 
     return (
         <>
