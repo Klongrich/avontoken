@@ -10,6 +10,7 @@
     "@walletconnect/web3-provider": "^1.4.1",
     "get-eth-price": "^1.0.0",
     "react": "^17.0.2",
+    "react-burger-menu": "^3.0.6",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
     "react-modal": "^3.14.3",
