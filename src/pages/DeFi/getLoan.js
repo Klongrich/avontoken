@@ -1,11 +1,9 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import Input from '@material-ui/core/Input';
 import Button from "@material-ui/core/Button";
 import Slider from '@material-ui/core/Slider';
-
-
 import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
@@ -49,10 +47,12 @@ const Container = styled.div`
     }
 `
 
-export default function GetLoan ({walletAddress}) {
+export default function GetLoan ({walletAddress, EthAmount, EthPrice}) {
 
     const [leverage, updateLeverage] = useState(1.1 || '');
     const [liqudationPrice, setLiquidationPrice] = useState(714.42);
+
+    const [maxLoan] = useState(parseFloat(EthAmount) * parseFloat(EthPrice));
 
     function updateLiqudation(value) {
         updateLeverage(value);
@@ -85,18 +85,28 @@ export default function GetLoan ({walletAddress}) {
             })
     }
 
+    useEffect(() => {
+        console.log(EthPrice);
+    })
+
     return (
         <>
         <ThemeProvider theme={theme}>
         <Container>
         
             <div Style="margin-bottom: 90px;">
-            <h3 Style="padding-bottom: 42px;">Loan Amount</h3>
+            <h3>Loan Amount</h3>
+            <h4 Style="padding-bottom: 22px;"> Max Loan: $ {maxLoan} </h4>
             
                 <Input style={{minWidth: '275px'}} 
                         color="primary"
                         variant="outlined"
                         type="number"/>
+
+                {/* <button Style="margin-left: -50px;
+                               margin-top: -20px;">
+                    MAX
+                </button> */}
             </div>
                 
                 <div Style="padding-left: 50px;

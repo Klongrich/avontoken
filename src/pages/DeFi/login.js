@@ -13,6 +13,8 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
+const etherscanURL = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=C6QXCW6BIWZJ9SCG986U1QC5W2CFI9CARA"
+
 
 // The minimum ABI to get ERC20 Token balance
 var ERC_20_ABI = [
@@ -131,6 +133,8 @@ export default function LogIn () {
     const [ethAmount, setEthAmount] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
+    const [ethPrice, setEthPrice] = useState(0);
+
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
         var balance;
@@ -160,6 +164,24 @@ export default function LogIn () {
         setATamount(amount_of_at); 
         setEthAmount(EthAmount / 1000000000000000000)     
     }, [])
+
+    function getEthPrice() {
+        fetch(etherscanURL ,{
+            method: 'GET',
+            headers: {
+              Accept: 'application/json',
+                "Content-Type": "application/json"
+            },
+            },
+        ).then(response => {
+            if (response.ok) {
+              response.json().then(json => { 
+                console.log("ETH price: " + json.result.ethusd);
+                setEthPrice(json.result.ethusd);
+              });
+            }
+          }).catch(error => alert("Hmm Thats Weird"));
+    }
 
     const loadWeb3 = useCallback(async () => {
         if (window.ethereum) {
@@ -218,6 +240,8 @@ export default function LogIn () {
            loadWeb3();
        }
 
+       getEthPrice();
+
     }, [loadWalletData, loadWeb3]);
 
     if (!loggedIn) {
@@ -250,6 +274,7 @@ export default function LogIn () {
                 <Dashboard balance={ATamount} 
                             walletAddress={walletAddress}
                             EthAmount={ethAmount}
+                            EthPrice={ethPrice}
                             />
             </>
         )

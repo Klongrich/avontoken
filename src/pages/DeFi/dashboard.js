@@ -125,7 +125,7 @@ margin-left: 85%;
 margin-top: -55px;
 `
 
-export default function Dashboard({balance, walletAddress, EthAmount}) {
+export default function Dashboard({balance, walletAddress, EthAmount, EthPrice}) {
 
     const [showAccount, setShowAccount] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
@@ -284,7 +284,9 @@ export default function Dashboard({balance, walletAddress, EthAmount}) {
             <ArrowBack size="50" onClick={() => handleGotLoan()} /> 
             </div>
 
-                <GetLoanPage walletAddress={walletAddress} />
+                <GetLoanPage walletAddress={walletAddress} 
+                             EthPrice={EthPrice}
+                             EthAmount={EthAmount}/>
             </>
         )
     } else if (showStakePage) {
