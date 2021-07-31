@@ -180,7 +180,7 @@ export default function LogIn () {
                 setEthPrice(json.result.ethusd);
               });
             }
-          }).catch(error => alert("Hmm Thats Weird"));
+          }).catch(error => alert("Current ETH price can not load, make sure ad-blocker is turned off ..."));
     }
 
     const loadWeb3 = useCallback(async () => {
