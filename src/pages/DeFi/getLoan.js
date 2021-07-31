@@ -52,7 +52,7 @@ export default function GetLoan ({walletAddress, EthAmount, EthPrice}) {
     const [leverage, updateLeverage] = useState(1.1 || '');
     const [liqudationPrice, setLiquidationPrice] = useState(714.42);
 
-    const [maxLoan] = useState(parseFloat(EthAmount) * parseFloat(EthPrice));
+    const [maxLoan] = useState((parseFloat(EthAmount) * parseFloat(EthPrice)).toFixed(2));
 
     function updateLiqudation(value) {
         updateLeverage(value);
