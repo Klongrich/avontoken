@@ -3,7 +3,7 @@ import NewsPage from "./pages/news_page";
 import LogIn from "./pages/DeFi/login";
 import VotePage from './pages/Goverence/vote'; 
 
-import DeFiLandingPage from "./pages/HomePage/";
+// import DeFiLandingPage from "./pages/HomePage/";
 
 // import DesktopDashboard from "./pages/DeFi/Desktop/DesktopDashboard";
 
@@ -20,7 +20,7 @@ function App() {
           <Route path="/app" exact component={LogIn} />
           <Route path="/news" excat component={NewsPage} />
           <Route path="/vote" exact component={VotePage} />
-          <Route path="/defi" exact component={DeFiLandingPage} />
+          {/* <Route path="/defi" exact component={DeFiLandingPage} /> */}
         </Switch>
       </BrowserRouter>
       

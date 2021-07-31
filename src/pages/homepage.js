@@ -224,7 +224,7 @@ export default function Homepage() {
 
                 <ul>
                     <li>AvonNFT Market Place</li>
-                    <li>AvonDeFi Protocol ( <a href="/defi"> Landing Page </a> )</li>
+                    <li>AvonDeFi Protocol </li>
                     <li>AvonInTheKnow Protocol</li>
                 </ul>
 
