@@ -94,10 +94,13 @@ const LinksContainer = styled.div`
     a {
         color: #0000EE;
     }
+
 `
 
 const SocialIconsContainer = styled.div`
     text-align: center;
+    margin-top: 20px; 
+    
     padding-top: 58px;
     padding-bottom: 50px;
 
@@ -106,7 +109,7 @@ const SocialIconsContainer = styled.div`
         margin-right: 15px;
     }
 
-
+    border-top: 1px solid white;
 `
 
 const LanuchApp = styled.button`
@@ -128,50 +131,50 @@ const LanuchApp = styled.button`
     box-shadow: 1px 2px #F7BE00;
 `
 
-const TeamContainer = styled.div`
-    color: white;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    padding-left: 25px;
-    padding-right: 25px;
+// const TeamContainer = styled.div`
+//     color: white;
+//     border-top: 1px solid white;
+//     border-bottom: 1px solid white;
+//     padding-left: 25px;
+//     padding-right: 25px;
 
-    height: 620px;
+//     height: 620px;
 
-    h3 {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-`
+//     h3 {
+//         padding-left: 10px;
+//         padding-right: 10px;
+//     }
+// `
 
-const Box1 = styled.div`
-    border: 1px solid white;
-    :hover {
-        color: red;
-    }
-`
+// const Box1 = styled.div`
+//     border: 1px solid white;
+//     :hover {
+//         color: red;
+//     }
+// `
 
-const Box2 = styled.div`
-    border: 1px solid white;
-    :hover {
-        color: orange;
-    }
-`
+// const Box2 = styled.div`
+//     border: 1px solid white;
+//     :hover {
+//         color: orange;
+//     }
+// `
 
-const Box3 = styled.div`
-    border: 1px solid white;
-    :hover {
-        color: blue;
-    }
-`
+// const Box3 = styled.div`
+//     border: 1px solid white;
+//     :hover {
+//         color: blue;
+//     }
+// `
 
 
 export default function Homepage() {
 
     const [open, setOpen] = useState(false);
 
-    const handleClickToOpen = () => {
-        setOpen(true);
-      };
+    // const handleClickToOpen = () => {
+    //     setOpen(true);
+    //   };
       
       const handleToClose = () => {
         setOpen(false);
@@ -259,7 +262,7 @@ export default function Homepage() {
                  {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
             </LinksContainer>
 
-            <TeamContainer>
+            {/* <TeamContainer>
                 <h2 Style="margin-bottom: 25px;"> Avon Token Team </h2>
 
                 <div Style="border: 1px solid white; text-align: center;">
@@ -292,9 +295,9 @@ export default function Homepage() {
                 </ThemeProvider>
                 </div>
 
-                {/* <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p> */}
+                <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p>
 
-            </TeamContainer>
+            </TeamContainer> */}
             
             <SocialIconsContainer>
                     <a href="https://twitter.com/avontoken">
