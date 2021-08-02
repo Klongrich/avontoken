@@ -14,7 +14,29 @@ import TokenLogo from "../../assests/AvonTokenLogo.png";
 import { User } from "@styled-icons/boxicons-regular/User";
 import { ArrowBack } from "@styled-icons/boxicons-regular/ArrowBack";
 import { Message } from "@styled-icons/boxicons-regular/Message";
-import {Settings2Outline} from "@styled-icons/evaicons-outline/Settings2Outline"
+import {Settings2Outline} from "@styled-icons/evaicons-outline/Settings2Outline";
+
+import { ThemeProvider } from "@material-ui/core/styles";
+import { createTheme } from '@material-ui/core/styles';
+
+import Dialog from "@material-ui/core/Dialog";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import MUIButton from "@material-ui/core/Button";
+
+const theme = createTheme({
+    palette: {
+      primary: {
+        main: "#d44d00"
+      },
+      secondary: {
+        main: "#ffab61",
+      },
+    },
+  });
+
 
 const Container = styled.div`
     background-color: #F0EAEA;
@@ -125,14 +147,20 @@ margin-left: 85%;
 margin-top: -55px;
 `
 
-export default function Dashboard({balance, walletAddress, EthAmount, EthPrice}) {
+export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, connected}) {
 
     const [showAccount, setShowAccount] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
     const [showGetLoan, setShowGetLoan] = useState(false);
     const [showStakePage, setShowStakePage] = useState(false);
-    const [showClaimRewards, setShowClaimRewards] = useState(false)
+    const [showClaimRewards, setShowClaimRewards] = useState(false);
+
+    const [open, setOpen] = useState(connected);
+
+    function handleToClose() {
+        setOpen(false);
+    }
 
     function handleShowAccount () {
         setShowAccount(true);
@@ -185,6 +213,38 @@ export default function Dashboard({balance, walletAddress, EthAmount, EthPrice})
     if (!showAccount && !showSettings && !showMessages && !showGetLoan  && !showStakePage && !showClaimRewards) {
     return (
         <>
+        <div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={open} onClose={handleToClose}>
+                    <DialogTitle>{"Wallet Not Found!"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            We have detected that your browser does not have a web3 wallet!
+                            We reccomened trying meta-mask, trust wallet, or another wallet-connect app.
+                            <br /> <br />
+                            <a href="https://metamask.io/download">
+                                Download Metamask
+                            </a>
+                            <br /> <br />
+                            <a href="https://trustwallet.com/download-page/">
+                                Download Trust Wallet
+                            </a>
+                            <br /> <br />
+                            <a href="https://registry.walletconnect.org/wallets">
+                                See List of Wallet-Connect Options
+                            </a>
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions>
+                        <MUIButton onClick={handleToClose} 
+                            color="primary" autoFocus>
+                            Close
+                        </MUIButton>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
+
             <Container>
                 <h4 Style="font-family:Nova Square; font-size: 18px;"> {balance} AT </h4>
                 

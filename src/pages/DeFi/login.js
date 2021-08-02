@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
 import DesktopDashboard from "./Desktop/DesktopDashboard";
@@ -13,7 +13,7 @@ import { ThemeProvider } from "@material-ui/core/styles";
 import { createTheme } from '@material-ui/core/styles';
 
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
-const etherscanURL = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=C6QXCW6BIWZJ9SCG986U1QC5W2CFI9CARA"
+// const etherscanURL = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=C6QXCW6BIWZJ9SCG986U1QC5W2CFI9CARA"
 
 
 // The minimum ABI to get ERC20 Token balance
@@ -133,82 +133,53 @@ export default function LogIn () {
     const [ethAmount, setEthAmount] = useState("");
     const [isMobile, setIsMobile] = useState(false);
 
-    const [ethPrice, setEthPrice] = useState(0);
+    // const [ethPrice, setEthPrice] = useState(0);
 
-    async function get_token_balance(publicKey, tokenAddy) {
-        var web3 = window.web3;
-        var balance;
-        
-        const contract = await new web3.eth.Contract(ERC_20_ABI, tokenAddy);
+    // function getEthPrice() {
+    //     fetch(etherscanURL ,{
+    //         method: 'GET',
+    //         headers: {
+    //           Accept: 'application/json',
+    //             "Content-Type": "application/json"
+    //         },
+    //         },
+    //     ).then(response => {
+    //         if (response.ok) {
+    //           response.json().then(json => { 
+    //             console.log("ETH price: " + json.result.ethusd);
+    //             setEthPrice(json.result.ethusd);
+    //           });
+    //         }
+    //       }).catch(error => alert("Current ETH price can not load, make sure ad-blocker is turned off ..."));
+    // }
 
-        await contract.methods.balanceOf(publicKey).call(function(error, result){
-            var amount = " " + result.toString();
-            balance = web3.utils.fromWei(amount, 'ether');
-        });       
-        return (balance);
-    }
-
-    const loadWalletData = useCallback(async () => {
-        window.web3 = new Web3(window.web3.currentProvider)
-        var web3 = window.web3;
+    async function ConnectWeb3Wallet () {
+        const provider = await web3Modal.connect();
+        const web3 = await new Web3(provider);
 
         const accounts = await web3.eth.getAccounts();
         const address = { account: accounts[0] }.account;
-        const amount_of_at = await get_token_balance(address, AvonTokenAddress);
-        const EthAmount = await web3.eth.getBalance(address);
+        const contract = await new web3.eth.Contract(ERC_20_ABI, AvonTokenAddress);
 
-        // console.log("Eth Amount: " + EthAmount / 1000000000000000000)
-        
+        setWalletAddress(address)
         setLoggedIn(true);
-        setWalletAddress(address);
-        setATamount(amount_of_at); 
-        setEthAmount(EthAmount / 1000000000000000000)     
-    }, [])
-
-    function getEthPrice() {
-        fetch(etherscanURL ,{
-            method: 'GET',
-            headers: {
-              Accept: 'application/json',
-                "Content-Type": "application/json"
-            },
-            },
-        ).then(response => {
-            if (response.ok) {
-              response.json().then(json => { 
-                console.log("ETH price: " + json.result.ethusd);
-                setEthPrice(json.result.ethusd);
-              });
+  
+        if (address) {
+          web3.eth.getBalance(address, function (error, wei) {
+            if (!error) {
+              var balance = web3.utils.fromWei(wei, "ether");
+              console.log(balance.substring(0, 4));
+              setEthAmount(balance.substring(0,4));
             }
-          }).catch(error => alert("Current ETH price can not load, make sure ad-blocker is turned off ..."));
+          });
+
+          await contract.methods.balanceOf(address).call(function(error, result){
+              var amount = " " + result.toString();
+              var balance = web3.utils.fromWei(amount, 'ether');
+              setATamount(balance);
+          });      
+        }
     }
-
-    const loadWeb3 = useCallback(async () => {
-        if (window.ethereum) {
-            
-            console.log("0");
-
-            const provider = await web3Modal.connect();
-            window.web3 = await new Web3(provider);
-
-            await provider.enable()
-            await loadWalletData();
-            return(true);
-        }
-        else if (window.web3) {
-            
-            console.log("1");
-            
-            window.web3 = new Web3(window.web3.currentProvider)
-            
-            await loadWalletData();
-            return(true);
-        }
-        else {
-            alert("Non etheruem broswer");
-            return(true);
-        }
-    }, [loadWalletData, isMobile]) 
 
     useEffect(() => {
         if (window.innerWidth > 999) {
@@ -216,21 +187,18 @@ export default function LogIn () {
         } else {
             setIsMobile(true);
         }
-        
-        if (window.web3) {
-            if (window.web3.currentProvider.selectedAddress != null) {
-                window.web3 = new Web3(window.web3.currentProvider)
-                loadWalletData();
-            } else {
-                web3Modal.clearCachedProvider();
-            }
+        if (!window.ethereum){
+            console.log("no wallet detected");
+            setShowDialog(true);
+            setLoggedIn(true);
         } else {
-           loadWeb3();
-       }
-
-       getEthPrice();
-
-    }, [loadWalletData, loadWeb3]);
+            if (window.web3){
+                console.log("Web3 wallet but not connected!")
+            }
+            ConnectWeb3Wallet();
+        }
+        // getEthPrice();
+    }, []);
 
     if (!loggedIn) {
     return (
@@ -248,7 +216,7 @@ export default function LogIn () {
                 </AvonTokenText>
 
                 <ThemeProvider theme={theme}>
-                    <Button variant="outlined" color="primary"  onClick={() => loadWeb3()}>
+                    <Button variant="outlined" color="primary"  onClick={() => ConnectWeb3Wallet()}>
                         <p> Log In </p>
                     </Button>
                 </ThemeProvider>
@@ -259,10 +227,11 @@ export default function LogIn () {
     } else if (loggedIn && isMobile) {
         return (
             <>
-                <Dashboard balance={ATamount} 
+                <Dashboard  balance={ATamount} 
                             walletAddress={walletAddress}
                             EthAmount={ethAmount}
-                            EthPrice={ethPrice}
+                            connected={showDialog}
+                            EthPrice={730.42}
                             />
             </>
         )

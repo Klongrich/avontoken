@@ -73,6 +73,7 @@ export default function GetLoan ({walletAddress}) {
     }
 
     async function RinkbeyMockFunction () {
+        if(window.ethereum) {
         var web3 = window.web3;
         
         const contract = await new web3.eth.Contract(AvonDAOabi.abi, MockAvonDAORinkbeyAddress);
@@ -83,6 +84,7 @@ export default function GetLoan ({walletAddress}) {
             .once("receipt", (res) => {
                 console.log(res);
             })
+        }
     }
 
     return (

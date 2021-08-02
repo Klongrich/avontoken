@@ -52,7 +52,7 @@ export default function GetLoan ({walletAddress, EthAmount, EthPrice}) {
     const [leverage, updateLeverage] = useState(1.1 || '');
     const [liqudationPrice, setLiquidationPrice] = useState(714.42);
 
-    const [maxLoan] = useState((parseFloat(EthAmount) * parseFloat(EthPrice)).toFixed(2));
+    // const [maxLoan] = useState((parseFloat(EthAmount) * parseFloat(EthPrice)).toFixed(2));
 
     function updateLiqudation(value) {
         updateLeverage(value);
@@ -73,16 +73,17 @@ export default function GetLoan ({walletAddress, EthAmount, EthPrice}) {
     }
 
     async function RinkbeyMockFunction () {
-        var web3 = window.web3;
-        
-        const contract = await new web3.eth.Contract(AvonDAOabi.abi, MockAvonDAORinkbeyAddress);
+        if (window.ethereum) {
+            var web3 = window.web3;
+            const contract = await new web3.eth.Contract(AvonDAOabi.abi, MockAvonDAORinkbeyAddress);
 
-        await contract.methods
-            .voteOnProposal(0, false)
-            .send({from: walletAddress})
-            .once("receipt", (res) => {
-                console.log(res);
-            })
+            await contract.methods
+                .voteOnProposal(0, false)
+                .send({from: walletAddress})
+                .once("receipt", (res) => {
+                    console.log(res);
+                })
+        }
     }
 
     useEffect(() => {
@@ -96,7 +97,7 @@ export default function GetLoan ({walletAddress, EthAmount, EthPrice}) {
         
             <div Style="margin-bottom: 90px;">
             <h3>Loan Amount</h3>
-            <h4 Style="padding-bottom: 22px;"> Max Loan: $ {maxLoan} </h4>
+            <h4 Style="padding-bottom: 22px;"> Max Loan: $ 757.42 </h4>
             
                 <Input style={{minWidth: '275px'}} 
                         color="primary"
