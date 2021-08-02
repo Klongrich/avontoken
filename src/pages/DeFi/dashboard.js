@@ -162,7 +162,7 @@ export default function Dashboard({
     const [showStakePage, setShowStakePage] = useState(false);
     const [showClaimRewards, setShowClaimRewards] = useState(false);
 
-    const [open, setOpen] = useState({connected});
+    const [open, setOpen] = useState(connected);
 
     function handleToClose() {
         setOpen(false);
@@ -220,6 +220,7 @@ export default function Dashboard({
         // Bug when using {connected} && connected when passing it as a parameter above
         console.log("showDialog: connected " + connected);
         console.log("showDialog: open " + open);
+        console.log(open);
         console.log("networkID: " + networkID);
     })
     

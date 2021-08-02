@@ -169,7 +169,6 @@ export default function LogIn () {
         else if (id === "42") {
             console.log("Kovan");
             setNetworkID(id);
-            setShowDialog(false);
         } else {
             console.log ("unknown networkID")
         }
@@ -178,8 +177,8 @@ export default function LogIn () {
 
     async function setATBalance(contract, address) {
         await contract.methods.balanceOf(address).call(function(error, result){
-            var amount = " " + result.toString();
-            // var balance = web3.utils.fromWei(amount, 'ether');
+            var temp = result / 1000000000000000000;
+            var amount = " " + temp.toString();
             setATamount(amount);
         });    
     }
