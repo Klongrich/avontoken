@@ -205,19 +205,7 @@ export default function LogIn () {
             return(true);
         }
         else {
-            if (!isMobile) {
-                setShowDialog(true);
-                setLoggedIn(true);
-            } else {
-                setLoggedIn(false);
-
-                const provider = await web3Modal.connect();
-                window.web3 = await new Web3(provider);
-    
-                await provider.enable()
-                await loadWalletData();
-            }
-
+            alert("Non etheruem broswer");
             return(true);
         }
     }, [loadWalletData, isMobile]) 
