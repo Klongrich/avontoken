@@ -158,7 +158,6 @@ export default function LogIn () {
         if (id === "1") {
             console.log("mainnet");
             setNetworkID(id);
-            setShowDialog(true);
         }
         else if (id === "4") {
             console.log("rinkeby");
@@ -199,6 +198,20 @@ export default function LogIn () {
           
         provider.on("chainChanged", (chainId) => {
             console.log(chainId);
+            if (chainId === '0x2a') {
+                console.log("kovan test net");
+                setATamount(42);
+            }
+            if (chainId === '0x1') {
+                console.log("Main Network Switched");
+                setATBalance(contract, address);
+            }
+            if (chainId === '0x3') {
+                alert("Ropsten Network Switch Detected, Plz switch to Kovan")
+            }
+            if (chainId === '0x4') {
+                alert("Rinkeby Network Switch Detected, Plz switch to Kovan")
+            }
         });
           
         provider.on("disconnect", (code, reason) => {
@@ -206,7 +219,6 @@ export default function LogIn () {
         });
 
         setWalletAddress(address)
-        setLoggedIn(true);
 
         await CheckNetworkVersion(web3.currentProvider.networkVersion);
   
@@ -219,11 +231,14 @@ export default function LogIn () {
             }
             setATBalance(contract, address);
           });
+          setShowDialog(true);
         }
-
+        
         if (address && web3.currentProvider.networkVersion === "42"){
             console.log("hello");
         }
+
+        setLoggedIn(true);
     }, []);
 
     useEffect(() => {
