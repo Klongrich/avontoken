@@ -244,8 +244,8 @@ export default function Dashboard({
                             <br /> <br />
                             <a href="https://metamask.io/download">
                                 Download Metamask
-                                <img  Style="margin-left: 46px;
-                                        margin-bottom: -10px;
+                                <img  Style="margin-left: 51px;
+                                        margin-bottom: -8px;
                                         margin-top: 10px;"
                                       src={MetamaskIcon} alt='' height="30" width="30" />
                             </a>
@@ -253,9 +253,10 @@ export default function Dashboard({
                             <br /> <br />
                             <a href="https://trustwallet.com/download-page/">
                                 Download Trust Wallet 
-                                <img Style="margin-left: 29px;
-                                            margin-bottom: -15px;" 
-                                    src={TrustwalletIcon} alt='' height="40" width="40" />
+                                <img Style="margin-left: 31px;
+                                            margin-bottom: -17px;
+                                            margin-top: 2px;" 
+                                    src={TrustwalletIcon} alt='' height="45" width="45" />
                             </a>
                             <br /> <br /> <br /> 
                             <a href="https://registry.walletconnect.org/wallets">
