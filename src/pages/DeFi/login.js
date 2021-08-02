@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import styled from "styled-components";
 import Dashboard from "./dashboard";
 import DesktopDashboard from "./Desktop/DesktopDashboard";
@@ -153,7 +153,33 @@ export default function LogIn () {
     //       }).catch(error => alert("Current ETH price can not load, make sure ad-blocker is turned off ..."));
     // }
 
-    async function ConnectWeb3Wallet () {
+    function CheckNetworkVersion(id){
+        if (id === "1") {
+            console.log("mainnet");
+        }
+        else if (id === "4") {
+            console.log("rinkeby");
+        }
+        else if (id === "3") {
+            console.log("Ropsten");
+        }
+        else if (id === "42") {
+            console.log("Kovan");
+        } else {
+            console.log ("unknown networkID")
+        }
+
+    }
+
+    async function setATBalance(contract, address) {
+        await contract.methods.balanceOf(address).call(function(error, result){
+            var amount = " " + result.toString();
+            // var balance = web3.utils.fromWei(amount, 'ether');
+            setATamount(amount);
+        });    
+    }
+
+    const ConnectWeb3Wallet = useCallback( async() => {
         const provider = await web3Modal.connect();
         const web3 = await new Web3(provider);
 
@@ -161,8 +187,24 @@ export default function LogIn () {
         const address = { account: accounts[0] }.account;
         const contract = await new web3.eth.Contract(ERC_20_ABI, AvonTokenAddress);
 
+        provider.on("accountsChanged", (accounts) => {
+            setWalletAddress(accounts[0]);
+            setATBalance(contract, accounts[0]);
+            console.log(accounts[0]);
+        });
+          
+        provider.on("chainChanged", (chainId) => {
+            console.log(chainId);
+        });
+          
+        provider.on("disconnect", (code, reason) => {
+            console.log(code, reason);
+        });
+
         setWalletAddress(address)
         setLoggedIn(true);
+
+        CheckNetworkVersion(web3.currentProvider.networkVersion);
   
         if (address) {
           web3.eth.getBalance(address, function (error, wei) {
@@ -171,15 +213,12 @@ export default function LogIn () {
               console.log(balance.substring(0, 4));
               setEthAmount(balance.substring(0,4));
             }
-          });
 
-          await contract.methods.balanceOf(address).call(function(error, result){
-              var amount = " " + result.toString();
-              var balance = web3.utils.fromWei(amount, 'ether');
-              setATamount(balance);
-          });      
+            setATBalance(contract, address);
+          });
+  
         }
-    }
+    }, []);
 
     useEffect(() => {
         if (window.innerWidth > 999) {
@@ -198,7 +237,7 @@ export default function LogIn () {
             ConnectWeb3Wallet();
         }
         // getEthPrice();
-    }, []);
+    }, [ConnectWeb3Wallet]);
 
     if (!loggedIn) {
     return (

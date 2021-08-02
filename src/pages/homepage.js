@@ -213,7 +213,7 @@ export default function Homepage() {
             </Container>
 
             <BodyContainer>
-                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized platform </h2>
+                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Platform </h2>
 
                 <p>
                    The recent launch of our ERC20 token will be used in future projects under the <strong> <u> AvonDAO </u> </strong>
@@ -261,7 +261,6 @@ export default function Homepage() {
                 <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
                  {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
             </LinksContainer>
-
             {/* <TeamContainer>
                 <h2 Style="margin-bottom: 25px;"> Avon Token Team </h2>
 
