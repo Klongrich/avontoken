@@ -15,7 +15,6 @@ import { createTheme } from '@material-ui/core/styles';
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 // const etherscanURL = "https://api.etherscan.io/api?module=stats&action=ethprice&apikey=C6QXCW6BIWZJ9SCG986U1QC5W2CFI9CARA"
 
-
 // The minimum ABI to get ERC20 Token balance
 var ERC_20_ABI = [
     // balanceOf
@@ -196,6 +195,7 @@ export default function LogIn () {
             console.log(accounts[0]);
         });
           
+        //Switch Dialogs and alerts to this section
         provider.on("chainChanged", (chainId) => {
             console.log(chainId);
             if (chainId === '0x2a') {
@@ -219,7 +219,6 @@ export default function LogIn () {
         });
 
         setWalletAddress(address)
-
         await CheckNetworkVersion(web3.currentProvider.networkVersion);
   
         if (address && web3.currentProvider.networkVersion === "1") {

@@ -26,6 +26,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import MUIButton from "@material-ui/core/Button";
 
+import MetamaskIcon from "../../assests/metamaskLogo.png";
+import TrustwalletIcon from "../../assests/trustwalletLogo.png";
+
+// import WalletconnectIcon from "../../assests/walletconnectLogo.png";
+
 const theme = createTheme({
     palette: {
       primary: {
@@ -235,16 +240,24 @@ export default function Dashboard({
                     <DialogContent>
                         <DialogContentText>
                             We have detected that your browser does not have a web3 wallet!
-                            We reccomened trying meta-mask, trust wallet, or another wallet-connect app.
+                            We reccomened trying Metamask, Trust Wallet, or another Wallet-Connect app.
                             <br /> <br />
                             <a href="https://metamask.io/download">
                                 Download Metamask
+                                <img  Style="margin-left: 46px;
+                                        margin-bottom: -10px;
+                                        margin-top: 10px;"
+                                      src={MetamaskIcon} alt='' height="30" width="30" />
                             </a>
+
                             <br /> <br />
                             <a href="https://trustwallet.com/download-page/">
-                                Download Trust Wallet
+                                Download Trust Wallet 
+                                <img Style="margin-left: 29px;
+                                            margin-bottom: -15px;" 
+                                    src={TrustwalletIcon} alt='' height="40" width="40" />
                             </a>
-                            <br /> <br />
+                            <br /> <br /> <br /> 
                             <a href="https://registry.walletconnect.org/wallets">
                                 See List of Wallet-Connect Options
                             </a> 
