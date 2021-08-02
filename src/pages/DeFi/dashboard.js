@@ -261,6 +261,7 @@ export default function Dashboard({
                             <a href="https://registry.walletconnect.org/wallets">
                                 See List of Wallet-Connect Options
                             </a> 
+                            <br /> <br />
                         </DialogContentText>
                     </DialogContent>
                     </>}
