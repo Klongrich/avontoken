@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import styled from "styled-components";
 
 import AccountPage from "./account_page";
@@ -147,8 +147,14 @@ margin-left: 85%;
 margin-top: -55px;
 `
 
-export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, connected}) {
-
+export default function Dashboard({
+    balance, 
+    walletAddress, 
+    EthAmount, 
+    EthPrice, 
+    connected, 
+    networkID
+}){
     const [showAccount, setShowAccount] = useState(false);
     const [showSettings, setShowSettings] = useState(false);
     const [showMessages, setShowMessages] = useState(false);
@@ -156,7 +162,7 @@ export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, 
     const [showStakePage, setShowStakePage] = useState(false);
     const [showClaimRewards, setShowClaimRewards] = useState(false);
 
-    const [open, setOpen] = useState(connected);
+    const [open, setOpen] = useState({connected});
 
     function handleToClose() {
         setOpen(false);
@@ -209,6 +215,13 @@ export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, 
     function handleShowenClaimRewards () {
         setShowClaimRewards(false);
     }
+
+    useEffect(() => {
+        // Bug when using {connected} && connected when passing it as a parameter above
+        console.log("showDialog: connected " + connected);
+        console.log("showDialog: open " + open);
+        console.log("networkID: " + networkID);
+    })
     
     if (!showAccount && !showSettings && !showMessages && !showGetLoan  && !showStakePage && !showClaimRewards) {
     return (
@@ -216,6 +229,7 @@ export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, 
         <div stlye={{}}>
             <ThemeProvider theme={theme}>
                 <Dialog open={open} onClose={handleToClose}>
+                {networkID === "0" && <> 
                     <DialogTitle>{"Wallet Not Found!"}</DialogTitle>
                     <DialogContent>
                         <DialogContentText>
@@ -232,9 +246,31 @@ export default function Dashboard({balance, walletAddress, EthAmount, EthPrice, 
                             <br /> <br />
                             <a href="https://registry.walletconnect.org/wallets">
                                 See List of Wallet-Connect Options
-                            </a>
+                            </a> 
                         </DialogContentText>
                     </DialogContent>
+                    </>}
+
+                    {networkID === "1" && <> 
+                    <DialogTitle>{"Main Network Detected!"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            We have detected that your web3 wallet is currently connected to: 
+                            <p Style="color: #05B09C; text-align: center">  Main Network  </p>
+                          
+                           <p> 
+                            Please Switch Wallet To ---> 
+                               
+                            <p Style="color: #6534C9; text-align: center;"> Kovan Test Network </p> 
+                                                    
+                            </p>
+                            
+                            For testing the dapp until further notice.                             
+                            <br /> <br /> <br />
+                            Thank You!
+                        </DialogContentText>
+                    </DialogContent>
+                    </>}
                     <DialogActions>
                         <MUIButton onClick={handleToClose} 
                             color="primary" autoFocus>

@@ -125,6 +125,7 @@ margin-bottom: 58px;
 
 export default function LogIn () {
 
+    const [networkID, setNetworkID] = useState("0");
     const [loggedIn, setLoggedIn] = useState(false);
     const [showDialog, setShowDialog] = useState(false);
 
@@ -153,9 +154,11 @@ export default function LogIn () {
     //       }).catch(error => alert("Current ETH price can not load, make sure ad-blocker is turned off ..."));
     // }
 
-    function CheckNetworkVersion(id){
+    async function CheckNetworkVersion(id){
         if (id === "1") {
             console.log("mainnet");
+            setNetworkID(id);
+            setShowDialog(true);
         }
         else if (id === "4") {
             console.log("rinkeby");
@@ -165,6 +168,8 @@ export default function LogIn () {
         }
         else if (id === "42") {
             console.log("Kovan");
+            setNetworkID(id);
+            setShowDialog(false);
         } else {
             console.log ("unknown networkID")
         }
@@ -179,7 +184,7 @@ export default function LogIn () {
         });    
     }
 
-    const ConnectWeb3Wallet = useCallback( async() => {
+    const ConnectWeb3Wallet = useCallback(async() => {
         const provider = await web3Modal.connect();
         const web3 = await new Web3(provider);
 
@@ -204,19 +209,21 @@ export default function LogIn () {
         setWalletAddress(address)
         setLoggedIn(true);
 
-        CheckNetworkVersion(web3.currentProvider.networkVersion);
+        await CheckNetworkVersion(web3.currentProvider.networkVersion);
   
-        if (address) {
+        if (address && web3.currentProvider.networkVersion === "1") {
           web3.eth.getBalance(address, function (error, wei) {
             if (!error) {
               var balance = web3.utils.fromWei(wei, "ether");
               console.log(balance.substring(0, 4));
               setEthAmount(balance.substring(0,4));
             }
-
             setATBalance(contract, address);
           });
-  
+        }
+
+        if (address && web3.currentProvider.networkVersion === "42"){
+            console.log("hello");
         }
     }, []);
 
@@ -270,6 +277,7 @@ export default function LogIn () {
                             walletAddress={walletAddress}
                             EthAmount={ethAmount}
                             connected={showDialog}
+                            networkID={networkID}
                             EthPrice={730.42}
                             />
             </>
