@@ -128,48 +128,6 @@ const SocialIconsContainer = styled.div`
     border-top: 1px solid white;
 `
 
-const BuyButton = styled.button`
-height: 35px;
-width: 135px;
-
-color: white;
-background-color:#32CD32;	
-border: 1px solid #F7BE00;
-
-:hover {
-    background-color: #ffab61;
-    cursor: pointer;
-}
-
-margin-top: 15px;
-margin-bottom: 15px;
-margin-left: 20px;
-
-box-shadow: 1px 2px #F7BE00;
-
-`
-
-const SellButton = styled.button`
-height: 35px;
-width: 135px;
-
-color: white;
-background-color:#B22222;	
-border: 1px solid #F7BE00;
-
-:hover {
-    background-color: #ffab61;
-    cursor: pointer;
-}
-
-margin-top: 15px;
-margin-bottom: 15px;
-margin-left: 50px;
-
-box-shadow: 1px 2px #F7BE00;
-
-`
-
 const AppButton = styled.button`
     height: 45px;
     width: 200px;
@@ -204,6 +162,35 @@ const NewsContainer = styled.div`
 
 const PriceBox = styled.div`
     font-weight: bold;
+`
+
+const BuySellContainer = styled.div`
+    margin-top: -20px;
+    margin-bottom: 15px;
+    padding-bottom: 20px;
+
+    text-align: center;
+
+    ul {
+        list-style-type: none;
+    }
+
+    li {
+        color: white;
+        font-size: 13px;
+        text-decoration: none;
+        float: left;
+        padding-left: 23px;
+        padding-right: 23px;
+
+        padding-top: 5px;
+        padding-bottom: 5px;
+
+        border: 1px solid #F7BE00;
+        box-shadow: 1px 2px #F7BE00;
+
+        width: 55px;
+    }
 `
 
 export default function Homepage() {
@@ -280,9 +267,11 @@ export default function Homepage() {
                     </a>
                     <br />
 
+                    <a href="https://github.com/avontoken/AvonNFT">
                     <AppButton>
                         AvonNFT Marketplace
                     </AppButton>
+                    </a>
                     <br /> 
             </BodyContainer>
 
@@ -299,7 +288,7 @@ export default function Homepage() {
 
             <LinksContainer>
                                 
-                <h3 Style="text-align:center; margin-top: 0px;">Purchase on Uniswap </h3>
+                <h2 Style="text-align:center; margin-top: 0px;">Purchase on Uniswap! </h2>
                 
                 <div Style="text-align:center;">
                     <Uni size="70" color="#F90076" /> 
@@ -309,18 +298,25 @@ export default function Homepage() {
 
                 <br />
 
+                <BuySellContainer>
+                <ul>
                 <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&inputCurrency=eth">
-                <BuyButton>
+                <li Style="background-color:#32CD32;
+                           margin-left: 6%;
+                           margin-right: 10%;
+                           ">
                     Buy AT
-                </BuyButton>
+                </li>
                 </a>
-
 
                 <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
-                <SellButton>
+                <li Style="background-color:#B22222;
+                           margin-left: 15px;">
                     Sell AT
-                </SellButton>
+                </li>
                 </a>
+                </ul>
+                </BuySellContainer>
 
                 <br /> <br />
                 <p Style="text-align:center; line-height: 1.5; margin-top: 20px;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
