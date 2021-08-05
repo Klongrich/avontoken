@@ -3,10 +3,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ApolloProvider, ApolloClient, InMemoryCache, HttpLink} from "@apollo/client";
+
+export const Client = new ApolloClient({
+  link: new HttpLink({
+    uri: "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+  }),
+  fetchOptions: {
+    mode: "no-cors",
+  },
+  cache: new InMemoryCache(),
+});
+
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <ApolloProvider client={Client}>
+      <App />
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
