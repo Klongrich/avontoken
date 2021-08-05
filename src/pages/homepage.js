@@ -165,7 +165,7 @@ const PriceBox = styled.div`
 `
 
 const BuySellContainer = styled.div`
-    margin-top: -20px;
+    margin-top: 0px;
     margin-bottom: 15px;
     padding-bottom: 20px;
 
@@ -200,6 +200,7 @@ export default function Homepage() {
     const { data: ethPriceData } = useQuery(ETH_PRICE_QUERY);
     const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice;
     const priceOfAT = parseFloat(ethPriceInUSD * 0.00053120);
+    const currentMarketcap = (parseFloat(ethPriceInUSD * 0.00053120) * 1000000)
 
     const handleToClose = () => {
         setOpen(false);
@@ -295,23 +296,21 @@ export default function Homepage() {
                 </div>
 
                 <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)} </p>
+                <p Style="text-align: center; font-size: 14px;">Current Marketcap: ${currentMarketcap.toLocaleString()} </p>
 
                 <br />
 
                 <BuySellContainer>
                 <ul>
                 <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&inputCurrency=eth">
-                <li Style="background-color:#32CD32;
-                           margin-left: 6%;
-                           margin-right: 10%;
-                           ">
+                <li Style="background-color:#32CD32;">
                     Buy AT
                 </li>
                 </a>
 
                 <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
                 <li Style="background-color:#B22222;
-                           margin-left: 15px;">
+                            margin-left: 23%;">
                     Sell AT
                 </li>
                 </a>
