@@ -9,6 +9,7 @@ import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
 import {Discord} from "@styled-icons/boxicons-logos/Discord";
 import { Newspaper } from "@styled-icons/ionicons-outline/Newspaper";
 import { Uni } from "@styled-icons/crypto/Uni";
+import { QuestionCircle } from "@styled-icons/bootstrap/QuestionCircle";
 
 import Button from "@material-ui/core/Button";
 
@@ -180,11 +181,11 @@ const BuySellContainer = styled.div`
         font-size: 13px;
         text-decoration: none;
         float: left;
-        padding-left: 23px;
-        padding-right: 23px;
+        padding-left: 30px;
+        padding-right: 30px;
 
-        padding-top: 5px;
-        padding-bottom: 5px;
+        padding-top: 8px;
+        padding-bottom: 8px;
 
         border: 1px solid #F7BE00;
         box-shadow: 1px 2px #F7BE00;
@@ -295,8 +296,19 @@ export default function Homepage() {
                     <Uni size="70" color="#F90076" /> 
                 </div>
 
-                <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)} </p>
-                <p Style="text-align: center; font-size: 14px;">Current Marketcap: ${currentMarketcap.toLocaleString()} </p>
+                <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)}  
+                    <a  Style="color: white; padding-left: 5px;"
+                        href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb#tokenTrade">
+                    <QuestionCircle size="12" /> 
+                </a>
+                </p>
+
+                <p Style="text-align: center; font-size: 14px;">Current Marketcap: ${currentMarketcap.toLocaleString()} 
+                    <a Style="color: white; padding-left: 5px;"
+                        href="https://www.investopedia.com/terms/m/marketcapitalization.asp">
+                    <QuestionCircle size="12" />
+                </a>
+                </p>
 
                 <br />
 
@@ -310,7 +322,7 @@ export default function Homepage() {
 
                 <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
                 <li Style="background-color:#B22222;
-                            margin-left: 23%;">
+                            margin-left: 15%;">
                     Sell AT
                 </li>
                 </a>
