@@ -7,6 +7,7 @@ import {Github} from "@styled-icons/bootstrap/Github";
 import {Reddit} from "@styled-icons/boxicons-logos/Reddit";
 import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
 import {Discord} from "@styled-icons/boxicons-logos/Discord";
+import { Newspaper } from "@styled-icons/ionicons-outline/Newspaper";
 
 import Button from "@material-ui/core/Button";
 
@@ -23,6 +24,8 @@ import TokenLogo from "../assests/AvonTokenLogo.png";
 
 import { useQuery } from "@apollo/react-hooks";
 import gql from "graphql-tag";
+
+// const TestATContract = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
 
 const ETH_PRICE_QUERY = gql`
   query bundles {
@@ -63,6 +66,7 @@ const BodyContainer = styled.div`
     margin-top: -70px;
     border-top: 1px solid white;
     border-bottom: 1px solid white;
+    padding-bottom: 42px;
 
     h2 {
         color: white;
@@ -140,6 +144,19 @@ const AppButton = styled.button`
     margin-bottom: 15px;
 
     box-shadow: 1px 2px #F7BE00;
+`
+
+const NewsContainer = styled.div`
+    background-color: black;
+    text-align: center;
+    border-bottom: 1px solid white;
+
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    a {
+        color: white;
+    }
 `
 
 const PriceBox = styled.div`
@@ -224,24 +241,18 @@ export default function Homepage() {
                     </AppButton>
                     </a>
                     <br /> 
-
-                <a href="/news">
-                    <p> News Pages </p>
-                </a>
-
-                {/* <a href="/vote">
-                    <p>Vote </p>
-                    <h4 Style="font-size: 12px;
-                              margin-top: -10px;
-                              text-decoration: none;">
-                        Test $AT Contract:
-                    </h4>
-                    <p Style="font-size: 12px;
-                             margin-top: -30px;">
-                             0xF37778Ff2BE5819efee99A0eB7862515b43ED03F
-                    </p>
-                </a> */}
             </BodyContainer>
+
+            <NewsContainer>
+            <a href="/news">
+                    <p Style="margin-left: -20px;"> News Pages </p>
+                    <div Style="margin-top: -35px; 
+                                margin-left: 105px;
+                                margin-bottom: 20px;">
+                        <Newspaper size="20" />
+                    </div>
+                </a>
+            </NewsContainer>
 
             <LinksContainer>
                 <p Style="text-align:center;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
