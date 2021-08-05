@@ -8,6 +8,7 @@ import {Reddit} from "@styled-icons/boxicons-logos/Reddit";
 import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
 import {Discord} from "@styled-icons/boxicons-logos/Discord";
 import { Newspaper } from "@styled-icons/ionicons-outline/Newspaper";
+import { Uni } from "@styled-icons/crypto/Uni";
 
 import Button from "@material-ui/core/Button";
 
@@ -127,6 +128,48 @@ const SocialIconsContainer = styled.div`
     border-top: 1px solid white;
 `
 
+const BuyButton = styled.button`
+height: 35px;
+width: 135px;
+
+color: white;
+background-color:#32CD32;	
+border: 1px solid #F7BE00;
+
+:hover {
+    background-color: #ffab61;
+    cursor: pointer;
+}
+
+margin-top: 15px;
+margin-bottom: 15px;
+margin-left: 20px;
+
+box-shadow: 1px 2px #F7BE00;
+
+`
+
+const SellButton = styled.button`
+height: 35px;
+width: 135px;
+
+color: white;
+background-color:#B22222;	
+border: 1px solid #F7BE00;
+
+:hover {
+    background-color: #ffab61;
+    cursor: pointer;
+}
+
+margin-top: 15px;
+margin-bottom: 15px;
+margin-left: 50px;
+
+box-shadow: 1px 2px #F7BE00;
+
+`
+
 const AppButton = styled.button`
     height: 45px;
     width: 200px;
@@ -211,7 +254,7 @@ export default function Homepage() {
                 <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Community </h2>
 
                 <p Style="line-height: 1.5; margin-top: -20px;">
-                   The recent launch of our ERC20 token will be used in projects under the AvonDAO 
+                   The launch of our ERC20 token will be used in projects under the AvonDAO 
                 </p>
                     
                 <PriceBox>
@@ -223,9 +266,11 @@ export default function Homepage() {
                     </p>
                 </PriceBox>
 
+                    <a href="/vote">
                     <AppButton>
-                        AvonNFT Marketplace
+                        AvonDAO Voting
                     </AppButton>
+                    </a>
                     <br />
 
                     <a href="/app">
@@ -235,11 +280,9 @@ export default function Homepage() {
                     </a>
                     <br />
 
-                    <a href="/vote">
                     <AppButton>
-                        AvonDAO Voting
+                        AvonNFT Marketplace
                     </AppButton>
-                    </a>
                     <br /> 
             </BodyContainer>
 
@@ -255,8 +298,33 @@ export default function Homepage() {
             </NewsContainer>
 
             <LinksContainer>
-                <p Style="text-align:center;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
-                <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
+                                
+                <h3 Style="text-align:center; margin-top: 0px;">Purchase on Uniswap </h3>
+                
+                <div Style="text-align:center;">
+                    <Uni size="70" color="#F90076" /> 
+                </div>
+
+                <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)} </p>
+
+                <br />
+
+                <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&inputCurrency=eth">
+                <BuyButton>
+                    Buy AT
+                </BuyButton>
+                </a>
+
+
+                <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
+                <SellButton>
+                    Sell AT
+                </SellButton>
+                </a>
+
+                <br /> <br />
+                <p Style="text-align:center; line-height: 1.5; margin-top: 20px;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
+
             </LinksContainer>
 
             {/* 
