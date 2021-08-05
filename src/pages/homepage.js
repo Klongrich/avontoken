@@ -21,6 +21,17 @@ import DialogContent from "@material-ui/core/DialogContent"
 
 import TokenLogo from "../assests/AvonTokenLogo.png";
 
+import { useQuery } from "@apollo/react-hooks";
+import gql from "graphql-tag";
+
+const ETH_PRICE_QUERY = gql`
+  query bundles {
+    bundles(where: { id: "1" }) {
+      ethPrice
+    }
+  }
+`;
+
 const theme = createTheme({
     palette: {
       primary: {
@@ -112,7 +123,7 @@ const SocialIconsContainer = styled.div`
     border-top: 1px solid white;
 `
 
-const LanuchApp = styled.button`
+const AppButton = styled.button`
     height: 45px;
     width: 200px;
 
@@ -131,54 +142,21 @@ const LanuchApp = styled.button`
     box-shadow: 1px 2px #F7BE00;
 `
 
-// const TeamContainer = styled.div`
-//     color: white;
-//     border-top: 1px solid white;
-//     border-bottom: 1px solid white;
-//     padding-left: 25px;
-//     padding-right: 25px;
-
-//     height: 620px;
-
-//     h3 {
-//         padding-left: 10px;
-//         padding-right: 10px;
-//     }
-// `
-
-// const Box1 = styled.div`
-//     border: 1px solid white;
-//     :hover {
-//         color: red;
-//     }
-// `
-
-// const Box2 = styled.div`
-//     border: 1px solid white;
-//     :hover {
-//         color: orange;
-//     }
-// `
-
-// const Box3 = styled.div`
-//     border: 1px solid white;
-//     :hover {
-//         color: blue;
-//     }
-// `
-
+const PriceBox = styled.div`
+    font-weight: bold;
+`
 
 export default function Homepage() {
 
     const [open, setOpen] = useState(false);
 
-    // const handleClickToOpen = () => {
-    //     setOpen(true);
-    //   };
-      
-      const handleToClose = () => {
+    const { data: ethPriceData } = useQuery(ETH_PRICE_QUERY);
+    const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice;
+    const priceOfAT = parseFloat(ethPriceInUSD * 0.00053120);
+
+    const handleToClose = () => {
         setOpen(false);
-      };
+    };
 
     return (
         <>
@@ -213,36 +191,45 @@ export default function Homepage() {
             </Container>
 
             <BodyContainer>
-                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Platform </h2>
+                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Community </h2>
 
-                <p>
-                   The recent launch of our ERC20 token will be used in future projects under the <strong> <u> AvonDAO </u> </strong>
+                <p Style="line-height: 1.5; margin-top: -20px;">
+                   The recent launch of our ERC20 token will be used in projects under the AvonDAO 
                 </p>
+                    
+                <PriceBox>
+                    <p Style="margin-top: -15px;">
+                        Price of ETH: ${parseFloat(ethPriceInUSD).toFixed(2)}
+                    </p>
+                    <p Style="margin-top: -30px;">
+                        Price Of AT: ${parseFloat(priceOfAT).toFixed(2)} 
+                    </p>
+                </PriceBox>
 
-                <p>
-                    <strong>
-                        Future projects include:
-                    </strong>
-                </p>
+                    <AppButton>
+                        AvonNFT Marketplace
+                    </AppButton>
+                    <br />
 
-                <ul>
-                    <li>AvonNFT Market Place</li>
-                    <li>AvonDeFi Protocol </li>
-                    <li>AvonInTheKnow Protocol</li>
-                </ul>
+                    <a href="/app">
+                     <AppButton>
+                        AvonDeFi Protocol
+                     </AppButton>
+                    </a>
+                    <br />
 
-                <a href="/app">
-                <LanuchApp>
-                    Launch App 
-                </LanuchApp>
-                </a>
-                <br /> 
+                    <a href="/vote">
+                    <AppButton>
+                        AvonDAO Voting
+                    </AppButton>
+                    </a>
+                    <br /> 
 
                 <a href="/news">
                     <p> News Pages </p>
                 </a>
 
-                <a href="/vote">
+                {/* <a href="/vote">
                     <p>Vote </p>
                     <h4 Style="font-size: 12px;
                               margin-top: -10px;
@@ -253,50 +240,22 @@ export default function Homepage() {
                              margin-top: -30px;">
                              0xF37778Ff2BE5819efee99A0eB7862515b43ED03F
                     </p>
-                </a>
+                </a> */}
             </BodyContainer>
 
             <LinksContainer>
                 <p Style="text-align:center;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
                 <p Style="text-align:center;">Purchase on Uniswap -> <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p>
-                 {/* <p Style="text-align:center;">See Listed on Uniswap -> <a href="https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://info.uniswap.org/#/tokens/0x7e992d8f57223661106c29e519e22a2a9a7bcefb</a> </p> */}
             </LinksContainer>
-            {/* <TeamContainer>
-                <h2 Style="margin-bottom: 25px;"> Avon Token Team </h2>
 
-                <div Style="border: 1px solid white; text-align: center;">
-                    
-                    <Box1>
-                        <h3>Design Lead / Head of Instagram</h3>
-                        <h4> ( $100k+ / year ) </h4>
-                        <p> - Blake Rose</p>
-                    </Box1>
-
-                    <Box2>
-                        <h3>Head of Facebook</h3>
-                        <h4> ( $100k+ / year ) </h4>
-                        <p> - Austin Seitz</p>
-                    </Box2>
-
-                    <Box3>
-                        <h3>Head of Twitter</h3>
-                        <h4> ( $100k / year )</h4>
-                        <p> - Adam Kirresh</p>
-                    </Box3>
-                </div>
-                <br /> <br />
-
+            {/* 
                 <div Style="text-align:center">
                 <ThemeProvider theme={theme}>
                     <Button variant="outlined" color="primary"  onClick={() => handleClickToOpen()}>
                         <p>Join Team</p>
                     </Button>
                 </ThemeProvider>
-                </div>
-
-                <p Style="padding-top: 10px; padding-bottom: 10px; text-decoration: underline"> Join Team </p>
-
-            </TeamContainer> */}
+            </div> */}
             
             <SocialIconsContainer>
                     <a href="https://twitter.com/avontoken">

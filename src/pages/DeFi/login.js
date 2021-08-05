@@ -263,7 +263,7 @@ export default function LogIn () {
     return (
         <>
             <Container>
-    
+                
                 <img src={TokenLogo}
                     height="125px"
                     width="125px" 
@@ -299,7 +299,6 @@ export default function LogIn () {
         return (
             <>
                 <DesktopDashboard isLoggedIn={showDialog} />
-
             </>
         )
     }
