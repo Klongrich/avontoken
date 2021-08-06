@@ -303,7 +303,6 @@ export default function VotePage () {
         }
         console.log("message: " + message);
         console.log("id: " + id);
-
     }
 
 
@@ -394,15 +393,20 @@ export default function VotePage () {
                     </DialogContent>
                     <br />
                     <DialogActions>
+
                         <Button onClick={handleToClose}
                             color="secondary">
                             Close
                         </Button>
+
+                        <div Style="margin-right: 10px;">
                         <Button onClick={() => submitProposal(proposal, 0)} 
                             color="secondary" autoFocus>
                             Submit
                         </Button>
+                        </div>
                     </DialogActions>
+                    <br />
                 </Dialog>
             </ThemeProvider>
         </div>
