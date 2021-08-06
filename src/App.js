@@ -1,7 +1,7 @@
 import HomePage from "./pages/homepage";
 import NewsPage from "./pages/news_page";
 import LogIn from "./pages/DeFi/login";
-import VotePage from './pages/Goverence/Mobile/vote'; 
+import VotePage from './pages/Goverence'; 
 
 // import DeFiLandingPage from "./pages/HomePage/";
 

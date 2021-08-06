@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from 'react';
-import styled from "styled-components";
 
 import MobilePage from "./Mobile/vote";
 import DesktopPage from "./Desktop/vote";
@@ -14,7 +13,7 @@ export default function VotingDapp() {
         } else {
             setIsMobile(true);
         }
-    })
+    }, [])
 
     return (
         <>

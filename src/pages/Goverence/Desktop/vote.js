@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 
-import TokenLogo from "../../assests/AvonTokenLogo.png";
+import TokenLogo from "../../../assests/AvonTokenLogo.png";
 
 import Web3 from "web3";
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
-import AvonDAOabi from "../../assests/AvonDAO.json";
+import AvonDAOabi from "../../../assests/AvonDAO.json";
 
 import Button from "@material-ui/core/Button";
 
@@ -101,7 +101,7 @@ const Container = styled.div`
     font-weight: normal;
 
     padding: 25px;
-    height: 1665px;
+    height: 1865px;
 
 
     a {
@@ -131,6 +131,13 @@ const InactiveContainer = styled.div`
     padding-bottom: 10px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 
+    margin-left: 30%;
+    margin-right: 30%;
+
+    ul {
+        margin-left: 27%;
+    }
+
     li {
         font-size: 14px;
         
@@ -139,6 +146,8 @@ const InactiveContainer = styled.div`
         padding-right: 42px;
 
         margin-left: -20px;
+
+        font-size: 20px;
     }
 
 `
@@ -405,15 +414,21 @@ export default function VotePage () {
                                 background-color: #ed9866;
                                 padding: 10px;
                                 margin-top: 30px;
+                                margin-left: 30%;
+                                margin-right: 30%;
                                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
                                 border-radius: 18px;
                                 border: 1px solid #fcf7f7;
+                                padding-top: 30px;
+                                padding-bottom: 30px;
+                                padding-left: 30px;
+                                padding-right: 30px;
                                 "
                                 >
-                        <h4> {data.preposal} </h4>
-                        <p> Yes: {data.yes} - ( {data.yesPrecentage} %) </p>
-                        <p> No: {data.no} - ( {data.noPrecentage} %) </p>
-                        <p>Time left: {data.timeLeft}</p>
+                        <h3 Style="font-size: 28px;"> {data.preposal} </h3>
+                        <p Style="font-size: 20px;"> Yes: {data.yes} - ( {data.yesPrecentage} %) </p>
+                        <p Style="font-size: 20px;"> No: {data.no} - ( {data.noPrecentage} %) </p>
+                        <h4 Style="font-size: 25px;">Time left: {data.timeLeft}</h4>
                     </div>
                     
                     {!data.voted && 
@@ -450,14 +465,14 @@ export default function VotePage () {
                 <WhiteLine />
 
                 <InactiveContainer>
-                <h3 Style="text-decoratin: underline;">Inactive</h3>
+                <h3 Style="text-decoratin: underline; text-align: center; font-size: 28px;">Inactive</h3>
                 <ul Style="list-style-type: none;">
-                    <li> <CheckCircle size="25" color="green" /> This is an old proposal - <a Style="color: green" href="/"> passed </a> </li>
-                    <li> <Cancel size="25" color="red" /> Hire front-end dev - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li> <Cancel size="25" color="red" /> This is a test - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li> <CheckCircle size="25" color="green" /> Community Give Away - <a Style="color: green" href="/"> passed </a> </li>
-                    <li> <Cancel size="25" color="red" /> This is another - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li> <CheckCircle size="25" color="green" /> This is a thrid Test - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <CheckCircle size="28" color="green" /> This is an old proposal - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="28" color="red" /> Hire front-end dev - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <Cancel size="28" color="red" /> This is a test - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="28" color="green" /> Community Give Away - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="28" color="red" /> This is another - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="28" color="green" /> This is a thrid Test - <a Style="color: green" href="/"> passed </a> </li>
                 </ul>
                 
                 </InactiveContainer>
