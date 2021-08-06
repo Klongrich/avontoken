@@ -469,7 +469,7 @@ export default function VotePage () {
                                 padding-bottom: 20px;
                                 margin-top: 30px;
                                 box-shadow: 0px 4px 4px rgb(255,90,0);    
-                                border-radius: 18px;
+                                border-radius: 5px;
                                 border: 1px solid #fcf7f7;
                                 "
                                 >
