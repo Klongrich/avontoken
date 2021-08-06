@@ -199,15 +199,14 @@ const TestData = [];
 export default function VotePage () {
 
     const [data, setData] = useState(TestData);
-    //const [loggedIn, setLoggedIn] = useState(false);
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
     const [open, setOpen] = useState(false);
+    
     const [over150, setOver150] = useState(false);
     const [proposal, setProposal] = useState("");
-
-    // const [newProposal, setNewProposal] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [amountOfChars, setAmountOfChars] = useState(0);
 
     const handleClickToOpen = () => {
@@ -219,12 +218,16 @@ export default function VotePage () {
       };
 
       function testingInput(value) {
+
+        var DateObject = new Date().now();
+        console.log("DateObject: " + DateObject);
         console.log(value);
         console.log("Length", value.length);
 
         // setNewProposal(value);
         setAmountOfChars(value.length);
         setProposal(value);
+        console.log("EndDate: " + DateObject.getTime())
 
         //Can set the value to read and show that they are going over.
         //Will have to lock out the submit button and maybe change it's color too.
@@ -302,7 +305,15 @@ export default function VotePage () {
             alert("Proposal is not under 150 Characters");
         }
         console.log("message: " + message);
-        console.log("id: " + id);
+
+        let DateObject = new Date(endDate);
+        let CurrentTime = new Date();
+
+        console.log("EndDate: " + endDate);
+        console.log("DateObject: " + DateObject);
+        console.log("Selected Date: " + DateObject.getTime());
+        console.log("Current Date: " + CurrentTime);
+        console.log("Current Time: " + CurrentTime.getTime());
     }
 
 
@@ -370,7 +381,7 @@ export default function VotePage () {
                         label="Experation Date"
                         type="date"
                         defaultValue="2021-08-12"
-                        onChange={e => console.log(e.target.value)}
+                        onChange={e => setEndDate(e.target.value)}
                         />
                     </DialogContent>
                     <br />
@@ -393,12 +404,10 @@ export default function VotePage () {
                     </DialogContent>
                     <br />
                     <DialogActions>
-
                         <Button onClick={handleToClose}
                             color="secondary">
                             Close
                         </Button>
-
                         <div Style="margin-right: 10px;">
                         <Button onClick={() => submitProposal(proposal, 0)} 
                             color="secondary" autoFocus>
