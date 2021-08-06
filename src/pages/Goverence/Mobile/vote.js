@@ -194,14 +194,15 @@ const TimeContainer = styled.div`
       background-color: white;
       list-style-position: outside;
 
-      margin-top: -25px;
+      margin-top: -22px;
       margin-bottom: 40px;
+      margin-left: 12px;
 }
 
   li {
     float: left;
     font-size: 16px;
-    margin-left: -34px;
+    margin-left: -35px;
   }
 `
   
@@ -340,9 +341,9 @@ export default function VotePage () {
                     <ul> 
                         <li> {hours} Hours</li>
                         <li>:</li>
-                        <li> {minutes} Mintues </li>
+                        <li> {minutes} Mins </li>
                         <li>:</li>
-                        <li> {seconds} Seconds </li>
+                        <li> {seconds} Secs </li>
                     </ul> 
                 </TimeContainer>
                 </>
@@ -468,6 +469,7 @@ export default function VotePage () {
                                 padding: 10px;
                                 padding-bottom: 20px;
                                 margin-top: 30px;
+                                margin-bottom: 30px;
                                 box-shadow: 0px 4px 4px rgb(255,90,0);    
                                 border-radius: 5px;
                                 border: 1px solid #fcf7f7;
@@ -475,7 +477,8 @@ export default function VotePage () {
                                 >
                         <h4 Style="font-size: 18px;"> {data.preposal} </h4>
                         <p> Yes: {data.yes} - ( {data.yesPrecentage} %) </p>
-                        <p> No: {data.no} - ( {data.noPrecentage} %) </p>
+                        <p Style="margin-bottom: 25px;"> No: {data.no} - ( {data.noPrecentage} %) </p>
+                        
                         <Countdown date={Date.now() + 500000}
                                    renderer={renderer} />
 
@@ -517,12 +520,12 @@ export default function VotePage () {
                 <InactiveContainer>
                 <h3 Style="text-decoratin: underline;">Inactive</h3>
                 <ul Style="list-style-type: none;">
-                    <li> <CheckCircle size="25" color="green" /> This is an old proposal - <a Style="color: green" href="/"> passed </a> </li>
-                    <li> <Cancel size="25" color="red" /> Hire front-end dev - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li> <Cancel size="25" color="red" /> This is a test - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="25" color="green" /> This Is An Old Proposal - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="25" color="red" /> Hire Front-End Dev - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <Cancel size="25" color="red" /> This Is A Test - <a Style="color: red" href="/"> rejected </a> </li>
                     <li> <CheckCircle size="25" color="green" /> Community Give Away - <a Style="color: green" href="/"> passed </a> </li>
-                    <li> <Cancel size="25" color="red" /> This is another - <a Style="color: red" href="/"> rejected </a> </li>
-                    <li> <CheckCircle size="25" color="green" /> This is a thrid Test - <a Style="color: green" href="/"> passed </a> </li>
+                    <li> <Cancel size="25" color="red" /> This Is Another - <a Style="color: red" href="/"> rejected </a> </li>
+                    <li> <CheckCircle size="25" color="green" /> This Is A Thrid Test - <a Style="color: green" href="/"> passed </a> </li>
                 </ul>
                 
                 </InactiveContainer>
