@@ -187,7 +187,8 @@ const TimeContainer = styled.div`
     border-radius: 5px;
     border: 1px solid black; 
     box-shadow: 0px 4px 4px rgb(251,189,1);
-  
+
+    color: #636363;
 
   ul {
       list-style-type: none;
