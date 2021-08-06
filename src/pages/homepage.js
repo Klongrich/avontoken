@@ -169,9 +169,7 @@ const BuySellContainer = styled.div`
     margin-top: 0px;
     margin-bottom: 15px;
     padding-bottom: 20px;
-
-    text-align: center;
-
+    
     ul {
         list-style-type: none;
     }
