@@ -27,11 +27,9 @@ import { Cancel } from "@styled-icons/material/Cancel";
 const AvonTokenAddress = "0x7e992d8f57223661106c29e519e22a2a9a7bcefb";
 
 const AvonTokenMockAddress = "0xF37778Ff2BE5819efee99A0eB7862515b43ED03F";
-const AvonDAORinkbeyAddress = "0x5c628B76C3F90986D204DF0D2E5a8bDA2E2B92Bf";
+const AvonDAORinkbeyAddress = "0xC389a1d5935bd84f77E4ce6f86FBDfF5c4dd5AA0";
 
-// The minimum ABI to get ERC20 Token balance
 var ERC_20_ABI = [
-    // balanceOf
     {
       "constant":true,
       "inputs":[{"name":"_owner","type":"address"}],
@@ -39,7 +37,6 @@ var ERC_20_ABI = [
       "outputs":[{"name":"balance","type":"uint256"}],
       "type":"function"
     },
-    // decimals
     {
       "constant":true,
       "inputs":[],
@@ -77,21 +74,6 @@ const theme = createTheme({
       }
     },
   });
-
-
-// const theme = createTheme({
-//     palette: {
-//       primary: {
-//         main: "#d44d00"
-//       },
-//       secondary: {
-//         main: "#ffab61",
-//       },
-//       primary1:{
-//           main: "rgba(38, 33, 23, 0.62)"
-//       }
-//     },
-//   });
 
 const Container = styled.div`
     background-color: #F0EAEA;
@@ -217,27 +199,6 @@ export default function VotePage () {
         setOpen(false);
       };
 
-      function testingInput(value) {
-
-        var DateObject = new Date().now();
-        console.log("DateObject: " + DateObject);
-        console.log(value);
-        console.log("Length", value.length);
-
-        // setNewProposal(value);
-        setAmountOfChars(value.length);
-        setProposal(value);
-        console.log("EndDate: " + DateObject.getTime())
-
-        //Can set the value to read and show that they are going over.
-        //Will have to lock out the submit button and maybe change it's color too.
-        if (value.length >= 150) {
-            setOver150(true);
-        } else {
-            setOver150(false);
-        }
-    }
-
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
         var balance;
@@ -300,21 +261,39 @@ export default function VotePage () {
         console.log(web3.currentProvider);
     }
 
-    function submitProposal(message, id) {
+    function setInput(value) {
+        setAmountOfChars(value.length);
+        setProposal(value);
+        if (value.length >= 150) {
+            setOver150(true);
+        } else {
+            setOver150(false);
+        }
+    }
+
+    async function submitProposal(message, id) {
         if (over150) {
             alert("Proposal is not under 150 Characters");
         }
         console.log("message: " + message);
 
         let DateObject = new Date(endDate);
-        let CurrentTime = new Date();
 
         console.log("EndDate: " + endDate);
-        console.log("DateObject: " + DateObject);
-        console.log("Selected Date: " + DateObject.getTime());
-        console.log("Current Date: " + CurrentTime);
-        console.log("Current Time: " + CurrentTime.getTime());
-    }
+        console.log("Selected Date: " + DateObject);
+        console.log("Selected Time: " + DateObject.getTime());
+
+        //Add A check to make sure they didn't select a date in the past or too far in the future.
+        var web3 = window.web3;
+        
+        const contract = await new web3.eth.Contract(AvonDAOabi.abi, AvonDAORinkbeyAddress);
+
+        await contract.methods.createPreposal(message, id, DateObject.getTime())
+            .send( {from: walletAddress} )
+            .once("receipt", (receipt) => {
+                console.log(receipt)
+            });
+        };
 
 
     useEffect(() => {
@@ -394,7 +373,7 @@ export default function VotePage () {
                                     inputProps={inputProps} 
                                     multiline rows={4}
                                     style={{minWidth: '100%', minHeight: '82px'}}
-                                    onChange={e => testingInput(e.target.value)}
+                                    onChange={e => setInput(e.target.value)}
                                     ></TextField>
                     <br /> <br /> 
                     <DialogContentText>
