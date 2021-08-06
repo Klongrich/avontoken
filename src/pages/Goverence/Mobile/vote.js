@@ -85,7 +85,7 @@ const Container = styled.div`
     font-weight: normal;
 
     padding: 25px;
-    height: 1665px;
+    height: 1765px;
 
 
     a {
@@ -153,17 +153,7 @@ const WhiteLine = styled.div`
 const DataFiller = [
     {
         id: 0,
-        preposal: "Should We Lanuch in the US or Switzerland?",
-        yes: 356,
-        no: 120,
-        yesPrecentage: 74.78,
-        noPrecentage: 25.21,
-        timeLeft: "12 hours 42 minutes",
-        voted: false
-    },
-    {
-        id: 1,
-        preposal: "Should We Create The NFT Market Before The DeFi Platform?",
+        preposal: "Should We Hire (Name Here) As A Designer For $500 To Create A Landing Page?",
         yes: 398,
         no: 75,
         yesPrecentage: 84.14,
@@ -171,6 +161,16 @@ const DataFiller = [
         timeLeft: "7 hours 24 mintues",
         voted: false
     },
+    {
+        id: 1,
+        preposal: "Should We Lower the LogIn to 10 AT Instead of 100 AT?",
+        yes: 356,
+        no: 120,
+        yesPrecentage: 74.78,
+        noPrecentage: 25.21,
+        timeLeft: "12 hours 42 minutes",
+        voted: false
+    }
 ]
 
 const inputProps = {
@@ -196,13 +196,13 @@ const TimeContainer = styled.div`
 
       margin-top: -22px;
       margin-bottom: 40px;
-      margin-left: 12px;
+      margin-left: 22px;
 }
 
   li {
     float: left;
     font-size: 16px;
-    margin-left: -35px;
+    margin-left: -38px;
   }
 `
   
