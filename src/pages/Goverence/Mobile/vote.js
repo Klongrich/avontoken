@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from 'react';
+import Countdown from 'react-countdown';
+
 import styled from 'styled-components';
 
 import TokenLogo from "../../../assests/AvonTokenLogo.png";
@@ -133,7 +135,7 @@ const CircleLogo = styled.div`
     background-size: 100% 100%;
     border: 1px solid #000000;
     box-sizing: border-box;
-    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    filter: drop-shadow(0px 4px 4px rgb(251,189,1));
     border-radius: 25px;
 
     margin-left: 85%;
@@ -174,6 +176,34 @@ const DataFiller = [
 const inputProps = {
     step: 300,
   };
+
+const TimeContainer = styled.div`
+    background-color: #F0EAEA;
+    padding-top: 25px;
+    padding-bottom: 1px;
+    padding-left: 12%;
+    text-align: center;
+
+    border-radius: 5px;
+    border: 1px solid black; 
+    box-shadow: 0px 4px 4px rgb(251,189,1);
+  
+
+  ul {
+      list-style-type: none;
+      background-color: white;
+      list-style-position: outside;
+
+      margin-top: -25px;
+      margin-bottom: 40px;
+}
+
+  li {
+    float: left;
+    font-size: 16px;
+    margin-left: -34px;
+  }
+`
   
 
 const TestData = [];
@@ -295,6 +325,31 @@ export default function VotePage () {
             });
         };
 
+    
+        const renderer = ({ hours, minutes, seconds, completed }) => {
+            if (completed) {
+                return(
+                    <>
+                        Voting  Is Up
+                    </>
+                )
+            } else {
+                return( 
+                <>
+                <TimeContainer>
+                    <ul> 
+                        <li> {hours} Hours</li>
+                        <li>:</li>
+                        <li> {minutes} Mintues </li>
+                        <li>:</li>
+                        <li> {seconds} Seconds </li>
+                    </ul> 
+                </TimeContainer>
+                </>
+                );
+            }
+        };
+
 
     useEffect(() => {
         async function loadWalletData() {
@@ -411,16 +466,19 @@ export default function VotePage () {
                                 border-top: 1px solid white; 
                                 background-color: #ed9866;
                                 padding: 10px;
+                                padding-bottom: 20px;
                                 margin-top: 30px;
-                                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);    
+                                box-shadow: 0px 4px 4px rgb(255,90,0);    
                                 border-radius: 18px;
                                 border: 1px solid #fcf7f7;
                                 "
                                 >
-                        <h4> {data.preposal} </h4>
+                        <h4 Style="font-size: 18px;"> {data.preposal} </h4>
                         <p> Yes: {data.yes} - ( {data.yesPrecentage} %) </p>
                         <p> No: {data.no} - ( {data.noPrecentage} %) </p>
-                        <p>Time left: {data.timeLeft}</p>
+                        <Countdown date={Date.now() + 500000}
+                                   renderer={renderer} />
+
                     </div>
                     
                     {!data.voted && 
