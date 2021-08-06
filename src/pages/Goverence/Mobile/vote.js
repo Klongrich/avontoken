@@ -551,7 +551,11 @@ export default function VotePage () {
                 
                 <br /> <br />
                 <p> <strong> *How It Works </strong> </p>
-
+                <p Style="margin-top: 25px;">  
+                <a href="https://academy.shrimpy.io/post/what-are-governance-tokens">
+                    - Article On Goverance Tokens 
+                </a>
+                </p>
                 <ul>
                     <li> 
                         All votes and decisions are kept on chain for anyone to view. 
