@@ -360,6 +360,19 @@ export default function VotePage () {
             <ThemeProvider theme={theme}>
                 <Dialog open={open} onClose={handleToClose}>
                     <DialogTitle>{"Create Proposal"}</DialogTitle>
+                    
+                    <DialogContent>
+                    <TextField
+                        id="date"
+                        label="Experation Date"
+                        type="date"
+                        defaultValue="2021-08-12"
+                        onChange={e => console.log(e.target.value)}
+                        />
+                    </DialogContent>
+
+                    <br />
+                    
                     <DialogContent>
                     <DialogContentText>
                             Keep proposal under 150 characters. Thank you
@@ -376,7 +389,9 @@ export default function VotePage () {
                         {amountOfChars} / 150
                     </DialogContentText>
 
+
                     </DialogContent>
+                    <br />
 
                     <DialogActions>
                         <Button onClick={handleToClose}

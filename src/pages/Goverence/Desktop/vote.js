@@ -385,8 +385,17 @@ export default function VotePage () {
                         {amountOfChars} / 150
                     </DialogContentText>
 
-                    </DialogContent>
+                    <br />
+                    <TextField
+                        id="date"
+                        label="Experation Date"
+                        type="date"
+                        defaultValue="2017-05-24"
+                        onChange={e => console.log(e.target.value)}
+                        />
 
+                    </DialogContent>
+                        <br />
                     <DialogActions>
                         <Button onClick={handleToClose}
                             color="secondary">
