@@ -204,6 +204,8 @@ export default function VotePage () {
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
     const [open, setOpen] = useState(false);
+    const [over150, setOver150] = useState(false);
+    const [proposal, setProposal] = useState("");
 
     // const [newProposal, setNewProposal] = useState("");
     const [amountOfChars, setAmountOfChars] = useState(0);
@@ -215,6 +217,23 @@ export default function VotePage () {
       const handleToClose = () => {
         setOpen(false);
       };
+
+      function testingInput(value) {
+        console.log(value);
+        console.log("Length", value.length);
+
+        // setNewProposal(value);
+        setAmountOfChars(value.length);
+        setProposal(value);
+
+        //Can set the value to read and show that they are going over.
+        //Will have to lock out the submit button and maybe change it's color too.
+        if (value.length >= 150) {
+            setOver150(true);
+        } else {
+            setOver150(false);
+        }
+    }
 
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
@@ -276,22 +295,17 @@ export default function VotePage () {
             }
         });
         console.log(web3.currentProvider);
-
     }
 
-    function testingInput(value) {
-        console.log(value);
-        console.log("Length", value.length);
-
-        // setNewProposal(value);
-        setAmountOfChars(value.length);
-
-        //Can set the value to read and show that they are going over.
-        //Will have to lock out the submit button and maybe change it's color too.
-        if (value.length >= 150) {
-
+    function submitProposal(message, id) {
+        if (over150) {
+            alert("Proposal is not under 150 Characters");
         }
+        console.log("message: " + message);
+        console.log("id: " + id);
+
     }
+
 
     useEffect(() => {
         async function loadWalletData() {
@@ -310,12 +324,8 @@ export default function VotePage () {
                 amount_of_at = await get_token_balance(address, AvonTokenMockAddress);
             }
             
-            //const EthAmount = await web3.eth.getBalance(address);
-    
-            //setLoggedIn(true);
             setWalletAddress(address);
             setATamount(amount_of_at); 
-            //setEthAmount(EthAmount / 1000000000000000000)     
         }  
 
         async function loadWeb3() {
@@ -346,11 +356,6 @@ export default function VotePage () {
             }
         }
         loadWeb3();
-        //const data = loadWeb3();
-        // console.log("Data: " + data);
-        // console.log("Address: " + walletAddress);
-        // console.log("AT amounnt: " + ATamount);
-        // //setLoggedIn(data);
     } , [])
 
     return (
@@ -360,7 +365,6 @@ export default function VotePage () {
             <ThemeProvider theme={theme}>
                 <Dialog open={open} onClose={handleToClose}>
                     <DialogTitle>{"Create Proposal"}</DialogTitle>
-                    
                     <DialogContent>
                     <TextField
                         id="date"
@@ -370,9 +374,7 @@ export default function VotePage () {
                         onChange={e => console.log(e.target.value)}
                         />
                     </DialogContent>
-
                     <br />
-                    
                     <DialogContent>
                     <DialogContentText>
                             Keep proposal under 150 characters. Thank you
@@ -386,19 +388,17 @@ export default function VotePage () {
                                     ></TextField>
                     <br /> <br /> 
                     <DialogContentText>
-                        {amountOfChars} / 150
+                        {!over150 && <> <p Style="margin-top: 0px;"> {amountOfChars} / 150 </p> </>}
+                        {over150 && <> <p Style="color: red; margin-top: 0px;"> {amountOfChars} / 150 !</p> </>}
                     </DialogContentText>
-
-
                     </DialogContent>
                     <br />
-
                     <DialogActions>
                         <Button onClick={handleToClose}
                             color="secondary">
                             Close
                         </Button>
-                        <Button onClick={() => voteOnProposal(0, false)} 
+                        <Button onClick={() => submitProposal(proposal, 0)} 
                             color="secondary" autoFocus>
                             Submit
                         </Button>
