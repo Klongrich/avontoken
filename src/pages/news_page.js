@@ -70,7 +70,6 @@ const Container = styled.div`
     text-align: center;
 
     height: 520px;
-
 `
 
 const LoggedInInfo = styled.div`
@@ -100,28 +99,22 @@ const UpdatesContainer = styled.div`
     padding-right: 5%;
 
     font-family: sans-serif;
-
-
-
-
 `
 
-const CoinsContainer = styled.div`
+// const CoinsContainer = styled.div`
+//     ul {
+//         list-style-type: circle;
+//     }
 
-    ul {
-        list-style-type: circle;
-    }
+//     a {
+//         padding-left: 40px;
+//     }
 
-    a {
-        padding-left: 40px;
-    }
-
-    li {
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-`
+//     li {
+//         padding-top: 10px;
+//         padding-bottom: 10px;
+//     }
+// `
 
 
 export default function NewsPage () {
@@ -200,7 +193,7 @@ export default function NewsPage () {
 
     const handleClickToOpen = () => {
         setOpen(true);
-      };
+    };
       
       const handleToClose = () => {
         setOpen(false);
@@ -312,10 +305,21 @@ export default function NewsPage () {
                             <h2> Updates </h2>
 
                             <h3 Style="text-align: left">
-                                July 2021 DeFi Coins (stable)
+                                August 7th, 2021                            
                             </h3>
 
-                            <CoinsContainer>
+                            <p Style="text-align: left;"> 
+                            
+                                Good news! martket is looking very bullish! Now is a a good time to pick up some more ETH
+                                even though it just broke $3,000. There really isn't much of a reason for us to go back down
+                                however it could still happen. I would also start looking into alt coins besides the best one (Avontoken) 
+                                if you were looking to take a posistion on alts. Do not wait until they are mooning more than
+                                ETH and then buy in. 
+                            
+                            </p>
+                            <p Style="text-align: left;">Please check back for updates ..... </p>
+
+                            {/* <CoinsContainer>
 
                             <ul Style="text-align: left;">
                                 <li>
@@ -346,7 +350,7 @@ export default function NewsPage () {
                                       padding-top: 20px;">*** NOT FINANCIAL ADVICE!</p>
 
                             <p Style="text-align:left;"> Also note you can interact with each of these dapps through your wallet browser </p>
-                  
+                   */}
                           
 {/* 
                             <h3 Style="text-align: left">
