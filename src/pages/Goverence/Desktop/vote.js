@@ -350,7 +350,7 @@ export default function VotePage () {
                 return(true);
             }
             else {
-                window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+                // window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
                 setData(DataFiller);
             }
         }
