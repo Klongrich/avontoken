@@ -10,6 +10,9 @@ import Web3Modal from 'web3modal';
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import AvonDAOabi from "../../../assests/AvonDAO.json";
 
+import MetamaskIcon from "../../../assests/metamaskLogo.png";
+import TrustwalletIcon from "../../../assests/trustwalletLogo.png";
+
 import Button from "@material-ui/core/Button";
 
 import { ThemeProvider } from "@material-ui/core/styles";
@@ -211,11 +214,14 @@ const TimeContainer = styled.div`
 export default function VotePage () {
 
     const [data, setData] = useState(DataFiller);
+    const [networkID] = useState("0");
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
+
     const [open, setOpen] = useState(false);
-    
+    const [openNoWallet, setOpenNoWallet] = useState(false);
+
     const [over150, setOver150] = useState(false);
     const [proposal, setProposal] = useState("");
     const [endDate, setEndDate] = useState("");
@@ -229,6 +235,12 @@ export default function VotePage () {
         setOpen(false);
       };
 
+      const handleClose = () => {
+          setOpenNoWallet(false);
+      };
+
+
+      
     async function get_token_balance(publicKey, tokenAddy) {
         var web3 = window.web3;
         var balance;
@@ -417,8 +429,8 @@ export default function VotePage () {
                 
                 return(true);
             }
-            else {
-                window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!');
+            else {                
+                setOpenNoWallet(true);
                 setData(DataFiller);
             }
         }
@@ -427,6 +439,70 @@ export default function VotePage () {
 
     return (
         <>
+                <div stlye={{}}>
+            <ThemeProvider theme={theme}>
+                <Dialog open={openNoWallet} onClose={handleClose}>
+                {networkID === "0" && <> 
+                    <DialogTitle>{"Wallet Not Found!"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            We have detected that your browser does not have a web3 wallet!
+                            We reccomened trying Metamask, Trust Wallet, or another Wallet-Connect app.
+                            <br /> <br />
+                            <a href="https://metamask.io/download">
+                                Download Metamask
+                                <img  Style="margin-left: 51px;
+                                        margin-bottom: -8px;
+                                        margin-top: 10px;"
+                                      src={MetamaskIcon} alt='' height="30" width="30" />
+                            </a>
+
+                            <br /> <br />
+                            <a href="https://trustwallet.com/download-page/">
+                                Download Trust Wallet 
+                                <img Style="margin-left: 31px;
+                                            margin-bottom: -17px;
+                                            margin-top: 2px;" 
+                                    src={TrustwalletIcon} alt='' height="45" width="45" />
+                            </a>
+                            <br /> <br /> <br /> 
+                            <a href="https://registry.walletconnect.org/wallets">
+                                See List of Wallet-Connect Options
+                            </a> 
+                            <br /> <br />
+                        </DialogContentText>
+                    </DialogContent>
+                    </>}
+
+                    {networkID === "1" && <> 
+                    <DialogTitle>{"Main Network Detected!"}</DialogTitle>
+                    <DialogContent>
+                        <DialogContentText>
+                            We have detected that your web3 wallet is currently connected to: 
+                            <p Style="color: #05B09C; text-align: center">  Main Network  </p>
+                          
+                           <p> 
+                            Please Switch Wallet To ---> 
+                               
+                            <p Style="color: #6534C9; text-align: center;"> Kovan Test Network </p> 
+                                                    
+                            </p>
+                            
+                            For testing the dapp until further notice.                             
+                            <br /> <br /> <br />
+                            Thank You!
+                        </DialogContentText>
+                    </DialogContent>
+                    </>}
+                    <DialogActions>
+                        <Button onClick={() => setOpenNoWallet(false)} 
+                            color="primary" autoFocus>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </Dialog>
+            </ThemeProvider>
+        </div>
 
         <div stlye={{}}>
             <ThemeProvider theme={theme}>
