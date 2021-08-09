@@ -208,11 +208,9 @@ const TimeContainer = styled.div`
 `
   
 
-const TestData = [];
-
 export default function VotePage () {
 
-    const [data, setData] = useState(TestData);
+    const [data, setData] = useState(DataFiller);
 
     const [walletAddress, setWalletAddress] = useState("Connect Web3");
     const [ATamount, setATamount] = useState(null);
@@ -259,39 +257,40 @@ export default function VotePage () {
             })
     }
 
-    async function getPropsalInfo(id) {
-        var web3 = window.web3;
+    // async function getPropsalInfo(id) {
+    //     var web3 = window.web3;
         
-        const contract = await new web3.eth.Contract(AvonDAOabi.abi, AvonDAORinkbeyAddress);
+    //     const contract = await new web3.eth.Contract(AvonDAOabi.abi, AvonDAORinkbeyAddress);
 
-        await contract.methods.Preposals(id).call(function (error, result) {
+    //     await contract.methods.Preposals(id).call(function (error, result) {
            
-            console.log("ID: + " + id);
-            console.log(result);
+    //         console.log("ID: + " + id);
+    //         console.log(result);
 
-            if (result) {
-            var yesCount = (result.yes / 1000000000000000000).toFixed(0);
-            var noCount = (result.no / 1000000000000000000).toFixed(0);
+    //         if (result) {
+    //         var yesCount = (result.yes / 1000000000000000000).toFixed(0);
+    //         var noCount = (result.no / 1000000000000000000).toFixed(0);
 
-            var yesPrecent = (parseFloat(yesCount) /  (parseFloat(yesCount) + parseFloat(noCount)) * 100).toFixed(2);
-            var noPrecent = (100 - parseFloat(yesPrecent)).toFixed(2);
+    //         var yesPrecent = (parseFloat(yesCount) /  (parseFloat(yesCount) + parseFloat(noCount)) * 100).toFixed(2);
+    //         var noPrecent = (100 - parseFloat(yesPrecent)).toFixed(2);
 
-            var newData = {
-                id: id,
-                preposal: result.preposal,
-                yes: yesCount,
-                no: noCount,
-                yesPrecentage: yesPrecent,
-                noPrecentage: noPrecent
-            }
+    //         var newData = {
+    //             id: id,
+    //             preposal: result.preposal,
+    //             yes: yesCount,
+    //             no: noCount,
+    //             yesPrecentage: yesPrecent,
+    //             noPrecentage: noPrecent
+    //         }
 
-                setData(data => [...data, newData])
-            } else {
-                setData(DataFiller);
-            }
-        });
-        console.log(web3.currentProvider);
-    }
+    //         setData(data => [...data, newData])
+            
+    //         } else {
+    //             setData(DataFiller);
+    //         }
+    //     });
+    //     console.log(web3.currentProvider);
+    // }
 
     function setInput(value) {
         setAmountOfChars(value.length);
@@ -354,6 +353,27 @@ export default function VotePage () {
 
 
     useEffect(() => {
+
+        // localStorage.setItem("Key", "Just Testing");
+        // const saved = localStorage.getItem("Key");
+
+        // console.log(saved);
+        // console.log(DataFiller);
+
+        // localStorage.setItem("DataFiller", JSON.stringify(DataFiller));
+
+        // const DataFillerCached = localStorage.getItem("DataFiller");
+        // const DataFillerParsed = JSON.parse(DataFillerCached);
+        
+        // if (DataFillerParsed) {
+
+        // }
+
+        // console.log(DataFillerParsed);
+        // console.log("Hello");
+
+
+
         async function loadWalletData() {
             window.web3 = new Web3(window.web3.currentProvider)
             var web3 = window.web3;
@@ -381,18 +401,19 @@ export default function VotePage () {
                 await provider.enable()
 
                 await loadWalletData();
-                await getPropsalInfo(0);
-                await getPropsalInfo(1);
+                
+                // await getPropsalInfo(0);
+                // await getPropsalInfo(1);
 
-                console.log("0");
                 return(true);
             }
             else if (window.web3) {
                 window.web3 = new Web3(window.web3.currentProvider)
                 
                 await loadWalletData();
-                await getPropsalInfo(0);
-                await getPropsalInfo(1);
+
+                // await getPropsalInfo(0);
+                // await getPropsalInfo(1);
                 
                 return(true);
             }
