@@ -198,8 +198,8 @@ export default function Homepage() {
 
     const { data: ethPriceData } = useQuery(ETH_PRICE_QUERY);
     const ethPriceInUSD = ethPriceData && ethPriceData.bundles[0].ethPrice;
-    const priceOfAT = parseFloat(ethPriceInUSD * 0.00053120);
-    const currentMarketcap = (parseFloat(ethPriceInUSD * 0.00053120) * 1000000)
+    const priceOfAT = parseFloat(ethPriceInUSD * 0.00052723);
+    const currentMarketcap = (parseFloat(ethPriceInUSD * 0.00052723) * 1000000)
 
     const handleToClose = () => {
         setOpen(false);
