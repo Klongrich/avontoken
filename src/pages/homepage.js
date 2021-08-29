@@ -1,12 +1,11 @@
 import React, {useState} from "react";
 import styled from "styled-components";
 
-import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
+// import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
 import {Github} from "@styled-icons/bootstrap/Github";
 
-import {Reddit} from "@styled-icons/boxicons-logos/Reddit";
-import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
-import {Discord} from "@styled-icons/boxicons-logos/Discord";
+// import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
+// import {Discord} from "@styled-icons/boxicons-logos/Discord";
 import { Newspaper } from "@styled-icons/ionicons-outline/Newspaper";
 import { Uni } from "@styled-icons/crypto/Uni";
 import { QuestionCircle } from "@styled-icons/bootstrap/QuestionCircle";
@@ -342,24 +341,8 @@ export default function Homepage() {
             </div> */}
             
             <SocialIconsContainer>
-                    <a href="https://twitter.com/avontoken">
-                        <Twitter size="42" color="#1DA1F2" />
-                    </a>
-
                     <a href="https://github.com/avontoken">
                         <Github size="42" color="#333" />
-                    </a>
-
-                    <a href="https://www.reddit.com/r/avontoken/">
-                        <Reddit size="42" color="#FF4500" />
-                    </a>
-
-                    <a href="/">
-                        <Telegram size="42" color="#0088cc" />
-                    </a>
-
-                    <a href="https://discord.gg/MpnC8aUWPA">
-                        <Discord size="42" color="#5865F2" />
                     </a>
                 </SocialIconsContainer>
             
