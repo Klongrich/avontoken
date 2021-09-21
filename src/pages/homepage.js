@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 // import {Twitter} from "@styled-icons/boxicons-logos/Twitter";
-import {Github} from "@styled-icons/bootstrap/Github";
+import { Github } from "@styled-icons/bootstrap/Github";
 
 // import {Telegram} from "@styled-icons/boxicons-logos/Telegram";
 // import {Discord} from "@styled-icons/boxicons-logos/Discord";
@@ -38,14 +38,14 @@ const ETH_PRICE_QUERY = gql`
 
 const theme = createTheme({
     palette: {
-      primary: {
-        main: "#F3BD02"
-      },
-      secondary: {
-        main: "#ffab61",
-      },
+        primary: {
+            main: "#F3BD02"
+        },
+        secondary: {
+            main: "#ffab61",
+        },
     },
-  });
+});
 
 const Container = styled.div`
     background-color: black;
@@ -59,7 +59,7 @@ const Container = styled.div`
         margin-left: 130px;
         margin-top: -135px;
     }
-`   
+`
 
 const BodyContainer = styled.div`
     background-color: black;
@@ -207,131 +207,135 @@ export default function Homepage() {
     return (
         <>
 
-    <div stlye={{}}>
-            <ThemeProvider theme={theme}>
-                <Dialog open={open} onClose={handleToClose}>
-                    <DialogTitle>{"Join Team"}</DialogTitle>
-                    <DialogContent>
-                        <DialogContentText>
-                            We are currently looking for Fellow Social Media Managers. Email kyle@avontoken.com
+            <div stlye={{}}>
+                <ThemeProvider theme={theme}>
+                    <Dialog open={open} onClose={handleToClose}>
+                        <DialogTitle>{"Join Team"}</DialogTitle>
+                        <DialogContent>
+                            <DialogContentText>
+                                We are currently looking for Fellow Social Media Managers. Email kyle@avontoken.com
                         </DialogContentText>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleToClose} 
-                            color="primary" autoFocus>
-                            Close
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleToClose}
+                                color="primary" autoFocus>
+                                Close
                         </Button>
-                    </DialogActions>
-                </Dialog>
-            </ThemeProvider>
-        </div>
+                        </DialogActions>
+                    </Dialog>
+                </ThemeProvider>
+            </div>
             <div Style="background-color: black; height: 100%">
 
-            <Container>
-            <div Style="padding: 15px;">
-                <img src={TokenLogo} height="75" width="75" alt="" />
-            </div>
-            
-                <p> Avon Token </p>
-                
-            </Container>
+                <Container>
+                    <div Style="padding: 15px;">
+                        <img src={TokenLogo} height="75" width="75" alt="" />
+                    </div>
 
-            <BodyContainer>
-                <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Community </h2>
+                    <p> Avon Token </p>
 
-                <p Style="line-height: 1.5; margin-top: -20px;">
-                   The launch of our ERC20 token will be used in projects under the AvonDAO 
-                </p>
-                    
-                <PriceBox>
-                    <p Style="margin-top: -15px;">
-                        Price of ETH: ${parseFloat(ethPriceInUSD).toFixed(2)}
+                </Container>
+
+                <BodyContainer>
+                    <h2 Style="line-height: 1.42"> AvonToken Is A User First Decentralized Community </h2>
+
+                    <p>
+                        NOTICE. AvonToken is for Educational purposes ONLY!!!
                     </p>
-                    <p Style="margin-top: -30px;">
-                        Price Of AT: ${parseFloat(priceOfAT).toFixed(2)} 
+
+                    <p>
+                        If you find yourself un-happy with the change, plz feel free to sell your $AT.
                     </p>
-                </PriceBox>
+
+                    <PriceBox>
+                        <p Style="margin-top: -15px;">
+                            Price of ETH: ${parseFloat(ethPriceInUSD).toFixed(2)}
+                        </p>
+                        <p Style="margin-top: -30px;">
+                            Price Of AT: ${parseFloat(priceOfAT).toFixed(2)}
+                        </p>
+                    </PriceBox>
 
                     <a href="/vote">
-                    <AppButton>
-                        AvonDAO Voting
+                        <AppButton>
+                            AvonDAO Voting
                     </AppButton>
                     </a>
                     <br />
 
                     <a href="/app">
-                     <AppButton>
-                        AvonDeFi Protocol
+                        <AppButton>
+                            AvonDeFi Protocol
                      </AppButton>
                     </a>
                     <br />
 
                     <a href="https://github.com/avontoken/AvonNFT">
-                    <AppButton>
-                        AvonNFT Marketplace
+                        <AppButton>
+                            AvonNFT Marketplace
                     </AppButton>
                     </a>
-                    <br /> 
-            </BodyContainer>
+                    <br />
+                </BodyContainer>
 
-            <NewsContainer>
-            <a href="/news">
-                    <p Style="margin-left: -20px;"> News Pages </p>
-                    <div Style="margin-top: -35px; 
+                <NewsContainer>
+                    <a href="/news">
+                        <p Style="margin-left: -20px;"> News Pages </p>
+                        <div Style="margin-top: -35px; 
                                 margin-left: 105px;
                                 margin-bottom: 20px;">
-                        <Newspaper size="20" />
+                            <Newspaper size="20" />
+                        </div>
+                    </a>
+                </NewsContainer>
+
+                <LinksContainer>
+
+                    <h2 Style="text-align:center; margin-top: 0px;">Purchase on Uniswap! </h2>
+
+                    <div Style="text-align:center;">
+                        <Uni size="70" color="#F90076" />
                     </div>
-                </a>
-            </NewsContainer>
 
-            <LinksContainer>
-                                
-                <h2 Style="text-align:center; margin-top: 0px;">Purchase on Uniswap! </h2>
-                
-                <div Style="text-align:center;">
-                    <Uni size="70" color="#F90076" /> 
-                </div>
+                    <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)}
+                        <a Style="color: white; padding-left: 5px;"
+                            href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb#tokenTrade">
+                            <QuestionCircle size="12" />
+                        </a>
+                    </p>
 
-                <p Style="text-align:center; font-size: 14px;">Current Price: ${parseFloat(priceOfAT).toFixed(2)}  
-                    <a  Style="color: white; padding-left: 5px;"
-                        href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb#tokenTrade">
-                    <QuestionCircle size="12" /> 
-                </a>
-                </p>
+                    <p Style="text-align: center; font-size: 14px;">Current Marketcap: ${currentMarketcap.toLocaleString()}
+                        <a Style="color: white; padding-left: 5px;"
+                            href="https://www.investopedia.com/terms/m/marketcapitalization.asp">
+                            <QuestionCircle size="12" />
+                        </a>
+                    </p>
 
-                <p Style="text-align: center; font-size: 14px;">Current Marketcap: ${currentMarketcap.toLocaleString()} 
-                    <a Style="color: white; padding-left: 5px;"
-                        href="https://www.investopedia.com/terms/m/marketcapitalization.asp">
-                    <QuestionCircle size="12" />
-                </a>
-                </p>
+                    <br />
 
-                <br />
-
-                <BuySellContainer>
-                <ul>
-                <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&inputCurrency=eth">
-                <li Style="background-color:#32CD32;">
-                    Buy AT
+                    <BuySellContainer>
+                        <ul>
+                            <a href="https://app.uniswap.org/#/swap?outputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&inputCurrency=eth">
+                                <li Style="background-color:#32CD32;">
+                                    Buy AT
                 </li>
-                </a>
+                            </a>
 
-                <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
-                <li Style="background-color:#B22222;
+                            <a href="https://app.uniswap.org/#/swap?inputCurrency=0x7e992d8f57223661106c29e519e22a2a9a7bcefb&outputCurrency=eth">
+                                <li Style="background-color:#B22222;
                             margin-left: 15%;">
-                    Sell AT
+                                    Sell AT
                 </li>
-                </a>
-                </ul>
-                </BuySellContainer>
+                            </a>
+                        </ul>
+                    </BuySellContainer>
 
-                <br /> <br />
-                <p Style="text-align:center; line-height: 1.5; margin-top: 20px;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
+                    <br /> <br />
+                    <p Style="text-align:center; line-height: 1.5; margin-top: 20px;">Token Lanuched Here on Mainnet ->  <a href="https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb"> https://etherscan.io/token/0x7e992d8f57223661106c29e519e22a2a9a7bcefb </a> </p>
 
-            </LinksContainer>
+                </LinksContainer>
 
-            {/* 
+                {/* 
                 <div Style="text-align:center">
                 <ThemeProvider theme={theme}>
                     <Button variant="outlined" color="primary"  onClick={() => handleClickToOpen()}>
@@ -339,13 +343,13 @@ export default function Homepage() {
                     </Button>
                 </ThemeProvider>
             </div> */}
-            
-            <SocialIconsContainer>
+
+                <SocialIconsContainer>
                     <a href="https://github.com/avontoken">
                         <Github size="42" color="#333" />
                     </a>
                 </SocialIconsContainer>
-            
+
             </div>
         </>
     )
