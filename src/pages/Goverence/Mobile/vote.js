@@ -643,7 +643,7 @@ export default function VotePage () {
                 <WhiteLine />
 
 
-                <a href="https://github.com/avontoken/AvonDAO/blob/master/contracts/AvonDAO.sol">
+                <a href="https://github.com/Klongrich/OpenDAO/blob/main/OpenDAO.sol">
                     Contract Here
                 </a>
                 
